@@ -10,19 +10,21 @@
         h1 { color: #d32f2f; text-align: center; font-size: 20px; margin-bottom: 5px; }
         p.subtitle { text-align: center; font-size: 13px; color: #666; margin-top: 0; }
         
-        .filter-section { background: #eef2f7; padding: 15px; border-radius: 6px; margin-bottom: 20px; text-align: center; }
-        label { font-weight: bold; display: block; margin-bottom: 8px; font-size: 15px; }
-        select { width: 100%; padding: 10px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc; max-width: 300px; }
+        .filter-section { background: #eef2f7; padding: 15px; border-radius: 6px; margin-bottom: 20px; }
+        .filter-group { margin-bottom: 12px; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; font-size: 14px; }
+        select { width: 100%; padding: 10px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box; }
 
         .manobra-panel { display: none; background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 15px; margin-top: 10px; }
         .manobra-panel.active { display: block; animation: fadeIn 0.4s ease; }
         
         h2 { font-size: 16px; color: #0d47a1; margin-top: 0; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
+        .tensao { font-size: 13px; margin: 5px 0 15px 0; color: #555; }
         
         table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: middle; }
         th { background-color: #f2f2f2; font-weight: bold; }
-        .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; }
+        .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; }
@@ -34,38 +36,91 @@
     <h1>Bornes dos Circuitos de Segurança</h1>
     <p class="subtitle">Guia Técnico de Manobras Comuns em Portugal</p>
     
-    <!-- Filtro Interativo -->
+    <!-- Filtros Dinâmicos Duplos -->
     <div class="filter-section">
-        <label for="manobraSelect">Selecione o Quadro de Manobra:</label>
-        <select id="manobraSelect" onchange="filtrarManobra()">
-            <option value="">-- Escolha uma Manobra --</option>
-            <option value="otis-ne300">Otis (NE300)</option>
-            <option value="orona-arca">Orona (Arca / 3G)</option>
-            <option value="schindler-miconic">Schindler (Miconic / Bionic)</option>
-            <option value="otis-lcb2">Otis (LCB2 / MCS)</option>
-            <option value="thyssen-cmc4">ThyssenKrupp (CMC4 / MC2)</option>
-        </select>
+        <div class="filter-group">
+            <label for="marcaSelect">1. Selecione a Marca:</label>
+            <select id="marcaSelect" onchange="atualizarModelos()">
+                <option value="">-- Escolha uma Marca --</option>
+                <option value="otis">Otis</option>
+                <option value="tke">ThyssenKrupp (TKE)</option>
+                <option value="orona">Orona</option>
+                <option value="schindler">Schindler</option>
+            </select>
+        </div>
+        
+        <div class="filter-group" id="modeloGroup" style="display:none;">
+            <label for="manobraSelect">2. Selecione a Manobra:</label>
+            <select id="manobraSelect" onchange="mostrarPainel()">
+                <option value="">-- Escolha uma Manobra --</option>
+            </select>
+        </div>
     </div>
 
-    <!-- DADOS: OTIS NE300 -->
-    <div id="otis-ne300" class="manobra-panel">
-        <h2>Otis - NE300</h2>
-        <p><strong>Tensão do Circuito:</strong> 110V AC - 120V AC</p>
+    <!-- ==================== DADOS: OTIS ==================== -->
+    <div id="panel-otis-ne300" class="manobra-panel">
+        <h2>Otis — NE300</h2>
+        <div class="tensao"><strong>Tensão do Circuito:</strong> 110V AC - 120V AC</div>
         <table>
             <tr><th>Circuito / Componente</th><th>Bornes de Medição</th></tr>
             <tr><td>Bloco Térmico (BT)</td><td><span class="borne">95</span> a <span class="borne">96</span></td></tr>
             <tr><td>Stop Inspeção, Paraquedas e Alongamento de Cabos</td><td><span class="borne">H7</span> a <span class="borne">I5/B1</span></td></tr>
             <tr><td>Limitador de Velocidade</td><td><span class="borne">I5/B1</span> a <span class="borne">C3/B2</span></td></tr>
             <tr><td>Fim de Curso (Sup/Inf), Roda Tensora e Stop de Poço</td><td><span class="borne">C3/B2</span> a <span class="borne">B5</span></td></tr>
-            <tr><td>Encosto de Portas de Piso (Contactos de Pré-fecho)</td><td><span class="borne">B5</span> a <span class="borne">B6</span></td></tr>
+            <tr><td>Encosto de Portas de Piso (Pré-fecho)</td><td><span class="borne">B5</span> a <span class="borne">B6</span></td></tr>
             <tr><td>Encravamento das Portas de Piso (Trincos)</td><td><span class="borne">B6</span> a <span class="borne">B7</span></td></tr>
         </table>
     </div>
 
-    <!-- Dados: Orona Arca -->
-    <div id="orona-arca" class="manobra-panel">
-        <h2>Orona - Sistema Arca</h2>
-        <p><strong>Tensão Comum:</strong> 48V AC / DC</p>
+    <div id="panel-otis-lcb2" class="manobra-panel">
+        <h2>Otis — LCB2 / MCS</h2>
+        <div class="tensao"><strong>Tensão Comum:</strong> 110V AC</div>
+        <table>
+            <tr><th>Circuito / Componente</th><th>Bornes / Plugs</th></tr>
+            <tr><td>Início da Cadeia (Stop/Trincos)</td><td><span class="borne">P3.1</span> (ES)</td></tr>
+            <tr><td>Série de Portas de Patamar</td><td><span class="borne">P3.2</span> (DW)</td></tr>
+            <tr><td>Série de Porta de Cabina</td><td><span class="borne">P3.3</span> (DFC)</td></tr>
+        </table>
+    </div>
+
+    <!-- ==================== DADOS: TKE ==================== -->
+    <div id="panel-tke-cmc4plus" class="manobra-panel">
+        <h2>ThyssenKrupp — CMC4+ 20.50</h2>
+        <div class="tensao"><strong>Tensão do Circuito:</strong> 230V AC</div>
+        <table>
+            <tr><th>Circuito / Componente</th><th>Conector e Bornes</th></tr>
+            <tr><td>Stop do Motor</td><td><span class="borne">X152 / 1</span> a <span class="borne">X152 / 3</span></td></tr>
+            <tr><td>Seguranças de Poço (Escada, roda tensora, amortecedores, etc)</td><td><span class="borne">X153 / 1</span> a <span class="borne">X153 / 8</span></td></tr>
+            <tr><td>Bypass em Normal</td><td><span class="borne">X160 / 2</span> a <span class="borne">X160 / 1</span></td></tr>
+            <tr><td>Limitador de Velocidade da Cabine (LV)</td><td><span class="borne">X137 / 3</span> a <span class="borne">X137 / 1</span></td></tr>
+            <tr><td>Limitador de Velocidade do Contra-peso</td><td><span class="borne">X137A / 3</span> a <span class="borne">X137A / 1</span></td></tr>
+            <tr><td>Seguranças de Cabine (Stop, paraquedas, fins de curso, etc)</td><td><span class="borne">X155 / 11</span> a <span class="borne">X155 / 12</span></td></tr>
+            <tr><td>Interruptor do Poço em Normal</td><td><span class="borne">X153 / 11</span> a <span class="borne">X206 / 1</span></td></tr>
+            <tr><td>Vigilância das Portas de Piso</td><td><span class="borne">X206 / 1</span> a <span class="borne">X206 / 2</span></td></tr>
+            <tr><td>Stop de Poço</td><td><span class="borne">X206 / 2</span> a <span class="borne">X153 / 4</span></td></tr>
+            <tr><td>Fecho de Portas Manuais de Piso — Frontal</td><td><span class="borne">X142 / 2</span> a <span class="borne">X142 / 1</span></td></tr>
+            <tr><td>Fecho de Portas Manuais de Piso — Traseira</td><td><span class="borne">X142T / 2</span> a <span class="borne">X142T / 1</span></td></tr>
+            <tr><td>Encravamento das Portas de Cabine</td><td><span class="borne">X155 / 6</span> a <span class="borne">X155 / 9</span></td></tr>
+            <tr><td>Encravamento das Portas de Piso — Frontal</td><td><span class="borne">X136 / 1</span> a <span class="borne">X136 / 3</span></td></tr>
+            <tr><td>Encravamento das Portas de Piso — Traseira</td><td><span class="borne">X136T / 1</span> a <span class="borne">X136T / 3</span></td></tr>
+        </table>
+    </div>
+
+    <div id="panel-tke-cmc4" class="manobra-panel">
+        <h2>ThyssenKrupp — CMC4 Base</h2>
+        <div class="tensao"><strong>Tensão Comum:</strong> 110V AC / 48V DC</div>
+        <table>
+            <tr><th>Circuito / Componente</th><th>Bornes de Medição</th></tr>
+            <tr><td>Linf (Trincos / Caixas)</td><td><span class="borne">L110 / P50</span></td></tr>
+            <tr><td>Interrupção Geral Fim de Curso</td><td><span class="borne">P53</span></td></tr>
+            <tr><td>Retorno de Portas Fechadas</td><td><span class="borne">P71 / P72</span></td></tr>
+        </table>
+    </div>
+
+    <!-- ==================== DADOS: ORONA ==================== -->
+    <div id="panel-orona-arca" class="manobra-panel">
+        <h2>Orona — Sistema Arca / 3G</h2>
+        <div class="tensao"><strong>Tensão Comum:</strong> 48V AC / DC</div>
         <table>
             <tr><th>Circuito / Componente</th><th>Bornes de Medição</th></tr>
             <tr><td>Entrada da Série Geral</td><td><span class="borne">X-SEG1</span></td></tr>
@@ -75,10 +130,10 @@
         </table>
     </div>
 
-    <!-- Dados: Schindler Miconic -->
-    <div id="schindler-miconic" class="manobra-panel">
-        <h2>Schindler - Miconic / Bionic</h2>
-        <p><strong>Tensão Comum:</strong> 110V AC</p>
+    <!-- ==================== DADOS: SCHINDLER ==================== -->
+    <div id="panel-schindler-miconic" class="manobra-panel">
+        <h2>Schindler — Miconic / Bionic</h2>
+        <div class="tensao"><strong>Tensão Comum:</strong> 110V AC</div>
         <table>
             <tr><th>Circuito / Componente</th><th>Bornes de Medição</th></tr>
             <tr><td>Contactos de Fundo (Poço)</td><td><span class="borne">KUES / SKL</span></td></tr>
@@ -88,47 +143,22 @@
         </table>
     </div>
 
-    <!-- Dados: Otis LCB2 -->
-    <div id="otis-lcb2" class="manobra-panel">
-        <h2>Otis - Quadro LCB2</h2>
-        <p><strong>Tensão Comum:</strong> 110V AC</p>
-        <table>
-            <tr><th>Circuito / Componente</th><th>Bornes / Plugs</th></tr>
-            <tr><td>Início da Cadeia (Stop/Trincos)</td><td><span class="borne">P3.1</span> (ES)</td></tr>
-            <tr><td>Série de Portas de Patamar</td><td><span class="borne">P3.2</span> (DW)</td></tr>
-            <tr><td>Série de Porta de Cabina</td><td><span class="borne">P3.3</span> (DFC)</td></tr>
-        </table>
-    </div>
-
-    <!-- Dados: ThyssenKrupp CMC4 -->
-    <div id="thyssen-cmc4" class="manobra-panel">
-        <h2>ThyssenKrupp - CMC4</h2>
-        <p><strong>Tensão Comum:</strong> 110V AC / 48V DC</p>
-        <table>
-            <tr><th>Circuito / Componente</th><th>Bornes de Medição</th></tr>
-            <tr><td>Linf (Trincos / Caixas)</td><td><span class="borne">L110 / P50</span></td></tr>
-            <tr><td>Interrupção Geral Fim de Curso</td><td><span class="borne">P53</span></td></tr>
-            <tr><td>Retorno de Portas Fechadas</td><td><span class="borne">P71 / P72</span></td></tr>
-        </table>
-    </div>
-
     <div class="footer">
         Desenvolvido via GitHub Pages • Base de dados de manutenção móvel
     </div>
 </div>
 
 <script>
-function filtrarManobra() {
-    var paineis = document.getElementsByClassName('manobra-panel');
-    for (var i = 0; i < paineis.length; i++) {
-        paineis[i].classList.remove('active');
-    }
-    var valorSelecionado = document.getElementById('manobraSelect').value;
-    if(valorSelecionado) {
-        document.getElementById(valorSelecionado).classList.add('active');
-    }
-}
-</script>
-
-</body>
-</html>
+// Base de dados para os subfiltros
+const modelosPorMarca = {
+    otis: [
+        { value: "panel-otis-ne300", text: "NE300" },
+        { value: "panel-otis-lcb2", text: "LCB2 / MCS" }
+    ],
+    tke: [
+        { value: "panel-tke-cmc4plus", text: "CMC4+ 20.50" },
+        { value: "panel-tke-cmc4", text: "CMC4 Base" }
+    ],
+    orona: [
+        { value: "panel-orona-arca", text: "Arca / 3G" }
+    ],
