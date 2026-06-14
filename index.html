@@ -3,116 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Séries de Segurança - Portugal</title>
+    <title>Circuito de Segurança de Elevadores</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; margin: 15px; background-color: #f1f5f9; color: #1e293b; }
-        h2 { color: #0f172a; text-align: center; margin-bottom: 5px; font-size: 22px; }
-        p.subtitle { text-align: center; color: #64748b; margin-top: 0; font-size: 14px; margin-bottom: 20px; }
-        .search-container { position: relative; margin-bottom: 20px; }
-        input#searchBar { width: 100%; padding: 14px; border: 2px solid #cbd5e1; border-radius: 10px; font-size: 16px; box-sizing: border-box; outline: none; transition: border-color 0.2s; }
-        input#searchBar:focus { border-color: #3b82f6; }
-        .list-container { max-height: 250px; overflow-y: auto; background: white; border-radius: 10px; border: 1px solid #e2e8f0; display: none; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-        .list-item { padding: 12px 15px; border-bottom: 1px solid #f1f5f9; cursor: pointer; font-size: 15px; }
-        .list-item:last-child { border-bottom: none; }
-        .list-item:hover, .list-item.active { background-color: #eff6ff; color: #1d4ed8; }
-        .box { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); display: none; border: 1px solid #e2e8f0; }
-        .manobra-header { font-size: 18px; font-weight: bold; color: #1e3a8a; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 15px; }
-        .passo { background: #f8fafc; border-left: 5px solid #3b82f6; margin: 10px 0; padding: 12px; border-radius: 6px; font-size: 15px; font-weight: 500; display: flex; align-items: center; }
-        .passo span { margin-right: 10px; color: #3b82f6; font-weight: bold; }
-        .dica { background: #fef3c7; border-left: 5px solid #f59e0b; margin-top: 20px; padding: 12px; border-radius: 6px; font-size: 14px; color: #78350f; line-height: 1.5; }
+        body { font-family: Arial, sans-serif; background: #f4f6f9; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 600px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; }
+        h1 { color: #d32f2f; text-align: center; font-size: 22px; }
+        h2 { font-size: 16px; color: #555; border-bottom: 2px solid #ddd; padding-bottom: 5px; }
+        .diagram { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; background: #222; padding: 15px; border-radius: 6px; }
+        .component { background: #333; color: #fff; padding: 10px; border-left: 5px solid #4caf50; font-family: monospace; font-size: 13px; border-radius: 4px; }
+        .component span { color: #4caf50; font-weight: bold; float: right; }
+        .info-box { background: #e3f2fd; border-left: 5px solid #2196f3; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 14px; }
+        .footer { text-align: center; margin-top: 20px; font-size: 11px; color: #777; }
     </style>
 </head>
 <body>
 
-    <h2>🛗 Manobras de Ascensores</h2>
-    <p class="subtitle">Guia Técnico de Séries de Segurança</p>
-
-    <div class="search-container">
-        <input type="text" id="searchBar" placeholder="🔍 Escreva o nome da manobra..." oninput="filtrarManobras()" onfocus="mostrarLista()">
-        <div id="listaSugestoes" class="list-container"></div>
+<div class="container">
+    <h1>Cadeia de Segurança de Elevadores</h1>
+    <p style="text-align: center; font-size: 14px;">Normas Técnicas em Portugal (EN 81-20)</p>
+    
+    <h2>Diagrama da Linha de Série (230V / 110V AC)</h2>
+    <div class="diagram">
+        <div class="component">Fase / Alimentação (Manobra) <span>[ INÍCIO ]</span></div>
+        <div class="component">1. STOP Poço / Caixa (Botão de Emergência) <span>[ OK ]</span></div>
+        <div class="component">2. STOP Cabina / Tejadilho <span>[ OK ]</span></div>
+        <div class="component">3. Contacto do Limitador de Velocidade (Paraquedas) <span>[ OK ]</span></div>
+        <div class="component">4. Amortecedores / Fim de Curso Subida/Descida <span>[ OK ]</span></div>
+        <div class="component">5. Contactos das Portas de Patamar (Trincos Mecânicos) <span>[ OK ]</span></div>
+        <div class="component">6. Contacto da Porta da Cabina (Operador) <span>[ OK ]</span></div>
+        <div class="component">Bobine do Contactor Geral / Remoto Principal <span>[ SEGURO ]</span></div>
     </div>
 
-    <div id="resultado" class="box">
-        <div id="nomeManobra" class="manobra-header"></div>
-        <div id="listaPassos"></div>
-        <div id="dicaManobra" class="dica"></div>
+    <h2>Lógica de Funcionamento</h2>
+    <div class="info-box">
+        <strong>Regra de Ouro:</strong> Todos os contactos acima estão ligados eletronicamente em <strong>série</strong>. Se um único contacto falhar ou abrir, a alimentação do contactor principal é cortada instantaneamente, bloqueando o motor e aplicando o travão mecânico.
     </div>
 
-    <script>
-        // Base de Dados com as 13 manobras solicitadas
-        const db = {
-            aliseu_itala: {
-                nome: "Aliseu Ítala",
-                passos: ["Fusível Geral da Série (Proteção primária)", "Stops de Emergência (Poço / Tejadilho)", "Contacto do Limitador de Velocidade / Para-quedas", "Série de Amortecedores / Fim de Curso Finais", "Série de Portas de Cabine", "Série de Trincos das Portas de Patamar"],
-                dica: "Manobra comum em modernizações portuguesas. Atenção aos relés auxiliares de segurança no quadro que podem ficar colados."
-            },
-            am_eng: {
-                nome: "AM Eng (AM Engenharia)",
-                passos: ["Circuito Geral de Alimentação das Seguranças", "Cadeia de Stops Mecânicos (Fundo do poço e tejadilho)", "Contacto Mecânico do Para-quedas e Cut-out do Limitador", "Série de Portas de Cabine (Garante cabine fechada)", "Série de Enclavamento Mecânico (Trincos das portas exteriores)"],
-                dica: "Geralmente utiliza sinais luminosos em placa para monitorizar as séries gerais. Verifique as linhas comuns de retorno."
-            },
-            baglini_tower: {
-                nome: "Baglini Tower",
-                passos: ["Linha Geral de Segurança (Fusível dedicado)", "Botões de Stop e Stop de Tejadilho", "Contactos de Segurança do Poço e Limitador", "Contacto da Porta de Cabine", "Contactos dos Trincos de Patamar (Série Exterior)"],
-                dica: "Quadros de origem italiana muito comuns em Portugal. Esquema de segurança standard europeu EN81. Teste a queda de tensão no retorno final à placa."
-            },
-            cs_hidra: {
-                nome: "Carlos Silva Hidra",
-                passos: ["Borne de Alimentação Geral das Seguranças (Linha de Stops)", "Série de Contactos Gerais de Segurança (Limitador / Para-quedas)", "Contacto de Portas de Cabine (Sinalização na placa)", "Série de Pré-fecho das Portas de Patamar", "Série de Trincos (Encravamento final de patamar)"],
-                dica: "O sistema HIDRA da [Carlos Silva](https://www.carlos-silva.com/) organiza o diagnóstico através de módulos de barramento CAN. Verifique os LEDs de estado nas placas eletrónicas."
-            },
-            cs_crono: {
-                nome: "Carlos Silva Crono",
-                passos: ["Tensão de Entrada do Circuito de Segurança (Bornes dedicados)", "Série de Stops Gerais / Fins de Curso", "Série de Portas de Cabine", "Série de Contactos Exteriores (Pré-fechos)", "Contacto de Trinco / Bloqueio Mecânico de Patamar"],
-                dica: "Nas manobras CRONO, os módulos de poço gerem os sinais localmente. Utilize a consola de programação para verificar o código de erro exato da série aberta."
-            },
-            cs_kdt: {
-                nome: "Carlos Silva KDT",
-                passos: ["Alimentação Principal da Linha de Segurança", "Circuito de Stops Gerais de Emergência", "Contacto de Segurança do Operador e Porta de Cabine", "Linha de Portas de Patamar (Série Exterior)", "Contacto Final de Encravamento dos Trincos"],
-                dica: "Painel compacto e muito fiável. Se o circuito estiver aberto, meça primeiro a continuidade da série geral no bloco de bornes principal."
-            },
-            otis_ne300: {
-                nome: "Otis NE300",
-                passos: ["Linha de Alimentação do Transformador de Segurança", "Circuito Geral de Stops (Fundo poço, polias, tejadilho)", "Contacto de Afinação / Cabo do Limitador e Para-quedas", "Contacto de Porta de Cabine", "Cadeia de Contactos de Portas de Patamar (DS)"],
-                dica: "Sistemas mais antigos ou industriais da Otis. Os relés de segurança no quadro dão a indicação visual direta da quebra de linha."
-            },
-            otis_nh300: {
-                nome: "Otis NH300",
-                passos: ["Alimentação de Segurança (Fusíveis de proteção)", "Circuito de Emergência / Stops de Poço e Cabine", "Cut-out do Limitador e Para-quedas", "Série de Portas de Cabine (GS)", "Série de Trincos de Patamar (DS)"],
-                dica: "Comportamento idêntico à arquitetura clássica Otis. Isole abrindo a série na ficha intermédia do tejadilho da cabine."
-            },
-            otis_lcb2: {
-                nome: "Otis LCB2",
-                passos: ["Borne de Alimentação Geral da Série", "Circuito de Stops Gerais e Limitador (Ponto 1)", "Contacto de Porta de Cabine - Ponto GS", "Série de Trincos de Patamar - Ponto DS", "Série de Portas Manuais (Se aplicável)"],
-                dica: "A placa LCB2 monitoriza a série através dos pontos GS (Cabine) e DS (Patamar). Se GS tiver tensão e DS não, o problema está exclusivamente nas portas exteriores."
-            },
-            otis_gen2_comfort: {
-                nome: "Otis GEN2 Comfort",
-                passos: ["Linha Principal de Segurança das Cintas / Máquina", "Cadeia de Stops (Poço, Tejadilho, Resgate)", "Série do Para-quedas de Cabine / Contra-peso", "Sinal de Cabine Fechada (GS)", "Sinal de Portas Exteriores Trancadas (DS)"],
-                dica: "Equipamento com cintas de aço revestidas a poliuretano. Utiliza o módulo de segurança eletrónico SPB. Não faça pontes permanentes nas fichas de teste!"
-            },
-            otis_gen2_lva: {
-                nome: "Otis GEN2 LVA",
-                passos: ["Alimentação de Baixa Tensão do Circuito de Segurança", "Linha Eletrónica de Stops e Encravamentos Mecânicos", "Monitorização Eletrónica do Para-quedas", "Contacto GS (Porta de Cabine)", "Contacto DS (Trincos de Patamar)"],
-                dica: "Versão evoluída com arquitetura modular compacta. Verifique as avarias através da ferramenta de serviço Otis (GECB) no menu de estados de entradas (Inputs)."
-            },
-            schindler_co_sc: {
-                nome: "Schindler CO-SC (Miconic / Smart)",
-                passos: ["Alimentação do Circuito de Segurança", "Série de Stops Gerais / Limitador / Fim de Curso", "Contacto de Porta de Cabine (KTC)", "Série de Contactos de Patamar (KV)", "Trincos / Contacto de Encravamento Final (KTS)"],
-                dica: "Placas Schindler comuns em Portugal utilizam as siglas KTC (Cabine) e KTS (Patamar). Os LEDs correspondentes piscam ou apagam consoante o ponto exato da quebra."
-            },
-            tke_cmc4_2050: {
-                nome: "TKE CMC4+ 20.50 (Thyssenkrupp)",
-                passos: ["Alimentação Geral do Circuito através da placa CMC4+", "Série de Stops de Emergência (Fundo de poço, fossa, tejadilho)", "Contacto do Limitador de Velocidade e Contacto do Para-quedas", "Série de Contactos de Portas de Cabine", "Série de Trincos e Portas de Patamar"],
-                dica: "O comando CMC4+ possui LEDs dedicados para monitorizar a evolução da série. Utilize o menu de diagnóstico rápido na placa principal ou consola para rastrear cortes intermitentes."
-            }
-        };
+    <div class="footer">
+        Desenvolvido via GitHub Pages • Circuito Técnico de Manobras
+    </div>
+</div>
 
-        // Lógica do Motor de Busca com Auto-completar
-        function filtrarManobras() {
-            const input = document.getElementById("searchBar").value.toLowerCase();
-            const lista = document.getElementById("listaSugestoes");
-            lista.innerHTML = "";
-            
-            if (!input) {
-                lista.style.display = "none";
+</body>
+</html>
