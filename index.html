@@ -14,8 +14,8 @@
         label { font-weight: bold; display: block; margin-bottom: 8px; font-size: 15px; }
         select { width: 100%; padding: 10px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc; max-width: 350px; background: white; }
 
+        /* GARANTE QUE TODAS AS MANOBRAS FICAM ESCONDIDAS NO INÍCIO */
         .manobra-panel { display: none; background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 15px; margin-top: 10px; }
-        .manobra-panel.active { display: block; }
         
         h2 { font-size: 16px; color: #0d47a1; margin-top: 0; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
         .tensao { font-size: 13px; margin: 5px 0 15px 0; color: #555; }
@@ -142,16 +142,12 @@
 
 <script>
 function filtrarManobra() {
-    // Esconder todos os painéis primeiro
     var paineis = document.getElementsByClassName('manobra-panel');
     for (var i = 0; i < paineis.length; i++) {
         paineis[i].style.display = 'none';
     }
     
-    // Obter id selecionado
     var valor = document.getElementById('manobraSelect').value;
-    
-    // Mostrar apenas o selecionado
     if (valor) {
         document.getElementById(valor).style.display = 'block';
     }
