@@ -39,11 +39,27 @@
         <label for="manobraSelect">Selecione o Quadro de Manobra:</label>
         <select id="manobraSelect" onchange="filtrarManobra()">
             <option value="">-- Escolha uma Manobra --</option>
+            <option value="otis-ne300">Otis (NE300)</option>
             <option value="orona-arca">Orona (Arca / 3G)</option>
             <option value="schindler-miconic">Schindler (Miconic / Bionic)</option>
             <option value="otis-lcb2">Otis (LCB2 / MCS)</option>
             <option value="thyssen-cmc4">ThyssenKrupp (CMC4 / MC2)</option>
         </select>
+    </div>
+
+    <!-- DADOS: OTIS NE300 -->
+    <div id="otis-ne300" class="manobra-panel">
+        <h2>Otis - NE300</h2>
+        <p><strong>Tensão do Circuito:</strong> 110V AC - 120V AC</p>
+        <table>
+            <tr><th>Circuito / Componente</th><th>Bornes de Medição</th></tr>
+            <tr><td>Bloco Térmico (BT)</td><td><span class="borne">95</span> a <span class="borne">96</span></td></tr>
+            <tr><td>Stop Inspeção, Paraquedas e Alongamento de Cabos</td><td><span class="borne">H7</span> a <span class="borne">I5/B1</span></td></tr>
+            <tr><td>Limitador de Velocidade</td><td><span class="borne">I5/B1</span> a <span class="borne">C3/B2</span></td></tr>
+            <tr><td>Fim de Curso (Sup/Inf), Roda Tensora e Stop de Poço</td><td><span class="borne">C3/B2</span> a <span class="borne">B5</span></td></tr>
+            <tr><td>Encosto de Portas de Piso (Contactos de Pré-fecho)</td><td><span class="borne">B5</span> a <span class="borne">B6</span></td></tr>
+            <tr><td>Encravamento das Portas de Piso (Trincos)</td><td><span class="borne">B6</span> a <span class="borne">B7</span></td></tr>
+        </table>
     </div>
 
     <!-- Dados: Orona Arca -->
@@ -103,16 +119,11 @@
 
 <script>
 function filtrarManobra() {
-    // Esconder todos os painéis técnicos
     var paineis = document.getElementsByClassName('manobra-panel');
     for (var i = 0; i < paineis.length; i++) {
         paineis[i].classList.remove('active');
     }
-    
-    // Obter o ID da manobra selecionada
     var valorSelecionado = document.getElementById('manobraSelect').value;
-    
-    // Se houver uma seleção válida, mostrar o painel correspondente
     if(valorSelecionado) {
         document.getElementById(valorSelecionado).classList.add('active');
     }
