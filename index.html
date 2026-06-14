@@ -8,7 +8,7 @@
         body { font-family: Arial, sans-serif; background: #f4f6f9; color: #333; margin: 0; padding: 15px; }
         .container { max-width: 600px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; }
         
-        /* Símbolo do Elevador Estilizado */
+        /* Símbolo do Elevador */
         .elevator-icon { width: 50px; height: 50px; border: 3px solid #d32f2f; border-radius: 6px; margin: 10px auto; position: relative; background: #fff; }
         .elevator-icon::before { content: ''; position: absolute; top: 12px; left: 12px; width: 10px; height: 20px; background: #d32f2f; }
         .elevator-icon::after { content: ''; position: absolute; top: 12px; right: 12px; width: 10px; height: 20px; background: #d32f2f; }
@@ -19,9 +19,9 @@
         
         .filter-section { background: #eef2f7; padding: 15px; border-radius: 6px; margin-bottom: 20px; text-align: center; }
         label { font-weight: bold; display: block; margin-bottom: 8px; font-size: 15px; }
-        select { width: 100%; padding: 10px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc; max-width: 350px; background: white; }
+        select { width: 100%; padding: 10px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc; max-width: 350px; background: white; color: black; }
 
-        /* Esconde as tabelas inicialmente */
+        /* Ocultação Padrão Inicial */
         .manobra-panel { display: none; background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 15px; margin-top: 10px; }
         
         h2 { font-size: 16px; color: #0d47a1; margin-top: 0; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
@@ -32,9 +32,9 @@
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
         
-        /* ESTILOS DE RELEVO PARA DIFERENCIAÇÃO */
-        .linha-circuito { background-color: #f1fcf1; font-weight: 500; } /* Verde suave para circuitos ativos */
-        .linha-bypass { background-color: #fafafa; color: #7c7c7c; font-style: italic; } /* Cinza para pontes */
+        /* Destaques Visuais */
+        .linha-circuito { background-color: #f1fcf1 !important; font-weight: 500; }
+        .linha-bypass { background-color: #fafafa !important; color: #7c7c7c; font-style: italic; }
         .badge-bypass { background: #e0e0e0; color: #555; font-size: 10px; font-weight: bold; padding: 2px 5px; border-radius: 3px; float: right; font-style: normal; }
         
         .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; }
@@ -43,7 +43,6 @@
 <body>
 
 <div class="container">
-    <!-- Ícone Visual do Elevador -->
     <div class="elevator-icon">
         <div class="elevator-arrow"></div>
     </div>
@@ -51,71 +50,80 @@
     <h1>Bornes dos Circuitos de Segurança</h1>
     <p class="subtitle">Guia Técnico Personalizado — Elevadores em Portugal</p>
     
-    <!-- Filtro Único Ordenado [A-Z] -->
     <div class="filter-section">
         <label for="manobraSelect">Selecione o Quadro de Manobra:</label>
         <select id="manobraSelect" onchange="filtrarManobra()">
             <option value="">-- Escolha uma Manobra --</option>
-            <option value="otis-ne300">Otis (NE300)</option>
-            <option value="thyssen-serief">ThyssenKrupp (Série F Monoplaca)</option>
-            <option value="tke-cmc4plus">ThyssenKrupp (CMC4+ 20.50)</option>
+            <option value="m1">Otis (NE300)</option>
+            <option value="m2">ThyssenKrupp (Série F Monoplaca)</option>
+            <option value="m3">ThyssenKrupp (CMC4+ 20.50)</option>
         </select>
     </div>
 
     <!-- 1. OTIS NE300 -->
-    <div id="otis-ne300" class="manobra-panel">
+    <div id="m1" class="manobra-panel">
         <h2>Otis — NE300</h2>
         <div class="tensao"><strong>Tensão do Circuito:</strong> 110V AC - 120V AC</div>
         <table>
-            <tr><th>Circuito / Componente</th><th>Bornes de Medição</th></tr>
-            <tr><td>Bloco Térmico (BT)</td><td><span class="borne">95</span> a <span class="borne">96</span></td></tr>
-            <tr><td>Stop Inspeção, Paraquedas e Alongamento de Cabos</td><td><span class="borne">H7</span> a <span class="borne">I5/B1</span></td></tr>
-            <tr><td>Limitador de Velocidade</td><td><span class="borne">I5/B1</span> a <span class="borne">C3/B2</span></td></tr>
-            <tr><td>Fim de Curso (Sup/Inf), Roda Tensora e Stop de Poço</td><td><span class="borne">C3/B2</span> a <span class="borne">B5</span></td></tr>
-            <tr><td>Encosto de Portas de Piso (Pré-fecho)</td><td><span class="borne">B5</span> a <span class="borne">B6</span></td></tr>
-            <tr><td>Encravamento das Portas de Piso (Trincos)</td><td><span class="borne">B6</span> a <span class="borne">B7</span></td></tr>
+            <thead>
+                <tr><th>Circuito / Componente</th><th>Bornes de Medição</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Bloco Térmico (BT)</td><td><span class="borne">95</span> a <span class="borne">96</span></td></tr>
+                <tr><td>Stop Inspeção, Paraquedas e Alongamento de Cabos</td><td><span class="borne">H7</span> a <span class="borne">I5/B1</span></td></tr>
+                <tr><td>Limitador de Velocidade</td><td><span class="borne">I5/B1</span> a <span class="borne">C3/B2</span></td></tr>
+                <tr><td>Fim de Curso (Sup/Inf), Roda Tensora e Stop de Poço</td><td><span class="borne">C3/B2</span> a <span class="borne">B5</span></td></tr>
+                <tr><td>Encosto de Portas de Piso (Pré-fecho)</td><td><span class="borne">B5</span> a <span class="borne">B6</span></td></tr>
+                <tr><td>Encravamento das Portas de Piso (Trincos)</td><td><span class="borne">B6</span> a <span class="borne">B7</span></td></tr>
+            </tbody>
         </table>
     </div>
 
-    <!-- 2. THYSSENKRUPP SÉRIE F MONOPLACA (COM RELEVO VISUAL) -->
-    <div id="thyssen-serief" class="manobra-panel">
+    <!-- 2. THYSSENKRUPP SÉRIE F MONOPLACA -->
+    <div id="m2" class="manobra-panel">
         <h2>ThyssenKrupp — Série F Monoplaca</h2>
         <div class="tensao"><strong>Tensão do Circuito:</strong> 230V AC</div>
         <table>
-            <tr><th>Circuito / Componente</th><th>Bornes de Medição</th></tr>
-            <tr class="linha-circuito"><td>Relé de Fases (RIF)</td><td><span class="borne">1</span> a <span class="borne">3</span></td></tr>
-            <tr class="linha-circuito"><td>Bloco Térmico (BT)</td><td><span class="borne">95-96</span> a <span class="borne">A1</span></td></tr>
-            <tr class="linha-circuito"><td>Stop da Casa de Máquinas</td><td><span class="borne">A3</span> a <span class="borne">A4</span></td></tr>
-            <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">A4</span> a <span class="borne">A5</span> <span class="badge-bypass">BYPASS</span></td></tr>
-            <tr class="linha-circuito"><td>Stop Poço, Roda Tensora e Fins de Curso (Sup/Inf)</td><td><span class="borne">A5</span> a <span class="borne">A6</span></td></tr>
-            <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">A6</span> a <span class="borne">A7</span> <span class="badge-bypass">BYPASS</span></td></tr>
-            <tr class="linha-circuito"><td>Limitador de Velocidade</td><td><span class="borne">A7</span> a <span class="borne">A8</span></td></tr>
-            <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">A8</span> a <span class="borne">C2</span> <span class="badge-bypass">BYPASS</span></td></tr>
-            <tr class="linha-circuito"><td>Alçapão Cabine, Stop Revisão e Paraquedas</td><td><span class="borne">C2</span> a <span class="borne">C3</span></td></tr>
-            <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">C3</span> a <span class="borne">B1</span> <span class="badge-bypass">BYPASS</span></td></tr>
-            <tr class="linha-circuito"><td>Contactos de Encosto de Portas Manuais</td><td><span class="borne">B1</span> a <span class="borne">B2</span></td></tr>
-            <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">B2</span> a <span class="borne">B3</span> <span class="badge-bypass">BYPASS</span></td></tr>
-            <tr class="linha-circuito"><td>Encravamento das Portas de Cabine</td><td><span class="borne">B3</span> a <span class="borne">B5</span></td></tr>
-            <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">B5</span> a <span class="borne">B6</span> <span class="badge-bypass">BYPASS</span></td></tr>
-            <tr class="linha-circuito"><td>Encravamento de Portas de Piso (Trincos)</td><td><span class="borne">B6</span> a <span class="borne">B7</span></td></tr>
+            <thead>
+                <tr><th>Circuito / Componente</th><th>Bornes de Medição</th></tr>
+            </thead>
+            <tbody>
+                <tr class="linha-circuito"><td>Relé de Fases (RIF)</td><td><span class="borne">1</span> a <span class="borne">3</span></td></tr>
+                <tr class="linha-circuito"><td>Bloco Térmico (BT)</td><td><span class="borne">95-96</span> a <span class="borne">A1</span></td></tr>
+                <tr class="linha-circuito"><td>Stop da Casa de Máquinas</td><td><span class="borne">A3</span> a <span class="borne">A4</span></td></tr>
+                <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">A4</span> a <span class="borne">A5</span> <span class="badge-bypass">BYPASS</span></td></tr>
+                <tr class="linha-circuito"><td>Stop Poço, Roda Tensora e Fins de Curso (Sup/Inf)</td><td><span class="borne">A5</span> a <span class="borne">A6</span></td></tr>
+                <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">A6</span> a <span class="borne">A7</span> <span class="badge-bypass">BYPASS</span></td></tr>
+                <tr class="linha-circuito"><td>Limitador de Velocidade</td><td><span class="borne">A7</span> a <span class="borne">A8</span></td></tr>
+                <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">A8</span> a <span class="borne">C2</span> <span class="badge-bypass">BYPASS</span></td></tr>
+                <tr class="linha-circuito"><td>Alçapão Cabine, Stop Revision e Paraquedas</td><td><span class="borne">C2</span> a <span class="borne">C3</span></td></tr>
+                <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">C3</span> a <span class="borne">B1</span> <span class="badge-bypass">BYPASS</span></td></tr>
+                <tr class="linha-circuito"><td>Contactos de Encosto de Portas Manuais</td><td><span class="borne">B1</span> a <span class="borne">B2</span></td></tr>
+                <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">B2</span> a <span class="borne">B3</span> <span class="badge-bypass">BYPASS</span></td></tr>
+                <tr class="linha-circuito"><td>Encravamento das Portas de Cabine</td><td><span class="borne">B3</span> a <span class="borne">B5</span></td></tr>
+                <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">B5</span> a <span class="borne">B6</span> <span class="badge-bypass">BYPASS</span></td></tr>
+                <tr class="linha-circuito"><td>Encravamento de Portas de Piso (Trincos)</td><td><span class="borne">B6</span> a <span class="borne">B7</span></td></tr>
+            </tbody>
         </table>
     </div>
 
     <!-- 3. THYSSENKRUPP CMC4+ 20.50 -->
-    <div id="tke-cmc4plus" class="manobra-panel">
+    <div id="m3" class="manobra-panel">
         <h2>ThyssenKrupp — CMC4+ 20.50</h2>
         <div class="tensao"><strong>Tensão do Circuito:</strong> 230V AC</div>
         <table>
-            <tr><th>Circuito / Componente</th><th>Conector e Bornes</th></tr>
-            <tr><td>Stop do Motor</td><td><span class="borne">X152 / 1</span> a <span class="borne">X152 / 3</span></td></tr>
-            <tr><td>Seguranças de Poço (Escada, roda tensora, amortecedores, etc)</td><td><span class="borne">X153 / 1</span> a <span class="borne">X153 / 8</span></td></tr>
-            <tr><td>Bypass em Normal</td><td><span class="borne">X160 / 2</span> a <span class="borne">X160 / 1</span></td></tr>
-            <tr><td>Limitador de Velocidade da Cabine (LV)</td><td><span class="borne">X137 / 3</span> a <span class="borne">X137 / 1</span></td></tr>
-            <tr><td>Limitador de Velocidade do Contra-peso</td><td><span class="borne">X137A / 3</span> a <span class="borne">X137A / 1</span></td></tr>
-            <tr><td>Seguranças de Cabine (Stop, paraquedas, fins de curso, etc)</td><td><span class="borne">X155 / 11</span> a <span class="borne">X155 / 12</span></td></tr>
-            <tr><td>Interruptor do Poço em Normal</td><td><span class="borne">X153 / 11</span> a <span class="borne">X206 / 1</span></td></tr>
-            <tr><td>Vigilância das Portas de Piso</td><td><span class="borne">X206 / 1</span> a <span class="borne">X206 / 2</span></td></tr>
-            <tr><td>Stop de Poço</td><td><span class="borne">X206 / 2</span> a <span class="borne">X153 / 4</span></td></tr>
-            <tr><td>Fecho de Portas Manuais de Piso — Frontal</td><td><span class="borne">X142 / 2</span> a <span class="borne">X142 / 1</span></td></tr>
-            <tr><td>Fecho de Portas Manuais de Piso — Traseira</td><td><span class="borne">X142T / 2</span> a <span class="borne">X142T / 1</span></td></tr>
-            <tr><td>Encravamento das Portas de Cabine</td><td><span class="borne">X155 / 6</span> a <span class="borne">X155 / 9</span></td></tr>
+            <thead>
+                <tr><th>Circuito / Componente</th><th>Conector e Bornes</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Stop do Motor</td><td><span class="borne">X152 / 1</span> a <span class="borne">X152 / 3</span></td></tr>
+                <tr><td>Seguranças de Poço (Escada, roda tensora, amortecedores, etc)</td><td><span class="borne">X153 / 1</span> a <span class="borne">X153 / 8</span></td></tr>
+                <tr><td>Bypass em Normal</td><td><span class="borne">X160 / 2</span> a <span class="borne">X160 / 1</span></td></tr>
+                <tr><td>Limitador de Velocidade da Cabine (LV)</td><td><span class="borne">X137 / 3</span> a <span class="borne">X137 / 1</span></td></tr>
+                <tr><td>Limitador de Velocidade do Contra-peso</td><td><span class="borne">X137A / 3</span> a <span class="borne">X137A / 1</span></td></tr>
+                <tr><td>Seguranças de Cabine (Stop, paraquedas, fins de curso, etc)</td><td><span class="borne">X155 / 11</span> a <span class="borne">X155 / 12</span></td></tr>
+                <tr><td>Interruptor do Poço em Normal</td><td><span class="borne">X153 / 11</span> a <span class="borne">X206 / 1</span></td></tr>
+                <tr><td>Vigilância das Portas de Piso</td><td><span class="borne">X206 / 1</span> a <span class="borne">X206 / 2</span></td></tr>
+                <tr><td>Stop de Poço</td><td><span class="borne">X206 / 2</span> a <span class="borne">X153 / 4</span></td></tr>
+                <tr><td>Fecho de Portas Manuais de Piso — Frontal</td><td><span class="borne">X142 / 2</span> a <span class="borne">X142 / 1</span></td></tr>
+                <tr><td>Fecho de Portas Manuais de Piso — Traseira</td><td><span class="borne">X142T / 2</span> a <span class="borne">X142T / 1</span></td></tr>
