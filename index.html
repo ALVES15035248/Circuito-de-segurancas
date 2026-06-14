@@ -31,6 +31,7 @@
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: middle; }
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
+        .bypass { color: #777; font-style: italic; }
         .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; }
     </style>
 </head>
@@ -51,6 +52,7 @@
         <select id="manobraSelect" onchange="filtrarManobra()">
             <option value="">-- Escolha uma Manobra --</option>
             <option value="otis-ne300">Otis (NE300)</option>
+            <option value="thyssen-serief">ThyssenKrupp (Série F Monoplaca)</option>
             <option value="tke-cmc4plus">ThyssenKrupp (CMC4+ 20.50)</option>
         </select>
     </div>
@@ -70,7 +72,31 @@
         </table>
     </div>
 
-    <!-- 2. THYSSENKRUPP CMC4+ 20.50 -->
+    <!-- 2. THYSSENKRUPP SÉRIE F MONOPLACA -->
+    <div id="thyssen-serief" class="manobra-panel">
+        <h2>ThyssenKrupp — Série F Monoplaca</h2>
+        <div class="tensao"><strong>Tensão do Circuito:</strong> 230V AC</div>
+        <table>
+            <tr><th>Circuito / Componente</th><th>Bornes de Medição</th></tr>
+            <tr><td>Relé de Fases (RIF)</td><td><span class="borne">1</span> a <span class="borne">3</span></td></tr>
+            <tr><td>Bloco Térmico (BT)</td><td><span class="borne">95-96</span> a <span class="borne">A1</span></td></tr>
+            <tr><td>Stop da Casa de Máquinas</td><td><span class="borne">A3</span> a <span class="borne">A4</span></td></tr>
+            <tr><td>Ponte no Quadro</td><td><span class="borne">A4</span> a <span class="borne">A5</span> <span class="bypass">(Bypass)</span></td></tr>
+            <tr><td>Stop Poço, Roda Tensora e Fins de Curso (Sup/Inf)</td><td><span class="borne">A5</span> a <span class="borne">A6</span></td></tr>
+            <tr><td>Ponte no Quadro</td><td><span class="borne">A6</span> a <span class="borne">A7</span> <span class="bypass">(Bypass)</span></td></tr>
+            <tr><td>Limitador de Velocidade</td><td><span class="borne">A7</span> a <span class="borne">A8</span></td></tr>
+            <tr><td>Ponte no Quadro</td><td><span class="borne">A8</span> a <span class="borne">C2</span> <span class="bypass">(Bypass)</span></td></tr>
+            <tr><td>Alçapão Cabine, Stop Revisão e Paraquedas</td><td><span class="borne">C2</span> a <span class="borne">C3</span></td></tr>
+            <tr><td>Ponte no Quadro</td><td><span class="borne">C3</span> a <span class="borne">B1</span> <span class="bypass">(Bypass)</span></td></tr>
+            <tr><td>Contactos de Encosto de Portas Manuais</td><td><span class="borne">B1</span> a <span class="borne">B2</span></td></tr>
+            <tr><td>Ponte no Quadro</td><td><span class="borne">B2</span> a <span class="borne">B3</span> <span class="bypass">(Bypass)</span></td></tr>
+            <tr><td>Encravamento das Portas de Cabine</td><td><span class="borne">B3</span> a <span class="borne">B5</span></td></tr>
+            <tr><td>Ponte no Quadro</td><td><span class="borne">B5</span> a <span class="borne">B6</span> <span class="bypass">(Bypass)</span></td></tr>
+            <tr><td>Encravamento de Portas de Piso (Trincos)</td><td><span class="borne">B6</span> a <span class="borne">B7</span></td></tr>
+        </table>
+    </div>
+
+    <!-- 3. THYSSENKRUPP CMC4+ 20.50 -->
     <div id="tke-cmc4plus" class="manobra-panel">
         <h2>ThyssenKrupp — CMC4+ 20.50</h2>
         <div class="tensao"><strong>Tensão do Circuito:</strong> 230V AC</div>
@@ -111,6 +137,3 @@ function filtrarManobra() {
     }
 }
 </script>
-
-</body>
-</html>
