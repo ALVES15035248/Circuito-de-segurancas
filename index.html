@@ -23,7 +23,7 @@
         optgroup { font-weight: bold; color: #0d47a1; background: #f0f4f8; }
         option { font-weight: normal; color: black; background: white; }
 
-        /* Ocultação Padrão Inicial */
+        /* Esconder tabelas no início */
         .manobra-panel { display: none; background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 15px; margin-top: 10px; }
         
         h2 { font-size: 16px; color: #0d47a1; margin-top: 0; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
@@ -33,11 +33,6 @@
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: middle; }
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
-        
-        /* Cores de Destaque */
-        .linha-circuito { background-color: #f1fcf1 !important; font-weight: 500; }
-        .linha-bypass { background-color: #fafafa !important; color: #7c7c7c; font-style: italic; }
-        .badge-bypass { background: #e0e0e0; color: #555; font-size: 10px; font-weight: bold; padding: 2px 5px; border-radius: 3px; float: right; font-style: normal; }
         
         .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; }
     </style>
@@ -52,7 +47,7 @@
     <h1>Bornes dos Circuitos de Segurança</h1>
     <p class="subtitle">Guia Técnico Personalizado — Elevadores em Portugal</p>
     
-    <!-- Filtro Dividido por Marcas de Forma Estável -->
+    <!-- Filtro Estável Agrupado por Marca -->
     <div class="filter-section">
         <label for="manobraSelect">Selecione o Fabricante e Modelo:</label>
         <select id="manobraSelect" onchange="filtrarManobra()">
@@ -88,7 +83,7 @@
         </table>
     </div>
 
-    <!-- 2. THYSSENKRUPP SÉRIE F MONOPLACA (COM RELEVO E BYPASS) -->
+    <!-- 2. THYSSENKRUPP SÉRIE F MONOPLACA (SUPER LIMPA) -->
     <div id="m2" class="manobra-panel">
         <h2>ThyssenKrupp — Série F Monoplaca</h2>
         <div class="tensao"><strong>Tensão do Circuito:</strong> 230V AC</div>
@@ -97,21 +92,15 @@
                 <tr><th>Circuito / Componente</th><th>Bornes de Medição</th></tr>
             </thead>
             <tbody>
-                <tr class="linha-circuito"><td>Relé de Fases (RIF)</td><td><span class="borne">1</span> a <span class="borne">3</span></td></tr>
-                <tr class="linha-circuito"><td>Bloco Térmico (BT)</td><td><span class="borne">95-96</span> a <span class="borne">A1</span></td></tr>
-                <tr class="linha-circuito"><td>Stop da Casa de Máquinas</td><td><span class="borne">A3</span> a <span class="borne">A4</span></td></tr>
-                <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">A4</span> a <span class="borne">A5</span> <span class="badge-bypass">BYPASS</span></td></tr>
-                <tr class="linha-circuito"><td>Stop Poço, Roda Tensora e Fins de Curso (Sup/Inf)</td><td><span class="borne">A5</span> a <span class="borne">A6</span></td></tr>
-                <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">A6</span> a <span class="borne">A7</span> <span class="badge-bypass">BYPASS</span></td></tr>
-                <tr class="linha-circuito"><td>Limitador de Velocidade</td><td><span class="borne">A7</span> a <span class="borne">A8</span></td></tr>
-                <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">A8</span> a <span class="borne">C2</span> <span class="badge-bypass">BYPASS</span></td></tr>
-                <tr class="linha-circuito"><td>Alçapão Cabine, Stop Revisão e Paraquedas</td><td><span class="borne">C2</span> a <span class="borne">C3</span></td></tr>
-                <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">C3</span> a <span class="borne">B1</span> <span class="badge-bypass">BYPASS</span></td></tr>
-                <tr class="linha-circuito"><td>Contactos de Encosto de Portas Manuais</td><td><span class="borne">B1</span> a <span class="borne">B2</span></td></tr>
-                <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">B2</span> a <span class="borne">B3</span> <span class="badge-bypass">BYPASS</span></td></tr>
-                <tr class="linha-circuito"><td>Encravamento das Portas de Cabine</td><td><span class="borne">B3</span> a <span class="borne">B5</span></td></tr>
-                <tr class="linha-bypass"><td>Ponte no Quadro</td><td><span class="borne">B5</span> a <span class="borne">B6</span> <span class="badge-bypass">BYPASS</span></td></tr>
-                <tr class="linha-circuito"><td>Encravamento de Portas de Piso (Trincos)</td><td><span class="borne">B6</span> a <span class="borne">B7</span></td></tr>
+                <tr><td>Relé de Fases (RIF)</td><td><span class="borne">1</span> a <span class="borne">3</span></td></tr>
+                <tr><td>Bloco Térmico (BT)</td><td><span class="borne">95-96</span> a <span class="borne">A1</span></td></tr>
+                <tr><td>Stop da Casa de Máquinas</td><td><span class="borne">A3</span> a <span class="borne">A4</span></td></tr>
+                <tr><td>Stop Poço, Roda Tensora e Fins de Curso (Sup/Inf)</td><td><span class="borne">A5</span> a <span class="borne">A6</span></td></tr>
+                <tr><td>Limitador de Velocidade</td><td><span class="borne">A7</span> a <span class="borne">A8</span></td></tr>
+                <tr><td>Alçapão Cabine, Stop Revisão e Paraquedas</td><td><span class="borne">C2</span> a <span class="borne">C3</span></td></tr>
+                <tr><td>Contactos de Encosto de Portas Manuais</td><td><span class="borne">B1</span> a <span class="borne">B2</span></td></tr>
+                <tr><td>Encravamento das Portas de Cabine</td><td><span class="borne">B3</span> a <span class="borne">B5</span></td></tr>
+                <tr><td>Encravamento de Portas de Piso (Trincos)</td><td><span class="borne">B6</span> a <span class="borne">B7</span></td></tr>
             </tbody>
         </table>
     </div>
@@ -133,6 +122,34 @@
                 <tr><td>Seguranças de Cabine (Stop, paraquedas, fins de curso, etc)</td><td><span class="borne">X155 / 11</span> a <span class="borne">X155 / 12</span></td></tr>
                 <tr><td>Interruptor do Poço em Normal</td><td><span class="borne">X153 / 11</span> a <span class="borne">X206 / 1</span></td></tr>
                 <tr><td>Vigilância das Portas de Piso</td><td><span class="borne">X206 / 1</span> a <span class="borne">X206 / 2</span></td></tr>
+                <tr><td>Stop de Poço</td><td><span class="borne">X206 / 2</span> a <span class="borne">X153 / 4</span></td></tr>
+                <tr><td>Fecho de Portas Manuais de Piso — Frontal</td><td><span class="borne">X142 / 2</span> a <span class="borne">X142 / 1</span></td></tr>
+                <tr><td>Fecho de Portas Manuais de Piso — Traseira</td><td><span class="borne">X142T / 2</span> a <span class="borne">X142T / 1</span></td></tr>
+                <tr><td>Encravamento das Portas de Cabine</td><td><span class="borne">X155 / 6</span> a <span class="borne">X155 / 9</span></td></tr>
+                <tr><td>Encravamento das Portas de Piso — Frontal</td><td><span class="borne">X136 / 1</span> a <span class="borne">X136 / 3</span></td></tr>
+                <tr><td>Encravamento das Portas de Piso — Traseira</td><td><span class="borne">X136T / 1</span> a <span class="borne">X136T / 3</span></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        Desenvolvido via GitHub Pages • Guia de Campo Exclusivo
+    </div>
+</div>
+
+<script>
+function filtrarManobra() {
+    // Esconder todas as tabelas de forma direta por ID
+    document.getElementById('m1').style.display = 'none';
+    document.getElementById('m2').style.display = 'none';
+    document.getElementById('m3').style.display = 'none';
+    
+    // Mostrar apenas a que foi selecionada
+    var idSelecionado = document.getElementById('manobraSelect').value;
+    if (idSelecionado) {
+        document.getElementById(idSelecionado).style.display = 'block';
+    }
+}
 </script>
 
 </body>
