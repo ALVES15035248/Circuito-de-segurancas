@@ -25,10 +25,11 @@
         .manobra-panel { display: none; background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 15px; margin-top: 10px; }
         
         h2 { font-size: 16px; color: #0d47a1; margin-top: 0; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
-        h3 { font-size: 14px; color: #333; margin-top: 15px; margin-bottom: 5px; }
-        .tensao { font-size: 14px; margin: 10px 0 15px 0; color: #333; }
         
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; margin-bottom: 20px; }
+        /* LINHA DA TENSÃO A VERMELHO E CAPS LOCK */
+        .tensao-destaque { font-size: 14px; margin: 10px 0 15px 0; color: #d32f2f; font-weight: bold; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: middle; }
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
@@ -46,7 +47,7 @@
     <h1>Bornes dos Circuitos de Segurança</h1>
     <p class="subtitle">Guia Técnico Personalizado — Elevadores em Portugal</p>
     
-    <!-- Filtro Único Super Simples e Direto -->
+    <!-- Filtro Único Interativo Ordenado de A a Z -->
     <div class="filter-section">
         <label for="manobraSelect">Selecione o Quadro de Manobra:</label>
         <select id="manobraSelect" onchange="filtrarManobra()">
@@ -60,7 +61,7 @@
     <!-- 1. OTIS NE300 -->
     <div id="m1" class="manobra-panel">
         <h2>Otis — NE300</h2>
-        <div class="tensao"><strong>Tensão do Circuito:</strong> 110V AC - 120V AC</div>
+        <div class="tensao-destaque">TENSÃO DO CIRCUITO: 110V AC - 120V AC</div>
         <table>
             <thead>
                 <tr><th>Circuito / Componente</th><th>Bornes de Medição</th></tr>
@@ -79,7 +80,7 @@
     <!-- 2. THYSSENKRUPP SÉRIE F MONOPLACA -->
     <div id="m2" class="manobra-panel">
         <h2>ThyssenKrupp — Série F Monoplaca</h2>
-        <div class="tensao"><strong>Tensão do Circuito:</strong> 230V AC</div>
+        <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
         <table>
             <thead>
                 <tr><th>Circuito / Componente</th><th>Bornes de Medição</th></tr>
@@ -101,9 +102,7 @@
     <!-- 3. THYSSENKRUPP CMC4+ 20.50 -->
     <div id="m3" class="manobra-panel">
         <h2>ThyssenKrupp — CMC4+ 20.50</h2>
-        <div class="tensao"><strong>Tensão do Circuito:</strong> 230V AC</div>
-        
-        <h3>Cadeia de Bornes</h3>
+        <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
         <table>
             <thead>
                 <tr><th>Circuito / Componente</th><th>Conector e Bornes</th></tr>
@@ -125,19 +124,6 @@
                 <tr><td>Encravamento das Portas de Piso — Traseira</td><td><span class="borne">X136T / 1</span> a <span class="borne">X136T / 3</span></td></tr>
             </tbody>
         </table>
-
-        <h3>Tabela de Bypasses (Painel de Teste)</h3>
-        <table>
-            <thead>
-                <tr><th>Ficha</th><th>Função / Descrição do Componente</th></tr>
-            </thead>
-            <tbody>
-                <tr><td><strong>NBP</strong></td><td>BYPASS POSIÇÃO NORMAL</td></tr>
-                <tr><td><strong>BP1</strong></td><td>BYPASS CONTACTOS PORTAS CABINA</td></tr>
-                <tr><td><strong>BP2</strong></td><td>BYPASS CONTACTOS DE PRESENÇA</td></tr>
-                <tr><td><strong>BP3</strong></td><td>BYPASS CONTACTOS PORTAS PISO</td></tr>
-            </tbody>
-        </table>
     </div>
 
     <div class="footer">
@@ -147,8 +133,16 @@
 
 <script>
 function filtrarManobra() {
-    // Comando básico e infalível para esconder tudo
     document.getElementById('m1').style.display = 'none';
     document.getElementById('m2').style.display = 'none';
     document.getElementById('m3').style.display = 'none';
     
+    var idSelecionado = document.getElementById('manobraSelect').value;
+    if (idSelecionado) {
+        document.getElementById(idSelecionado).style.display = 'block';
+    }
+}
+</script>
+
+</body>
+</html>
