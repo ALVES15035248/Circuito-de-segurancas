@@ -17,10 +17,13 @@
         h1 { color: #d32f2f; text-align: center; font-size: 20px; margin-bottom: 5px; margin-top: 10px; }
         p.subtitle { text-align: center; font-size: 13px; color: #666; margin-top: 0; }
         
-        .filter-section { background: #eef2f7; padding: 15px; border-radius: 6px; margin-bottom: 20px; }
-        .filter-group { margin-bottom: 12px; text-align: center; }
-        label { font-weight: bold; display: block; margin-bottom: 6px; font-size: 14px; }
-        select { width: 100%; padding: 10px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc; max-width: 350px; background: white; color: black; box-sizing: border-box; }
+        .filter-section { background: #eef2f7; padding: 15px; border-radius: 6px; margin-bottom: 20px; text-align: center; }
+        label { font-weight: bold; display: block; margin-bottom: 8px; font-size: 15px; }
+        select { width: 100%; padding: 10px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc; max-width: 350px; background: white; color: black; }
+        
+        /* Estilo dos Agrupamentos de Marcas */
+        optgroup { font-weight: bold; color: #0d47a1; background: #f0f4f8; }
+        option { font-weight: normal; color: black; background: white; }
 
         /* Esconder tabelas no início */
         .manobra-panel { display: none; background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 15px; margin-top: 10px; }
@@ -34,8 +37,8 @@
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
         
-        /* Bloco de Notas / Texto em Bold */
-        .bloco-bypass-bold { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 13px; line-height: 1.5; }
+        /* Bloco de Segmentos de Bypass em Bold */
+        .bloco-bypass-bold { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 13px; line-height: 1.5; text-align: left; }
         .bloco-bypass-bold p { margin: 4px 0; font-weight: bold; }
 
         .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; }
@@ -51,22 +54,21 @@
     <h1>Bornes dos Circuitos de Segurança</h1>
     <p class="subtitle">Guia Técnico Personalizado — Elevadores em Portugal</p>
     
+    <!-- Filtro Único Organizado por Marca e Ordem Alfabética -->
     <div class="filter-section">
-        <div class="filter-group">
-            <label for="marcaSelect">1. Selecione a Marca:</label>
-            <select id="marcaSelect" onchange="atualizarManobras()">
-                <option value="">-- Escolha uma Marca --</option>
-                <option value="otis">Otis</option>
-                <option value="thyssen">ThyssenKrupp (TKE)</option>
-            </select>
-        </div>
-        
-        <div class="filter-group" id="grupoManobra" style="display: none;">
-            <label for="manobraSelect">2. Selecione a Manobra:</label>
-            <select id="manobraSelect" onchange="mostrarTabela()">
-                <option value="">-- Escolha uma Manobra --</option>
-            </select>
-        </div>
+        <label for="manobraSelect">Selecione a Manobra:</label>
+        <select id="manobraSelect" onchange="filtrarManobra()">
+            <option value="">-- Escolha uma Manobra --</option>
+            
+            <optgroup label="Otis">
+                <option value="otis-ne300">Otis (NE300)</option>
+            </optgroup>
+            
+            <optgroup label="ThyssenKrupp (TKE)">
+                <option value="tke-cmc4plus">CMC4+ 20.50</option>
+                <option value="thyssen-serief">Série F Monoplaca</option>
+            </optgroup>
+        </select>
     </div>
 
     <!-- 1. OTIS NE300 -->
@@ -142,4 +144,3 @@
         <div class="bloco-bypass-bold">
             <p>NBP — BYPASS EM POSIÇÃO NORMAL (INSPEÇÃO OFF)</p>
             <p>BP1 — BYPASS DOS CONTACTOS DAS PORTAS DA CABINA</p>
-            <p>BP2 — BYPASS DOS CONTACTOS DE PRESENÇA (TRINCOS MECÂNICOS)</p>
