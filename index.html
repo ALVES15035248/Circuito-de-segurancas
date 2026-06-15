@@ -27,15 +27,28 @@
         .manobra-panel { display: none; background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 15px; margin-top: 10px; }
         
         h2 { font-size: 16px; color: #0d47a1; margin-top: 0; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
-        
-        /* LINHA DA TENSÃO A VERMELHO E CAPS LOCK */
         .tensao-destaque { font-size: 14px; margin: 10px 0 15px 0; color: #d32f2f; font-weight: bold; }
         
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; margin-bottom: 15px; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: middle; }
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
         
+        /* ESTILOS DA CAIXA DE TESTE DA FOTO (CMC4+) */
+        .painel-foto { background: #fff3cd; border: 2px solid #ffc107; padding: 15px; border-radius: 6px; margin-top: 20px; }
+        .titulo-foto { font-size: 14px; font-weight: bold; color: #856404; margin-top: 0; margin-bottom: 10px; border-bottom: 1px dashed #ffc107; padding-bottom: 4px; }
+        
+        /* LEDs de Sinalização */
+        .led-container { display: flex; gap: 15px; background: #333; padding: 10px; border-radius: 4px; margin-bottom: 15px; justify-content: center; }
+        .led-bloco { text-align: center; color: #fff; font-size: 11px; font-family: monospace; }
+        .led-luz { width: 14px; height: 14px; background-color: #ff3b30; border-radius: 50%; margin: 0 auto 4px auto; box-shadow: 0 0 8px #ff3b30; }
+        
+        /* Tabela Amarela de Bypasses */
+        .tabela-bypass { width: 100%; border-collapse: collapse; background: #fff; font-size: 12px; }
+        .tabela-bypass th { background-color: #ffeeba; color: #856404; }
+        .tabela-bypass td { border: 1px solid #ffeeba; }
+        .code-bp { font-weight: bold; color: #0056b3; font-family: monospace; }
+
         .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; }
     </style>
 </head>
@@ -49,7 +62,6 @@
     <h1>Bornes dos Circuitos de Segurança</h1>
     <p class="subtitle">Guia Técnico Personalizado — Elevadores em Portugal</p>
     
-    <!-- Filtro Estável Agrupado por Marca -->
     <div class="filter-section">
         <label for="manobraSelect">Selecione o Fabricante e Modelo:</label>
         <select id="manobraSelect" onchange="filtrarManobra()">
@@ -107,10 +119,12 @@
         </table>
     </div>
 
-    <!-- 3. THYSSENKRUPP CMC4+ 20.50 -->
+    <!-- 3. THYSSENKRUPP CMC4+ 20.50 (ATUALIZADA COM OS DADOS DA FOTO) -->
     <div id="m3" class="manobra-panel">
         <h2>ThyssenKrupp — CMC4+ 20.50</h2>
         <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
+        
+        <h3>Cadeia de Bornes</h3>
         <table>
             <thead>
                 <tr><th>Circuito / Componente</th><th>Conector e Bornes</th></tr>
@@ -128,29 +142,3 @@
                 <tr><td>Fecho de Portas Manuais de Piso — Frontal</td><td><span class="borne">X142 / 2</span> a <span class="borne">X142 / 1</span></td></tr>
                 <tr><td>Fecho de Portas Manuais de Piso — Traseira</td><td><span class="borne">X142T / 2</span> a <span class="borne">X142T / 1</span></td></tr>
                 <tr><td>Encravamento das Portas de Cabine</td><td><span class="borne">X155 / 6</span> a <span class="borne">X155 / 9</span></td></tr>
-                <tr><td>Encravamento das Portas de Piso — Frontal</td><td><span class="borne">X136 / 1</span> a <span class="borne">X136 / 3</span></td></tr>
-                <tr><td>Encravamento das Portas de Piso — Traseira</td><td><span class="borne">X136T / 1</span> a <span class="borne">X136T / 3</span></td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="footer">
-        Desenvolvido via GitHub Pages • Guia de Campo Exclusivo
-    </div>
-</div>
-
-<script>
-function filtrarManobra() {
-    document.getElementById('m1').style.display = 'none';
-    document.getElementById('m2').style.display = 'none';
-    document.getElementById('m3').style.display = 'none';
-    
-    var idSelecionado = document.getElementById('manobraSelect').value;
-    if (idSelecionado) {
-        document.getElementById(idSelecionado).style.display = 'block';
-    }
-}
-</script>
-
-</body>
-</html>
