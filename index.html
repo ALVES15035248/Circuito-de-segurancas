@@ -20,8 +20,6 @@
         .filter-section { background: #eef2f7; padding: 15px; border-radius: 6px; margin-bottom: 20px; text-align: center; }
         label { font-weight: bold; display: block; margin-bottom: 8px; font-size: 15px; }
         select { width: 100%; padding: 10px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc; max-width: 350px; background: white; color: black; }
-        
-        /* Estilo dos Agrupamentos de Marcas */
         optgroup { font-weight: bold; color: #0d47a1; background: #f0f4f8; }
         option { font-weight: normal; color: black; background: white; }
 
@@ -29,14 +27,15 @@
         .manobra-panel { display: none; background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 15px; margin-top: 10px; }
         
         h2 { font-size: 16px; color: #0d47a1; margin-top: 0; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
-        h3 { font-size: 14px; color: #333; margin-top: 15px; margin-bottom: 5px; }
+        
+        /* LINHA DA TENSÃO A VERMELHO E CAPS LOCK */
         .tensao-destaque { font-size: 14px; margin: 10px 0 15px 0; color: #d32f2f; font-weight: bold; }
         
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; margin-bottom: 15px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: middle; }
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
-
+        
         .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; }
     </style>
 </head>
@@ -50,25 +49,26 @@
     <h1>Bornes dos Circuitos de Segurança</h1>
     <p class="subtitle">Guia Técnico Personalizado — Elevadores em Portugal</p>
     
-    <!-- Filtro Único Organizado por Marca e Ordem Alfabética -->
+    <!-- Filtro Estável Agrupado por Marca -->
     <div class="filter-section">
-        <label for="manobraSelect">Selecione a Manobra:</label>
+        <label for="manobraSelect">Selecione o Fabricante e Modelo:</label>
         <select id="manobraSelect" onchange="filtrarManobra()">
             <option value="">-- Escolha uma Manobra --</option>
             
             <optgroup label="Otis">
-                <option value="otis-ne300">Otis (NE300)</option>
+                <option value="m1">Otis (NE300)</option>
             </optgroup>
             
             <optgroup label="ThyssenKrupp (TKE)">
-                <option value="tke-cmc4plus">CMC4+ 20.50</option>
-                <option value="thyssen-serief">Série F Monoplaca</option>
+                <option value="m3">CMC4+ 20.50</option>
+                <option value="m2">Série F Monoplaca</option>
+                <option value="m4">Thyssen (TK10)</option>
             </optgroup>
         </select>
     </div>
 
     <!-- 1. OTIS NE300 -->
-    <div id="otis-ne300" class="manobra-panel">
+    <div id="m1" class="manobra-panel">
         <h2>Otis — NE300</h2>
         <div class="tensao-destaque">TENSÃO DO CIRCUITO: 110V AC - 120V AC</div>
         <table>
@@ -87,7 +87,7 @@
     </div>
 
     <!-- 2. THYSSENKRUPP SÉRIE F MONOPLACA -->
-    <div id="thyssen-serief" class="manobra-panel">
+    <div id="m2" class="manobra-panel">
         <h2>ThyssenKrupp — Série F Monoplaca</h2>
         <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
         <table>
@@ -109,11 +109,9 @@
     </div>
 
     <!-- 3. THYSSENKRUPP CMC4+ 20.50 -->
-    <div id="tke-cmc4plus" class="manobra-panel">
+    <div id="m3" class="manobra-panel">
         <h2>ThyssenKrupp — CMC4+ 20.50</h2>
         <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
-        
-        <h3>Cadeia de Bornes</h3>
         <table>
             <thead>
                 <tr><th>Circuito / Componente</th><th>Conector e Bornes</th></tr>
@@ -137,23 +135,14 @@
         </table>
     </div>
 
-    <div class="footer">
-        Desenvolvido via GitHub Pages • Guia de Campo Exclusivo
-    </div>
-</div>
-
-<script>
-function filtrarManobra() {
-    document.getElementById('otis-ne300').style.display = 'none';
-    document.getElementById('thyssen-serief').style.display = 'none';
-    document.getElementById('tke-cmc4plus').style.display = 'none';
-    
-    var idSelecionado = document.getElementById('manobraSelect').value;
-    if (idSelecionado) {
-        document.getElementById(idSelecionado).style.display = 'block';
-    }
-}
-</script>
-
-</body>
-</html>
+    <!-- 4. THYSSEN TK10 (COMPLETA) -->
+    <div id="m4" class="manobra-panel">
+        <h2>Thyssen — TK10</h2>
+        <div class="tensao-destaque">TENSÃO DO CIRCUITO: 120V AC</div>
+        <table>
+            <thead>
+                <tr><th>Circuito / Componente</th><th>Régua e Bornes de Medição</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Stop de Poço e Roda Tensora</td><td>Régua <span class="borne">SV1 / 1</span> a <span class="borne">SV1 / 2</span></td></tr>
+                <tr><td>Stop Auxiliar</td><td>Régua <span class="borne">SC1 / 2</span> a <span class="borne">SC1 / 3</span></td></tr>
