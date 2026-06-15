@@ -34,7 +34,7 @@
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
         
-        /* ESTILOS DA CAIXA DE TESTE DA FOTO (CMC4+) */
+        /* ESTILOS DA CAIXA DE TESTE (CMC4+) */
         .painel-foto { background: #fff3cd; border: 2px solid #ffc107; padding: 15px; border-radius: 6px; margin-top: 20px; }
         .titulo-foto { font-size: 14px; font-weight: bold; color: #856404; margin-top: 0; margin-bottom: 10px; border-bottom: 1px dashed #ffc107; padding-bottom: 4px; }
         
@@ -62,24 +62,25 @@
     <h1>Bornes dos Circuitos de Segurança</h1>
     <p class="subtitle">Guia Técnico Personalizado — Elevadores em Portugal</p>
     
+    <!-- Filtro com valores sincronizados aos IDs das tabelas -->
     <div class="filter-section">
         <label for="manobraSelect">Selecione o Fabricante e Modelo:</label>
         <select id="manobraSelect" onchange="filtrarManobra()">
             <option value="">-- Escolha uma Manobra --</option>
             
             <optgroup label="Otis">
-                <option value="m1">Otis (NE300)</option>
+                <option value="otis-ne300">Otis (NE300)</option>
             </optgroup>
             
             <optgroup label="ThyssenKrupp (TKE)">
-                <option value="m2">Série F Monoplaca</option>
-                <option value="m3">CMC4+ 20.50</option>
+                <option value="thyssen-serief">Série F Monoplaca</option>
+                <option value="tke-cmc4plus">CMC4+ 20.50</option>
             </optgroup>
         </select>
     </div>
 
     <!-- 1. OTIS NE300 -->
-    <div id="m1" class="manobra-panel">
+    <div id="otis-ne300" class="manobra-panel">
         <h2>Otis — NE300</h2>
         <div class="tensao-destaque">TENSÃO DO CIRCUITO: 110V AC - 120V AC</div>
         <table>
@@ -98,7 +99,7 @@
     </div>
 
     <!-- 2. THYSSENKRUPP SÉRIE F MONOPLACA -->
-    <div id="m2" class="manobra-panel">
+    <div id="thyssen-serief" class="manobra-panel">
         <h2>ThyssenKrupp — Série F Monoplaca</h2>
         <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
         <table>
@@ -119,8 +120,8 @@
         </table>
     </div>
 
-    <!-- 3. THYSSENKRUPP CMC4+ 20.50 (ATUALIZADA COM OS DADOS DA FOTO) -->
-    <div id="m3" class="manobra-panel">
+    <!-- 3. THYSSENKRUPP CMC4+ 20.50 -->
+    <div id="tke-cmc4plus" class="manobra-panel">
         <h2>ThyssenKrupp — CMC4+ 20.50</h2>
         <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
         
@@ -141,4 +142,3 @@
                 <tr><td>Stop de Poço</td><td><span class="borne">X206 / 2</span> a <span class="borne">X153 / 4</span></td></tr>
                 <tr><td>Fecho de Portas Manuais de Piso — Frontal</td><td><span class="borne">X142 / 2</span> a <span class="borne">X142 / 1</span></td></tr>
                 <tr><td>Fecho de Portas Manuais de Piso — Traseira</td><td><span class="borne">X142T / 2</span> a <span class="borne">X142T / 1</span></td></tr>
-                <tr><td>Encravamento das Portas de Cabine</td><td><span class="borne">X155 / 6</span> a <span class="borne">X155 / 9</span></td></tr>
