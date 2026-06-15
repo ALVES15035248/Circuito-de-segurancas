@@ -27,6 +27,8 @@
         .manobra-panel { display: none; background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 15px; margin-top: 10px; }
         
         h2 { font-size: 16px; color: #0d47a1; margin-top: 0; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
+        
+        /* LINHA DA TENSÃO A VERMELHO E CAPS LOCK */
         .tensao-destaque { font-size: 14px; margin: 10px 0 15px 0; color: #d32f2f; font-weight: bold; }
         
         table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
@@ -58,14 +60,13 @@
             </optgroup>
             
             <optgroup label="ThyssenKrupp (TKE)">
-                <option value="m3">CMC4+ 20.50</option>
                 <option value="m2">Série F Monoplaca</option>
-                <option value="m4">Thyssen (TK10)</option>
+                <option value="m3">CMC4+ 20.50</option>
             </optgroup>
         </select>
     </div>
 
-    <!-- m1. OTIS NE300 -->
+    <!-- 1. OTIS NE300 -->
     <div id="m1" class="manobra-panel">
         <h2>Otis — NE300</h2>
         <div class="tensao-destaque">TENSÃO DO CIRCUITO: 110V AC - 120V AC</div>
@@ -84,7 +85,7 @@
         </table>
     </div>
 
-    <!-- m2. THYSSENKRUPP SÉRIE F MONOPLACA -->
+    <!-- 2. THYSSENKRUPP SÉRIE F MONOPLACA -->
     <div id="m2" class="manobra-panel">
         <h2>ThyssenKrupp — Série F Monoplaca</h2>
         <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
@@ -106,7 +107,7 @@
         </table>
     </div>
 
-    <!-- m3. THYSSENKRUPP CMC4+ 20.50 -->
+    <!-- 3. THYSSENKRUPP CMC4+ 20.50 -->
     <div id="m3" class="manobra-panel">
         <h2>ThyssenKrupp — CMC4+ 20.50</h2>
         <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
@@ -133,15 +134,23 @@
         </table>
     </div>
 
-    <!-- m4. THYSSEN TK10 -->
-    <div id="m4" class="manobra-panel">
-        <h2>Thyssen — TK10</h2>
-        <div class="tensao-destaque">TENSÃO DO CIRCUITO: 120V AC</div>
-        <table>
-            <thead>
-                <tr><th>Circuito / Componente</th><th>Régua e Bornes de Medição</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>Stop de Poço e Roda Tensora</td><td>Régua <span class="borne">SV1 / 1</span> a <span class="borne">SV1 / 2</span></td></tr>
-                <tr><td>Stop Auxiliar</td><td>Régua <span class="borne">SC1 / 2</span> a <span class="borne">SC1 / 3</span></td></tr>
-                <tr><td>Stop Revisão, Contacto Paraquedas e Fins de Curso</td><td>Régua <span class="borne">SC1 / 3</span> a <span class="borne">SC1 / 5</span></td></tr>
+    <div class="footer">
+        Desenvolvido via GitHub Pages • Guia de Campo Exclusivo
+    </div>
+</div>
+
+<script>
+function filtrarManobra() {
+    document.getElementById('m1').style.display = 'none';
+    document.getElementById('m2').style.display = 'none';
+    document.getElementById('m3').style.display = 'none';
+    
+    var idSelecionado = document.getElementById('manobraSelect').value;
+    if (idSelecionado) {
+        document.getElementById(idSelecionado).style.display = 'block';
+    }
+}
+</script>
+
+</body>
+</html>
