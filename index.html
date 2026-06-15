@@ -60,8 +60,9 @@
             </optgroup>
             
             <optgroup label="ThyssenKrupp (TKE)">
-                <option value="m2">Série F Monoplaca</option>
                 <option value="m3">CMC4+ 20.50</option>
+                <option value="m2">Série F Monoplaca</option>
+                <option value="m4">Thyssen (TK10)</option>
             </optgroup>
         </select>
     </div>
@@ -134,23 +135,14 @@
         </table>
     </div>
 
-    <div class="footer">
-        Desenvolvido via GitHub Pages • Guia de Campo Exclusivo
-    </div>
-</div>
-
-<script>
-function filtrarManobra() {
-    document.getElementById('m1').style.display = 'none';
-    document.getElementById('m2').style.display = 'none';
-    document.getElementById('m3').style.display = 'none';
-    
-    var idSelecionado = document.getElementById('manobraSelect').value;
-    if (idSelecionado) {
-        document.getElementById(idSelecionado).style.display = 'block';
-    }
-}
-</script>
-
-</body>
-</html>
+    <!-- 4. THYSSEN TK10 -->
+    <div id="m4" class="manobra-panel">
+        <h2>Thyssen — TK10</h2>
+        <div class="tensao-destaque">TENSÃO DO CIRCUITO: 120V AC</div>
+        <table>
+            <thead>
+                <tr><th>Circuito / Componente</th><th>Régua e Bornes de Medição</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Stop de Poço e Roda Tensora</td><td>Régua <span class="borne">SV1 / 1</span> a <span class="borne">SV1 / 2</span></td></tr>
+                <tr><td>Stop Auxiliar</td><td>Régua <span class="borne">SC1 / 2</span> a <span class="borne">SC1 / 3</span></td></tr>
