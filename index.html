@@ -6,7 +6,7 @@
     <title>Bornes de Segurança de Elevadores</title>
     <style>
         body { font-family: Arial, sans-serif; background: #f4f6f9; color: #333; margin: 0; padding: 15px; }
-        .container { max-width: 600px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; }
+        .container { max-width: 600px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; text-align: center; }
         
         /* Símbolo do Elevador */
         .elevator-icon { width: 50px; height: 50px; border: 3px solid #d32f2f; border-radius: 6px; margin: 10px auto; position: relative; background: #fff; }
@@ -14,21 +14,20 @@
         .elevator-icon::after { content: ''; position: absolute; top: 12px; right: 12px; width: 10px; height: 20px; background: #d32f2f; }
         .elevator-arrow { position: absolute; top: 2px; left: 20px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 7px solid #4caf50; }
 
-        h1 { color: #d32f2f; text-align: center; font-size: 20px; margin-bottom: 5px; margin-top: 10px; }
-        p.subtitle { text-align: center; font-size: 13px; color: #666; margin-top: 0; }
+        h1 { color: #d32f2f; font-size: 20px; margin-bottom: 5px; margin-top: 10px; }
+        p.subtitle { font-size: 13px; color: #666; margin-top: 0; margin-bottom: 20px; }
         
-        .filter-section { background: #eef2f7; padding: 15px; border-radius: 6px; margin-bottom: 20px; text-align: center; }
-        label { font-weight: bold; display: block; margin-bottom: 8px; font-size: 15px; }
-        select { width: 100%; padding: 10px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc; max-width: 350px; background: white; color: black; }
-        optgroup { font-weight: bold; color: #0d47a1; background: #f0f4f8; }
-        option { font-weight: normal; color: black; background: white; }
+        /* Secção de Botões de Seleção */
+        .menu-marcas { background: #eef2f7; padding: 15px; border-radius: 6px; margin-bottom: 20px; }
+        .grupo-titulo { font-weight: bold; color: #0d47a1; font-size: 14px; margin: 10px 0 5px 0; text-transform: uppercase; }
+        .btn-manobra { display: block; width: 100%; max-width: 350px; margin: 8px auto; padding: 12px; background: white; color: black; border: 1px solid #ccc; border-radius: 4px; text-decoration: none; font-size: 15px; font-weight: 500; box-sizing: border-box; }
+        .btn-manobra:active { background: #d32f2f; color: white; border-color: #d32f2f; }
 
-        /* Esconder tabelas no início */
-        .manobra-panel { display: none; background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 15px; margin-top: 10px; }
+        /* Lógica CSS Pura para Mostrar/Esconder as Tabelas */
+        .manobra-panel { display: none; background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 15px; margin-top: 20px; text-align: left; }
+        .manobra-panel:target { display: block; animation: surgir 0.2s ease-out; }
         
         h2 { font-size: 16px; color: #0d47a1; margin-top: 0; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
-        
-        /* LINHA DA TENSÃO A VERMELHO E CAPS LOCK */
         .tensao-destaque { font-size: 14px; margin: 10px 0 15px 0; color: #d32f2f; font-weight: bold; }
         
         table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
@@ -36,7 +35,8 @@
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
         
-        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; }
+        @keyframes surgir { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .footer { margin-top: 30px; font-size: 11px; color: #777; }
     </style>
 </head>
 <body>
@@ -49,26 +49,19 @@
     <h1>Bornes dos Circuitos de Segurança</h1>
     <p class="subtitle">Guia Técnico Personalizado — Elevadores em Portugal</p>
     
-    <!-- Filtro Estável Agrupado por Marca -->
-    <div class="filter-section">
-        <label for="manobraSelect">Selecione o Fabricante e Modelo:</label>
-        <select id="manobraSelect" onchange="filtrarManobra()">
-            <option value="">-- Escolha uma Manobra --</option>
-            
-            <optgroup label="Otis">
-                <option value="m1">Otis (NE300)</option>
-            </optgroup>
-            
-            <optgroup label="ThyssenKrupp (TKE)">
-                <option value="m3">CMC4+ 20.50</option>
-                <option value="m2">Série F Monoplaca</option>
-                <option value="m4">Thyssen (TK10)</option>
-            </optgroup>
-        </select>
+    <!-- Menu de Botões Estáveis (Substitui o Filtro Antigo) -->
+    <div class="menu-marcas">
+        <div class="grupo-titulo">— OTIS —</div>
+        <a href="#otis-ne300" class="btn-manobra">Otis (NE300)</a>
+        
+        <div class="grupo-titulo">— THYSSENKRUPP (TKE) —</div>
+        <a href="#tke-cmc4plus" class="btn-manobra">CMC4+ 20.50</a>
+        <a href="#thyssen-serief" class="btn-manobra">Série F Monoplaca</a>
+        <a href="#thyssen-tk10" class="btn-manobra">Thyssen (TK10)</a>
     </div>
 
     <!-- 1. OTIS NE300 -->
-    <div id="m1" class="manobra-panel">
+    <div id="otis-ne300" class="manobra-panel">
         <h2>Otis — NE300</h2>
         <div class="tensao-destaque">TENSÃO DO CIRCUITO: 110V AC - 120V AC</div>
         <table>
@@ -87,7 +80,7 @@
     </div>
 
     <!-- 2. THYSSENKRUPP SÉRIE F MONOPLACA -->
-    <div id="m2" class="manobra-panel">
+    <div id="thyssen-serief" class="manobra-panel">
         <h2>ThyssenKrupp — Série F Monoplaca</h2>
         <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
         <table>
@@ -109,7 +102,7 @@
     </div>
 
     <!-- 3. THYSSENKRUPP CMC4+ 20.50 -->
-    <div id="m3" class="manobra-panel">
+    <div id="tke-cmc4plus" class="manobra-panel">
         <h2>ThyssenKrupp — CMC4+ 20.50</h2>
         <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
         <table>
@@ -136,7 +129,7 @@
     </div>
 
     <!-- 4. THYSSEN TK10 -->
-    <div id="m4" class="manobra-panel">
+    <div id="thyssen-tk10" class="manobra-panel">
         <h2>Thyssen — TK10</h2>
         <div class="tensao-destaque">TENSÃO DO CIRCUITO: 120V AC</div>
         <table>
