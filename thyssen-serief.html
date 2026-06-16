@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThyssenKrupp Série F — Circuitos de Segurança</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; color: #333; margin: 0; padding: 15px; }
+        .container { max-width: 600px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; }
+        h1 { color: #0d47a1; font-size: 18px; margin-bottom: 5px; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
+        .tensao-destaque { font-size: 14px; margin: 10px 0 15px 0; color: #d32f2f; font-weight: bold; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: middle; }
+        th { background-color: #f2f2f2; font-weight: bold; }
+        .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
+        
+        .btn-voltar { display: inline-block; margin-top: 20px; padding: 10px 15px; background: #666; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; }
+        .btn-voltar:active { background: #333; }
+        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>ThyssenKrupp — Série F Monoplaca</h1>
+    <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
+    
+    <table>
+        <thead>
+            <tr><th>Circuito / Componente</th><th>Bornes de Medição</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Relé de Fases (RIF)</td><td><span class="borne">1</span> a <span class="borne">3</span></td></tr>
+            <tr><td>Bloco Térmico (BT)</td><td><span class="borne">95-96</span> a <span class="borne">A1</span></td></tr>
+            <tr><td>Stop da Casa de Máquinas</td><td><span class="borne">A3</span> a <span class="borne">A4</span></td></tr>
+            <tr><td>Stop Poço, Roda Tensora e Fins de Curso (Sup/Inf)</td><td><span class="borne">A5</span> a <span class="borne">A6</span></td></tr>
+            <tr><td>Limitador de Velocidade</td><td><span class="borne">A7</span> a <span class="borne">A8</span></td></tr>
+            <tr><td>Alçapão Cabine, Stop Revisão e Paraquedas</td><td><span class="borne">C2</span> a <span class="borne">C3</span></td></tr>
+            <tr><td>Contactos de Encosto de Portas Manuais</td><td><span class="borne">B1</span> a <span class="borne">B2</span></td></tr>
+            <tr><td>Encravamento das Portas de Cabine</td><td><span class="borne">B3</span> a <span class="borne">B5</span></td></tr>
+            <tr><td>Encravamento de Portas de Piso (Trincos)</td><td><span class="borne">B6</span> a <span class="borne">B7</span></td></tr>
+        </tbody>
+    </table>
+
+    <a href="index.html" class="btn-voltar">⬅️ Voltar ao Menu</a>
+
+    <div class="footer">
+        Guia de Campo Exclusivo • Série F Completa
+    </div>
+</div>
+
+</body>
+</html>
