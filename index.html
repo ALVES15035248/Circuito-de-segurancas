@@ -6,22 +6,35 @@
     <title>Bornes de Segurança de Elevadores</title>
     <style>
         body { font-family: Arial, sans-serif; background: #f4f6f9; color: #333; margin: 0; padding: 15px; }
-        .container { max-width: 600px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; text-align: center; }
+        .container { max-width: 600px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; }
         
+        /* Símbolo do Elevador */
         .elevator-icon { width: 50px; height: 50px; border: 3px solid #d32f2f; border-radius: 6px; margin: 10px auto; position: relative; background: #fff; }
         .elevator-icon::before { content: ''; position: absolute; top: 12px; left: 12px; width: 10px; height: 20px; background: #d32f2f; }
         .elevator-icon::after { content: ''; position: absolute; top: 12px; right: 12px; width: 10px; height: 20px; background: #d32f2f; }
         .elevator-arrow { position: absolute; top: 2px; left: 20px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 7px solid #4caf50; }
 
-        h1 { color: #d32f2f; font-size: 20px; margin-bottom: 5px; margin-top: 10px; }
-        p.subtitle { font-size: 13px; color: #666; margin-top: 0; margin-bottom: 20px; }
+        h1 { color: #d32f2f; text-align: center; font-size: 20px; margin-bottom: 5px; margin-top: 10px; }
+        p.subtitle { text-align: center; font-size: 13px; color: #666; margin-top: 0; margin-bottom: 25px; }
         
-        .menu-marcas { background: #eef2f7; padding: 15px; border-radius: 6px; margin-bottom: 20px; }
-        .grupo-titulo { font-weight: bold; color: #0d47a1; font-size: 14px; margin: 15px 0 5px 0; text-transform: uppercase; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
-        .btn-manobra { display: block; width: 100%; max-width: 350px; margin: 8px auto; padding: 12px; background: white; color: black; border: 1px solid #ccc; border-radius: 4px; text-decoration: none; font-size: 15px; font-weight: 500; box-sizing: border-box; }
-        .btn-manobra:active { background: #d32f2f; color: white; border-color: #d32f2f; }
+        /* Estilização dos Cartões por Marca */
+        .brand-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; margin-bottom: 20px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        
+        /* Cores de Cabeçalho Diferentes para Identificação Rápida */
+        .card-header-otis { background: #0056b3; color: white; padding: 10px; font-weight: bold; font-size: 14px; text-transform: uppercase; text-align: left; }
+        .card-header-thyssen { background: #d32f2f; color: white; padding: 10px; font-weight: bold; font-size: 14px; text-transform: uppercase; text-align: left; }
+        
+        /* Grelha de Duas Colunas para os Modelos */
+        .model-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px; background: #fdfdfd; }
+        
+        /* Botões Técnicos Compactos */
+        .btn-model { display: block; padding: 12px 8px; background: #ffffff; color: #333; border: 1px solid #ccc; border-radius: 4px; text-decoration: none; font-size: 14px; font-weight: bold; text-align: center; box-shadow: 0 1px 2px rgba(0,0,0,0.05); box-sizing: border-box; }
+        .btn-model:active { background: #eef2f7; border-color: #999; }
+        
+        /* Se houver um botão ímpar, ele ocupa a largura total */
+        .full-width { grid-column: span 2; }
 
-        .footer { margin-top: 30px; font-size: 11px; color: #777; }
+        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; }
     </style>
 </head>
 <body>
@@ -34,17 +47,25 @@
     <h1>Bornes dos Circuitos de Segurança</h1>
     <p class="subtitle">Guia Técnico Personalizado — Elevadores em Portugal</p>
     
-    <div class="menu-marcas">
-               <div class="grupo-titulo">— OTIS —</div>
-        <a href="otis-ne300.html" class="btn-manobra">NE300</a>
-        <a href="otis-mcs220.html" class="btn-manobra">MCS220</a>
-        
-        <div class="grupo-titulo">— THYSSENKRUPP (TKE) —</div>
-        <a href="tke-cmc4plus.html" class="btn-manobra">CMC4+ 20.50</a>
-        <a href="thyssen-serieb.html" class="btn-manobra">Série B</a>
-        <a href="thyssen-seriek.html" class="btn-manobra">Série K</a>
-        <a href="thyssen-serief.html" class="btn-manobra">Série F (Monoplaca)</a>
-        <a href="thyssen-tk10.html" class="btn-manobra">TK10</a>
+    <!-- BLOCO OTIS (AZUL) -->
+    <div class="brand-card">
+        <div class="card-header-otis">🔹 OTIS</div>
+        <div class="model-grid">
+            <a href="otis-mcs220.html" class="btn-model">MCS220</a>
+            <a href="otis-ne300.html" class="btn-model">NE300</a>
+        </div>
+    </div>
+    
+    <!-- BLOCO THYSSENKRUPP (VERMELHO) -->
+    <div class="brand-card">
+        <div class="card-header-thyssen">🔸 THYSSENKRUPP (TKE)</div>
+        <div class="model-grid">
+            <a href="tke-cmc4plus.html" class="btn-model">CMC4+ 20.50</a>
+            <a href="thyssen-serieb.html" class="btn-model">Série B</a>
+            <a href="thyssen-serief.html" class="btn-model">Série F</a>
+            <a href="thyssen-seriek.html" class="btn-model">Série K</a>
+            <a href="thyssen-tk10.html" class="btn-model full-width">Thyssen (TK10)</a>
+        </div>
     </div>
 
     <div class="footer">
