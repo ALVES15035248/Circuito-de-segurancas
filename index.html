@@ -11,8 +11,8 @@
             color: #333; 
             margin: 0; 
             padding: 15px;
-            /* MARCA DE ÁGUA DEFENSIVA EM PLANO DE FUNDO */
-            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='160' height='100'><text x='20' y='50' fill='rgba(0,0,0,0.04)' font-size='11' font-family='Arial' font-weight='bold' transform='rotate(-25 80 50)'>Nelson 15035248</text></svg>");
+            /* MARCA DE ÁGUA COMPATÍVEL E INFALÍVEL */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='160' height='100'%3E%3Ctext x='20' y='50' fill='rgba(0,0,0,0.03)' font-size='11' font-family='Arial' font-weight='bold' transform='rotate(-25 80 50)'%3ENelson 15035248%3C/text%3E%3C/svg%3E");
             background-repeat: repeat;
         }
         .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; text-align: center; }
@@ -46,7 +46,6 @@
     <h1>Bornes dos Circuitos de Segurança</h1>
     <p class="subtitle">Guia Técnico Personalizado — Elevadores em Portugal</p>
     
-    <!-- Filtro Único Agrupado com Redirecionamento Direto -->
     <div class="filter-section">
         <label for="manobraSelect">Selecione o Fabricante e Modelo:</label>
         <select id="manobraSelect" onchange="irParaManobra()">
@@ -76,7 +75,6 @@
 function irParaManobra() {
     var urlDestino = document.getElementById('manobraSelect').value;
     if (urlDestino) {
-        // Redireciona o telemóvel instantaneamente para a página do modelo escolhido
         window.location.href = urlDestino;
     }
 }
