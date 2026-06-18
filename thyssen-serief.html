@@ -18,14 +18,16 @@
         .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; }
         h1 { color: #0d47a1; font-size: 18px; margin-bottom: 5px; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
         h3 { font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
-        .tensao-destaque { font-size: 14px; margin: 10px 0 15px 0; color: #d32f2f; font-weight: bold; }
         
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; margin-bottom: 15px; }
+        /* ESTILO DA LINHA DE TENSÃO REPOSICIONADA */
+        .tensao-destaque { font-size: 14px; margin: 15px 0 5px 0; color: #d32f2f; font-weight: bold; text-align: left; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: middle; }
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
         
-        /* CAIXA DE IMAGEM: ROTAÇÃO DE 90 GRAUS PARA A DIREITA PARA CORREÇÃO DEFINITIVA */
+        /* Caixa de Imagem Rotacionada */
         .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 15px; border-radius: 6px; border: 1px solid #ddd; overflow: hidden; }
         .caixa-imagem img { 
             width: 100%; 
@@ -35,12 +37,12 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
             display: block; 
             margin: 0 auto; 
-            transform: rotate(90deg); /* Roda 90 graus para a direita para endireitar a monoplaca */
+            transform: rotate(90deg); 
         }
         .legenda-imagem { font-size: 11px; color: #666; margin-top: 12px; font-style: italic; }
 
         /* Estilo para as Tabelas de Diagnóstico */
-        .tabela-diag { width: 100%; border-collapse: collapse; background: #fffdf3; }
+        .tabela-diag { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; background: #fffdf3; }
         .tabela-diag th { background-color: #fff3cd; color: #856404; }
         .tabela-diag td { border: 1px solid #ffeeba; }
         .erro-code { font-weight: bold; color: #d32f2f; font-family: monospace; font-size: 14px; }
@@ -56,14 +58,15 @@
 
 <div class="container">
     <h1>ThyssenKrupp — Série F Monoplaca</h1>
-    <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
     
-    <!-- FOTO DA MONOPLACA RODADA PARA A DIREITA -->
+    <!-- Foto de Referência Horizontal -->
     <div class="caixa-imagem">
         <img src="serief-placa.jpg" alt="Monoplaca Thyssen Série F">
-        <div class="legenda-imagem">Painel Físico: Referência para localização de componentes e LEDs (Vista Horizontal Corrigida)</div>
+        <div class="legenda-imagem">Painel Físico: Referência para localização de componentes e LEDs (Vista Horizontal)</div>
     </div>
 
+    <!-- TENSÃO COLOCADA EXATAMENTE ACIMA DA TABELA -->
+    <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
     <h3>Cadeia de Bornes de Segurança</h3>
     <table>
         <thead>
