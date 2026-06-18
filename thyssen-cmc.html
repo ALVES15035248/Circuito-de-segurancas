@@ -26,10 +26,9 @@
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
         
-        /* CAIXA DE IMAGEM INFALÍVEL */
-        .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
-        .caixa-imagem picture, .caixa-imagem img { display: block; width: 100%; max-width: 100%; height: auto; border-radius: 4px; margin: 0 auto; }
-        .caixa-imagem img { box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+        /* CAIXA DE IMAGEM OTIMIZADA */
+        .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; min-height: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .caixa-imagem img { display: block; width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); margin: 0 auto; }
         .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; }
 
         .btn-voltar { display: inline-block; margin-top: 20px; padding: 10px 15px; background: #666; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; }
@@ -42,12 +41,9 @@
 <div class="container">
     <h1>ThyssenKrupp — CMC</h1>
     
-    <!-- SISTEMA DE DUPLO CAMINHO PARA EVITAR ERROS DE EXTENSÃO DO ANDROID -->
+    <!-- Caixa com a imagem dinâmica -->
     <div class="caixa-imagem">
-        <picture>
-            <source srcset="cmc-placa.JPG" type="image/jpeg">
-            <img src="cmc-placa.jpg" alt="Quadro ThyssenKrupp CMC" onerror="this.src='cmc-placa.jpeg';">
-        </picture>
+        <img id="cmcImg" src="cmc-placa.jpg" alt="Quadro ThyssenKrupp CMC">
         <div class="legenda-imagem">Painel Físico: Referência visual para diagnóstico no quadro CMC</div>
     </div>
 
@@ -76,6 +72,24 @@
         © Nelson 15035248 • Guia de Campo Exclusivo
     </div>
 </div>
+
+<script>
+// Script de varrimento para contornar qualquer diferença de letras maiúsculas ou extensões do telemóvel
+var imgElement = document.getElementById('cmcImg');
+var formatos = ["cmc-placa.jpg", "cmc-placa.JPG", "cmc-placa.jpeg", "cmc-placa.JPEG", "cmc-placa.png", "CMC-placa.jpg"];
+var indice = 0;
+
+imgElement.onerror = function() {
+    indice++;
+    if (indice < formatos.length) {
+        // Altera o caminho para o próximo formato disponível e tenta ler novamente
+        this.src = formatos[indice];
+    } else {
+        // Se esgotar tudo, deixa uma nota visual clara
+        this.alt = "Fotografia carregada com nome alternativo no GitHub. Verifique as letras maiúsculas/minúsculas.";
+    }
+};
+</script>
 
 </body>
 </html>
