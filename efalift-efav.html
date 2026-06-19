@@ -26,10 +26,17 @@
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
         
-        /* CAIXA PREPARADA PARA A FOTO COMPATÍVEL MÓVEL */
+        /* Caixa de Imagem */
         .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
-        .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
-        .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; }
+        .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; transform: rotate(90deg); }
+        .legenda-imagem { font-size: 11px; color: #666; margin-top: 12px; font-style: italic; }
+
+        /* ESTILO PARA A TABELA DIDÁTICA DE LEDS EFALIFT */
+        .tabela-leds { width: 100%; border-collapse: collapse; background: #fdfdfd; margin-top: 10px; }
+        .tabela-leds th { background-color: #eef2f7; color: #0d47a1; }
+        .led-indicator { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #4caf50; box-shadow: 0 0 6px #4caf50; margin-right: 8px; vertical-align: middle; }
+        .led-name { font-weight: bold; font-family: monospace; font-size: 14px; }
+        .nota-rodape { font-size: 11px; color: #777; font-style: italic; margin-top: 5px; display: block; }
 
         .btn-voltar { display: inline-block; margin-top: 20px; padding: 10px 15px; background: #666; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; }
         .btn-voltar:active { background: #333; }
@@ -41,12 +48,39 @@
 <div class="container">
     <h1>Efalift — EFA-V</h1>
     
-    <!-- ESPAÇO DA IMAGEM ATIVADO (SÓ PRECISA DE SUBIR A FOTO COMO efalift-placa.jpg) -->
+    <!-- Caixa da Foto Física -->
     <div class="caixa-imagem">
-        <img src="efalift-placa.jpg" alt="Placa Efalift EFA-V" onerror="this.style.display='none'; document.getElementById('lbl-img').innerText='Fotografia pendente de carregamento...';">
-        <div id="lbl-img" class="legenda-imagem">Painel Físico: Referência de diagnóstico Efalift</div>
+        <img src="efalift-placa.jpg" alt="Placa Efalift EFA-V">
+        <div class="legenda-imagem">Painel Físico: Referência de diagnóstico Efalift (Vista Horizontal)</div>
     </div>
 
+    <!-- Tabela Didática de LEDs baseada na imagem enviada -->
+    <h3>Sinalização de LEDs Diagnóstico</h3>
+    <table class="tabela-leds">
+        <thead>
+            <tr>
+                <th style="width: 25%;">LED</th>
+                <th>Circuito Correspondente / Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="led-indicator"></span><span class="led-name">EXC</span></td>
+                <td><strong>Fins de curso à subida e descida</strong></td>
+            </tr>
+            <tr>
+                <td><span class="led-indicator"></span><span class="led-name">ALT</span></td>
+                <td><strong>Seguranças de poço e cabina*</strong></td>
+            </tr>
+            <tr>
+                <td><span class="led-indicator"></span><span class="led-name">CS</span></td>
+                <td><strong>Porta de cabina e encravamento de portas</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    <span class="nota-rodape">* Nota: Inclui contacto de páraquedas e interruptores auxiliares.</span>
+
+    <!-- Alerta de Tensão Colado Acima dos Bornes -->
     <div class="tensao-destaque">TENSÃO DO CIRCUITO: 120V AC</div>
     <h3>Cadeia de Bornes de Segurança</h3>
     <table>
