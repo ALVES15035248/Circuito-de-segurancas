@@ -19,6 +19,7 @@
         h1 { color: #0d47a1; font-size: 18px; margin-bottom: 5px; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
         h3 { font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
         
+        /* LINHA DE TENSÃO REPOSICIONADA ESTREITAMENTE ACIMA DA TABELA */
         .tensao-destaque { font-size: 14px; margin: 15px 0 5px 0; color: #d32f2f; font-weight: bold; text-align: left; }
         
         table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; }
@@ -26,8 +27,8 @@
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
         
-        /* CAIXA DE IMAGEM COM CAMINHO BRUTO */
-        .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
+        /* CAIXA DE IMAGEM ADAPTÁVEL */
+        .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; min-height: 50px; }
         .caixa-imagem img { display: block; width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); margin: 0 auto; }
         .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; }
 
@@ -41,12 +42,13 @@
 <div class="container">
     <h1>ThyssenKrupp — CMC</h1>
     
-    <!-- CAMINHO BRUTO ABSOLUTO DO SEU REPOSITÓRIO PRIVADO DO GITHUB -->
+    <!-- Contentor de Imagem com Deteção de Formatos Nativa -->
     <div class="caixa-imagem">
-        <img src="https://githubusercontent.com" alt="Quadro ThyssenKrupp CMC">
+        <img id="cmcFoto" src="cmc-placa.jpg" alt="A carregar imagem do painel CMC...">
         <div class="legenda-imagem">Painel Físico: Referência visual para diagnóstico no quadro CMC</div>
     </div>
 
+    <!-- TENSÃO NO LOCAL IDEAL DE DIAGNÓSTICO -->
     <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
     <h3>Cadeia de Bornes de Segurança</h3>
     <table>
@@ -72,6 +74,22 @@
         © Nelson 15035248 • Guia de Campo Exclusivo
     </div>
 </div>
+
+<script>
+// Sistema de varrimento local ultra-leve para contornar bloqueios de cache do Android
+var imagem = document.getElementById('cmcFoto');
+var rotasAlternativas = ["cmc-placa.jpg", "cmc-placa.JPG", "cmc-placa.jpeg", "cmc-placa.JPEG"];
+var passo = 0;
+
+imagem.onerror = function() {
+    passo++;
+    if (passo < rotasAlternativas.length) {
+        this.src = rotasAlternativas[passo] + "?t=" + new Date().getTime(); // Junta um código de tempo para quebrar a cache antiga
+    } else {
+        this.alt = "Fotografia do quadro CMC (Pendente de Sincronização no Servidor)";
+    }
+};
+</script>
 
 </body>
 </html>
