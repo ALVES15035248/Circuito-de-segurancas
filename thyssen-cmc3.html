@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThyssenKrupp CMC-3 — Circuitos de Segurança</title>
+    <title>ThyssenKrupp CMC3 — Circuitos de Segurança</title>
     <style>
         body { 
             font-family: Arial, sans-serif; 
@@ -25,23 +25,29 @@
         table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: middle; }
         th { background-color: #f2f2f2; font-weight: bold; }
-        .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
+        .borne { font-family: monospace; background: #222; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
+        .conector { font-family: monospace; background: #0288d1; color: #fff; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
         
-        /* GRELHA COMPACTA PARA DIAGNÓSTICO DE LEDS */
-        .tabela-leds-cmc { width: 100%; border-collapse: collapse; background: #fafbfc; margin-top: 10px; font-size: 13px; }
-        .tabela-leds-cmc th { background-color: #0d47a1; color: white; padding: 10px; }
-        .status-led { display: inline-flex; align-items: center; font-weight: bold; font-family: monospace; font-size: 13px; background: #eef2f7; padding: 4px 8px; border-radius: 4px; border: 1px solid #dcdfe6; }
-        .bulb-on { font-size: 14px; margin-right: 6px; filter: drop-shadow(0 0 3px #ffc107); }
-        .txt-alerta { color: #c0392b; font-weight: bold; }
+        /* Caixa de Imagem Rotacionada */
+        .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 15px; border-radius: 6px; border: 1px solid #ddd; overflow: hidden; }
+        .caixa-imagem img { 
+            width: 100%; 
+            max-width: 100%; 
+            height: auto; 
+            border-radius: 4px; 
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
+            display: block; 
+            margin: 0 auto; 
+        }
+        .legenda-imagem { font-size: 11px; color: #666; margin-top: 12px; font-style: italic; }
 
-        /* Bloco de Notas Técnicas de Shunts */
-        .bloco-shunts { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
-        .bloco-shunts p { margin: 4px 0; font-weight: bold; }
-
-        /* Caixa de Imagem */
-        .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; overflow: hidden; }
-        .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
-        .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; }
+        /* Estilo para as Tabelas de Diagnóstico */
+        .tabela-diag { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; background: #fffdf3; }
+        .tabela-diag th { background-color: #fff3cd; color: #856404; }
+        .tabela-diag td { border: 1px solid #ffeeba; }
+        .erro-code { font-weight: bold; color: #d32f2f; font-family: monospace; font-size: 14px; }
+        
+        .txt-custom { font-weight: bold; text-decoration: underline; }
 
         .btn-voltar { display: inline-block; margin-top: 20px; padding: 10px 15px; background: #666; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; }
         .btn-voltar:active { background: #333; }
@@ -51,69 +57,71 @@
 <body>
 
 <div class="container">
-    <h1>ThyssenKrupp — CMC-3</h1>
+    <h1>ThyssenKrupp — Manobra CMC-3</h1>
     
-    <!-- Caixa para a Imagem do Esquema -->
+    <!-- Foto de Referência Horizontal -->
     <div class="caixa-imagem">
-        <img src="cmc3-esquema.jpg" alt="Esquema CMC-3" onerror="this.style.display='none'; document.getElementById('lbl-cmc3').innerText='Fotografia do esquema técnico pendente...';">
-        <div id="lbl-cmc3" class="legenda-imagem">Placa da manobra CMC-3</div>
+        <img src="cmc3-esquema.jpg" alt="Esquema Elétrico CMC-3">
+        <div class="legenda-imagem">Plano Técnico: IRC-34/38-1 (Esquema 3 - Série de Seguranças)</div>
     </div>
 
-    <!-- TABELA DE SINALIZAÇÃO DE LEDS BASEADA NO ESQUEMA SÉRIE F / CMC -->
-    <h3>Sinalização de LEDs Diagnóstico (Painel de Testes)</h3>
-    <table class="tabela-leds-cmc">
-        <thead>
-            <tr>
-                <th style="width: 32%;">Estado do LED</th>
-                <th>Despiste Rápido de Avarias / Componente Aberto</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><span class="status-led"><span class="bulb-on">🟢</span> DL1 (ENCL)</span> <br><span class="txt-alerta">Desligado</span></td>
-                <td><strong>Falha de Encravamento ou Porta de Cabina</strong>. Bloqueio nos trincos exteriores ou operador de portas. Verificar ligações do conector X15 ou contactos de piso.</td>
-            </tr>
-            <tr>
-                <td><span class="status-led"><span class="bulb-on">🟢</span> DL2 (PRES)</span> <br><span class="txt-alerta">Desligado</span></td>
-                <td><strong>Série de Portas de Piso Aberta</strong>. Falha nos contactos de encosto das portas manuais. Verificar ligações associadas ao conector X142.</td>
-            </tr>
-            <tr>
-                <td><span class="status-led"><span class="bulb-on">🟢</span> DL3 (SEG)</span> <br><span class="txt-alerta">Desligado</span></td>
-                <td><strong>Seguranças Gerais Abertas</strong>. Falha na cadeia inicial (Stops, BT, VTH ou Limitadores). Verificar circuito entre X152/1 e X155/12.</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- NOTAS TÉCNICAS DE PONTE DIRETAS DO ESQUEMA -->
-    <h3>Notas Técnicas de Campo (Shunts / Pontes)</h3>
-    <div class="bloco-shunts">
-        <p>• SEM BOTONEIRA DE EMERGÊNCIA: Realizar ponte no conector X153 (Pinos 1-4 ou correspondentes).</p>
-        <p>• EM MANOBRAS CMC-1V / CMC-2V INTEGRADA: Realizar ponte entre os bornes SD-DT.</p>
-    </div>
-
-    <!-- TENSÃO NO LOCAL DE PRIORIDADE DE DIAGNÓSTICO -->
-    <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
-    <h3>Cadeia de Bornes de Segurança</h3>
+    <!-- TENSÃO COLOCADA EXATAMENTE ACIMA DA TABELA -->
+    <div class="tensao-destaque">TENSÃO DO CIRCUITO: 110V DC</div>
+    <h3>Cadeia de Bornes e Linhagem de Segurança</h3>
     <table>
         <thead>
-            <tr><th>Circuito / Componente</th><th>Conector e Bornes</th></tr>
+            <tr><th>Componente / Ponto de Teste</th><th>Bornes / Conetores</th></tr>
         </thead>
         <tbody>
-            <tr><td>Stop do Motor / Sinais Auxiliares (VTH)</td><td><span class="borne">X152 / 1</span> a <span class="borne">X152 / 3</span></td></tr>
-            <tr><td>Seguranças de Poço Gerais (Escada, tensores, fossado)</td><td><span class="borne">X153 / 1</span> a <span class="borne">X153 / 8</span></td></tr>
-            <tr><td>Limitador de Velocidade da Cabine (LV)</td><td><span class="borne">X137 / 3</span> a <span class="borne">X137 / 1</span></td></tr>
-            <tr><td>Limitador de Velocidade do Contra-peso (se instalado)</td><td><span class="borne">X137A / 3</span> a <span class="borne">X137A / 1</span></td></tr>
-            <tr><td>Seguranças de Cabine (Stop revisão, paraquedas, fins de curso)</td><td><span class="borne">X155 / 11</span> a <span class="borne">X155 / 12</span></td></tr>
-            <tr><td>Vigilância e Fecho das Portas de Piso (Contactos de Encosto)</td><td><span class="borne">X142 / 2</span> a <span class="borne">X142 / 1</span></td></tr>
-            <tr><td>Encravamento das Portas de Cabine (Operador)</td><td><span class="borne">X155 / 6</span> a <span class="borne">X155 / 9</span></td></tr>
-            <tr><td>Encravamento das Portas de Piso Frontal (Trincos)</td><td><span class="borne">X136 / 1</span> a <span class="borne">X136 / 3</span></td></tr>
+            <tr><td>Interruptor Quarto de Máquinas</td><td><span class="borne">A1</span> a <span class="borne">A2</span></td></tr>
+            <tr><td>Interruptor Fundo do Poço</td><td>Entrada <span class="borne">A2</span></td></tr>
+            <tr><td>Tensor Limitador (Contacto)</td><td>Saída para <span class="borne">A14</span></td></tr>
+            <tr><td>Contacto de Alçapão / Stops Cabine</td><td><span class="borne">A14</span> a <span class="conector">X37</span></td></tr>
+            <tr><td>Linha da Botoneira de Revisão</td><td>Fios <span class="borne">Preto</span> / <span class="borne">C1</span> a <span class="conector">X17</span></td></tr>
+            <tr><td>Botoneira de Emergência</td><td>Ligação ao Conetor <span class="conector">X11</span> (Pinos P2/P3)</td></tr>
+            <tr><td>Retorno à Placa Principal CMC-3</td><td>Sinal condicionado via conetores de placa</td></tr>
         </tbody>
     </table>
 
-    <a href="index.html" class="btn-voltar">⬅️ Voltar ao Menu</a>
+    <h3>Distribuição do Conetor X37 (Fiação de Cabine)</h3>
+    <table class="tabela-diag">
+        <thead>
+            <tr>
+                <th style="width: 30%;">Pino X37</th>
+                <th>Cor do Fio / Função no Esquema</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td class="erro-code">P1</td><td>Fio Azul (Sinal de Segurança)</td></tr>
+            <tr><td class="erro-code">P2</td><td>Fio Negro (Comum / Retorno)</td></tr>
+            <tr><td class="erro-code">P3</td><td>Fio Marrom / Castanho</td></tr>
+            <tr><td class="erro-code">P4</td><td>Fio Gris / Cinzento</td></tr>
+            <tr><td class="erro-code">P5</td><td>Fio Blanco / Branco</td></tr>
+            <tr><td class="erro-code">P6</td><td>Fio Verde (Terra / Blindagem)</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Notas de Despiste Clínico / Pontes Rápidas</h3>
+    <table class="tabela-diag">
+        <thead>
+            <tr><th>Condição</th><th>Ação Técnica Recomendada</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="erro-code">Sem Botoneira Emergência</td>
+                <td><span class="txt-custom">Instalação Provisória</span>:<br>Realizar ponte mecânica permanente entre os pinos <b>P2-C5</b>.</td>
+            </tr>
+            <tr>
+                <td class="erro-code">Manobra CMC-N / CMC-Integrada</td>
+                <td><span class="txt-custom">Configuração de Placa</span>:<br>Realizar rigorosamente a ponte entre as linhas <b>SD-D7</b> para libertar a série.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="index.html" class="btn-voltar">← Voltar ao Menu</a>
 
     <div class="footer">
-        © Nelson 15035248 • Guia de Campo Exclusivo
+        Nelson 15035248 — Guia de Bornes Modular
     </div>
 </div>
 
