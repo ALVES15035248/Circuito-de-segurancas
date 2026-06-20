@@ -19,7 +19,6 @@
         h1 { color: #0d47a1; font-size: 18px; margin-bottom: 5px; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
         h3 { font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
         
-        /* ESTILO DA LINHA DE TENSÃO REPOSICIONADA */
         .tensao-destaque { font-size: 14px; margin: 15px 0 5px 0; color: #d32f2f; font-weight: bold; text-align: left; }
         
         table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; }
@@ -27,6 +26,13 @@
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
         
+        /* ESTILO EXCLUSIVO E INTUITIVO PARA A TABELA DE LEDS CMC4+ */
+        .tabela-leds-cmc { width: 100%; border-collapse: collapse; background: #fafbfc; margin-top: 10px; font-size: 13px; }
+        .tabela-leds-cmc th { background-color: #0d47a1; color: white; padding: 10px; }
+        .status-led { display: inline-flex; align-items: center; font-weight: bold; font-family: monospace; font-size: 13px; background: #eef2f7; padding: 4px 8px; border-radius: 4px; border: 1px solid #dcdfe6; }
+        .bulb-on { font-size: 14px; margin-right: 6px; filter: drop-shadow(0 0 3px #ffc107); }
+        .txt-alerta { color: #c0392b; font-weight: bold; }
+
         /* Tabela de Bypasses */
         .tabela-bp { width: 100%; border-collapse: collapse; background: #fafafa; margin-top: 5px; font-size: 13px; }
         .tabela-bp th { background-color: #eaeaea; color: #333; }
@@ -48,11 +54,36 @@
 <div class="container">
     <h1>ThyssenKrupp — CMC4+ 20.50</h1>
     
-    <!-- FOTO ATIVADA NO TOPO DA PÁGINA ORIGINÁRIA -->
+    <!-- Foto Ativa no Topo -->
     <div class="caixa-imagem">
         <img src="cmc4-painel.jpg" alt="Painel de teste CMC4+">
         <div class="legenda-imagem">Painel Físico: Fichas de bypass e LEDs indicadores</div>
     </div>
+
+    <!-- SINALIZAÇÃO DE LEDS IDENTICA À OUTRA VERSÃO -->
+    <h3>Sinalização de LEDs Diagnóstico (Painel de Testes)</h3>
+    <table class="tabela-leds-cmc">
+        <thead>
+            <tr>
+                <th style="width: 32%;">Estado do LED</th>
+                <th>Despiste Rápido de Avarias / Componente Aberto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="status-led"><span class="bulb-on">🟢</span> DL1 (ENCL)</span> <br><span class="txt-alerta">Desligado</span></td>
+                <td><strong>Falha de Encravamento ou Porta de Cabina</strong>. Falha nos trincos exteriores ou operador. Verificar série de cabine (X155/6 - X155/9) ou trincos de piso (X136 / X136T).</td>
+            </tr>
+            <tr>
+                <td><span class="status-led"><span class="bulb-on">🟢</span> DL2 (PRES)</span> <br><span class="txt-alerta">Desligado</span></td>
+                <td><strong>Série de Portas de Piso Aberta</strong>. Falha nos contactos de encosto (portas manuais). Verificar o circuito entre os conectores X142 / X142T e a vigilância de poço X206.</td>
+            </tr>
+            <tr>
+                <td><span class="status-led"><span class="bulb-on">🟢</span> DL3 (SEG)</span> <br><span class="txt-alerta">Desligado</span></td>
+                <td><strong>Seguranças Gerais Abertas</strong>. Falha entre X152/1 e X155/12. Verificar Stop do Motor, Stops de Poço, Limitadores de velocidade (Cabine/Contrapeso), Paraquedas ou Fins de curso.</td>
+            </tr>
+        </tbody>
+    </table>
 
     <!-- TENSÃO NO LOCAL DE PRIORIDADE DE DIAGNÓSTICO -->
     <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
