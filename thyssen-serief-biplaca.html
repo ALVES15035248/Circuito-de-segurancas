@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThyssenKrupp Série F Biplaca — Circuitos de Segurança</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #f4f6f9; 
+            color: #333; 
+            margin: 0; 
+            padding: 15px; 
+            /* MARCA DE ÁGUA DEFENSIVA REGISTADA */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='160' height='100'%3E%3Ctext x='20' y='50' fill='rgba(0,0,0,0.03)' font-size='11' font-family='Arial' font-weight='bold' transform='rotate(-25 80 50)'%3ENelson 15035248%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+        .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; }
+        h1 { color: #0d47a1; font-size: 18px; margin-bottom: 5px; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
+        h3 { font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
+        
+        .tensao-destaque { font-size: 14px; margin: 15px 0 5px 0; color: #d32f2f; font-weight: bold; text-align: left; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: middle; }
+        th { background-color: #f2f2f2; font-weight: bold; }
+        .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
+        
+        /* GRELHA COMPACTA PARA DIAGNÓSTICO DE LEDS */
+        .tabela-leds-cmc { width: 100%; border-collapse: collapse; background: #fafbfc; margin-top: 10px; }
+        .tabela-leds-cmc th { background-color: #0d47a1; color: white; padding: 10px; }
+        .status-led { display: inline-flex; align-items: center; font-weight: bold; font-family: monospace; font-size: 13px; background: #eef2f7; padding: 4px 8px; border-radius: 4px; border: 1px solid #dcdfe6; }
+        .bulb-on { font-size: 14px; margin-right: 6px; filter: drop-shadow(0 0 3px #ffc107); }
+        .txt-alerta { color: #c0392b; font-weight: bold; }
+
+        /* Caixa de Imagem */
+        .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
+        .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
+        .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; }
+
+        .btn-voltar { display: inline-block; margin-top: 20px; padding: 10px 15px; background: #666; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; }
+        .btn-voltar:active { background: #333; }
+        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>ThyssenKrupp — Série F Biplaca</h1>
+    
+    <h3>Placa da manobra Série F Biplaca</h3>
+    <div class="caixa-imagem">
+        <img src="serief-biplaca.jpg" alt="Esquema Série F Biplaca" onerror="this.style.display='none'; document.getElementById('lbl-bp').innerText='Fotografia do esquema técnico pendente...';">
+        <div id="lbl-bp" class="legenda-imagem">Referência Técnica: Manobra Série F / D.F.U.1V</div>
+    </div>
+
+    <!-- TABELA DE SINALIZAÇÃO DE LEDS INTUITIVA -->
+    <h3>Sinalização de LEDs Diagnóstico (Placa de Relés)</h3>
+    <table class="tabela-leds-cmc">
+        <thead>
+            <tr>
+                <th style="width: 32%;">Estado do LED</th>
+                <th>Despiste Rápido de Avarias / Componente Aberto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="status-led"><span class="bulb-on">🟢</span> DL1 (ENCL)</span> <br><span class="txt-alerta">Desligado</span></td>
+                <td><strong>Falha de Encravamento ou Porta de Cabina</strong>. Falha nos trincos exteriores ou operador. Verificar série de cabine (B3 - B5) ou trincos de piso (B6 - B7).</td>
+            </tr>
+            <tr>
+                <td><span class="status-led"><span class="bulb-on">🟢</span> DL2 (PRES)</span> <br><span class="txt-alerta">Desligado</span></td>
+                <td><strong>Série de Portas de Piso Aberta</strong>. Falha nos contactos de encosto (portas manuais). Verificar o circuito entre os bornes B1 e B2.</td>
+            </tr>
+            <tr>
+                <td><span class="status-led"><span class="bulb-on">🟢</span> DL3 (SEG)</span> <br><span class="txt-alerta">Desligado</span></td>
+                <td><strong>Seguranças Gerais Abertas</strong>. Falha na cadeia inicial entre os bornes 1 e A8. Verificar Relé de Fases (RIF), Bloco Térmico (BT), Stops de poço/casa de máquinas ou Limitador de Velocidade.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- TENSÃO NO LOCAL DE PRIORIDADE DE DIAGNÓSTICO -->
+    <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
+    <h3>Cadeia de Bornes de Segurança</h3>
+    <table>
+        <thead>
+            <tr><th>Circuito / Componente</th><th>Bornes de Medição</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Relé de Fases (RIF)</td><td><span class="borne">1</span> a <span class="borne">3</span></td></tr>
+            <tr><td>Bloco Térmico (BT)</td><td><span class="borne">3</span> a <span class="borne">A1</span></td></tr>
+            <tr><td>Stop da Casa de Máquinas</td><td><span class="borne">A3</span> a <span class="borne">A4</span></td></tr>
+            <tr><td>Stop Poço, Roda Tensora e Fins de Curso (Sup/Inf)</td><td><span class="borne">A5</span> a <span class="borne">A6</span></td></tr>
+            <tr><td>Limitador de Velocidade</td><td><span class="borne">A7</span> a <span class="borne">A8</span></td></tr>
+            <tr><td>Alçapão Cabine, Stop Revisão e Paraquedas</td><td><span class="borne">C2</span> a <span class="borne">C3</span></td></tr>
+            <tr><td>Contactos de Encosto de Portas Manuais (Presença)</td><td><span class="borne">B1</span> a <span class="borne">B2</span></td></tr>
+            <tr><td>Encravamento das Portas de Cabine (Operador)</td><td><span class="borne">B3</span> a <span class="borne">B5</span></td></tr>
+            <tr><td>Encravamento de Portas de Piso (Trincos Exteriores)</td><td><span class="borne">B6</span> a <span class="borne">B7</span></td></tr>
+        </tbody>
+    </table>
+
+    <a href="index.html" class="btn-voltar">⬅️ Voltar ao Menu</a>
+
+    <div class="footer">
+        © Nelson 15035248 • Guia de Campo Exclusivo
+    </div>
+</div>
+
+</body>
+</html>
