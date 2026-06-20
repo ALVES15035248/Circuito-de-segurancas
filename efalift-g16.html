@@ -19,7 +19,6 @@
         h1 { color: #0d47a1; font-size: 18px; margin-bottom: 5px; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
         h3 { font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
         
-        /* ESTILO DA LINHA DE TENSÃO REPOSICIONADA */
         .tensao-destaque { font-size: 14px; margin: 15px 0 5px 0; color: #d32f2f; font-weight: bold; text-align: left; }
         
         table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; }
@@ -27,7 +26,18 @@
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
         
-        /* CAIXA PREPARADA PARA A FOTO COMPATÍVEL MÓVEL */
+        /* ESTILO PARA A TABELA DIDÁTICA DE LEDS G16 IDENTICA AO EFA-V */
+        .tabela-leds { width: 100%; border-collapse: collapse; background: #fdfdfd; margin-top: 10px; }
+        .tabela-leds th { background-color: #eef2f7; color: #0d47a1; }
+        .led-indicator { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #4caf50; box-shadow: 0 0 6px #4caf50; margin-right: 8px; vertical-align: middle; }
+        .led-name { font-weight: bold; font-family: monospace; font-size: 14px; }
+        .nota-rodape { font-size: 11px; color: #777; font-style: italic; margin-top: 5px; display: block; }
+        
+        /* Bloco de Notas Técnicas de Shunts */
+        .bloco-shunts { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
+        .bloco-shunts p { margin: 4px 0; font-weight: bold; }
+
+        /* Caixa Preparada para a Foto */
         .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
         .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
         .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; }
@@ -42,10 +52,44 @@
 <div class="container">
     <h1>Efalift — G16</h1>
     
-    <!-- ESPAÇO DA IMAGEM ATIVADO (SÓ PRECISA DE SUBIR A FOTO COMO g16-placa.jpg) -->
+    <!-- ESPAÇO PARA A FOTO DO QUADRO -->
     <div class="caixa-imagem">
-        <img src="g16-placa.jpg" alt="Placa Efalift G16" onerror="this.style.display='none'; document.getElementById('lbl-g16').innerText='Fotografia pendente de carregamento...';">
+        <img src="g16-placa.jpg" alt="Placa Efalift G16" onerror="this.style.display='none'; document.getElementById('lbl-g16').innerText='Fotografia física pendente...';">
         <div id="lbl-g16" class="legenda-imagem">Painel Físico: Referência para medições e diagnóstico no quadro G16</div>
+    </div>
+
+    <!-- TABELA DIDÁTICA DE LEDS IDENTICA À DO EFA-V -->
+    <h3>Sinalização de LEDs Diagnóstico (Placa G16)</h3>
+    <table class="tabela-leds">
+        <thead>
+            <tr>
+                <th style="width: 25%;">LED</th>
+                <th>Circuito Correspondente / Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="led-indicator"></span><span class="led-name">EXC</span></td>
+                <td><strong>Fins de curso e limitador de velocidade à subida/descida</strong> (Monitorizado no borne 131).</td>
+            </tr>
+            <tr>
+                <td><span class="led-indicator"></span><span class="led-name">ALT</span></td>
+                <td><strong>Seguranças gerais de poço, caixa e cabina*</strong> (Monitorizado no borne 134).</td>
+            </tr>
+            <tr>
+                <td><span class="led-indicator"></span><span class="led-name">CS</span></td>
+                <td><strong>Porta de cabina e encosto de portas de piso</strong> (Monitorizado no borne 136).</td>
+            </tr>
+        </tbody>
+    </table>
+    <span class="nota-rodape">* Nota: Inclui parágrafo de parquedas, fins de curso de caixa, botoneira de emergência, stop de poço e alongamento de cabos.</span>
+
+    <!-- NOTAS TÉCNICAS DE SHUNTS PRESENTES NO ESQUEMA -->
+    <h3>Notas Técnicas de Campo (Shunts / Pontes)</h3>
+    <div class="bloco-shunts">
+        <p>• Fazer SHUNT 331 - 130 se NÃO existirem Interruptores de Fim de Curso na Cabine (IFCS-D).</p>
+        <p>• Fazer SHUNT 431 - 434 se NÃO existirem Interruptores de Fim de Curso na Caixa (IFCS-B).</p>
+        <p>• Fazer SHUNT 133 - 233 caso o elevador NÃO possua Botoneira de Emergência na Casa de Máquinas.</p>
     </div>
 
     <!-- ALERTA DE TENSÃO POSICIONADO NO TOPO DA TABELA -->
