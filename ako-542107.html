@@ -26,7 +26,18 @@
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
         
-        /* CAIXA PREPARADA PARA A FOTO COMPATÍVEL MÓVEL */
+        /* Estilo para as Tabelas de Diagnóstico */
+        .tabela-diag { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; background: #fffdf3; margin-bottom: 15px; }
+        .tabela-diag th { background-color: #fff3cd; color: #856404; padding: 10px; }
+        .tabela-diag td { border: 1px solid #ffeeba; padding: 8px; }
+        .erro-code { font-weight: bold; color: #d32f2f; font-family: monospace; font-size: 14px; text-align: center; }
+        
+        .txt-custom { font-weight: bold; text-decoration: underline; }
+        
+        /* Bloco de Notas Técnicas */
+        .bloco-shunts { background: #eef2f7; border-left: 4px solid #0d47a1; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
+        .bloco-shunts p { margin: 6px 0; }
+
         .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
         .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
         .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; }
@@ -41,10 +52,102 @@
 <div class="container">
     <h1>AKO — 542107</h1>
     
-    <!-- ESPAÇO DA IMAGEM ATIVADO (SÓ PRECISA DE SUBIR A FOTO COMO ako-placa.jpg) -->
+    <!-- Imagem física do quadro -->
     <div class="caixa-imagem">
-        <img src="ako-placa.jpg" alt="Placa AKO 542107" onerror="this.style.display='none'; document.getElementById('lbl-ako').innerText='Fotografia pendente de carregamento...';">
+        <img src="ako-placa.jpg" alt="Placa AKO 542107" onerror="this.style.display='none'; document.getElementById('lbl-ako').innerText='Fotografia do painel físico ativa no servidor.';">
         <div id="lbl-ako" class="legenda-imagem">Painel Físico: Referência para medições e diagnóstico no quadro AKO</div>
+    </div>
+
+    <!-- TABELA DE DIAGNÓSTICO DE AVARIAS TOTALMENTE TRADUZIDA -->
+    <h3>Sinalização de Avarias (Letras no Display)</h3>
+    <table class="tabela-diag">
+        <thead>
+            <tr>
+                <th style="width: 15%;">Sinal</th>
+                <th style="width: 25%;">Tipo de Luz</th>
+                <th>Significado / Descrição da Avaria Técnico</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="erro-code">A</td>
+                <td>Permanente</td>
+                <td><span class="txt-custom">Contactor S, B ou CP encravado (colado).</span></td>
+            </tr>
+            <tr>
+                <td class="erro-code">B</td>
+                <td>Permanente</td>
+                <td><span class="txt-custom">Falha na série de trincos/fechaduras das portas.</span></td>
+            </tr>
+            <tr>
+                <td class="erro-code">B*</td>
+                <td>Intermitente</td>
+                <td><span class="txt-custom">Tempo excessivo de viagem da cabine (Proteção de marcha).</span> <br><small>⚠️ Requer Reset manual após solucionar.</small></td>
+            </tr>
+            <tr>
+                <td class="erro-code">C</td>
+                <td>Permanente</td>
+                <td><span class="txt-custom">Fotocélula, reabertura de portas ou excesso de carga atuado</span> OR <span class="txt-custom">A porta da cabine automática não fecha.</span></td>
+            </tr>
+            <tr>
+                <td class="erro-code">C*</td>
+                <td>Intermitente</td>
+                <td><span class="txt-custom">Série de seguranças aberta: fundo (poço), teto (revisão), cunha (paraquedas) e cabos.</span> <br><small>⚠️ Requer Reset manual após solucionar.</small></td>
+            </tr>
+            <tr>
+                <td class="erro-code">D</td>
+                <td>Permanente</td>
+                <td><span class="txt-custom">Contactor S ou B não entra (não atraca).</span></td>
+            </tr>
+            <tr>
+                <td class="erro-code">E</td>
+                <td>Permanente</td>
+                <td><span class="txt-custom">Ascensor em manobra de inspeção (revisão).</span></td>
+            </tr>
+            <tr>
+                <td class="erro-code">E*</td>
+                <td>Intermitente</td>
+                <td><span class="txt-custom">Falha no interruptor magnético de paragem.</span> <br><small>⚠️ Requer Reset manual após solucionar.</small></td>
+            </tr>
+            <tr>
+                <td class="erro-code">F</td>
+                <td>Permanente</td>
+                <td><span class="txt-custom">Cabine fora da zona de desenclavamento (fora de piso).</span></td>
+            </tr>
+            <tr>
+                <td class="erro-code">G</td>
+                <td>Permanente</td>
+                <td><span class="txt-custom">Interruptor magnético de paragem fora da pantalha (ecrã).</span></td>
+            </tr>
+            <tr>
+                <td class="erro-code">G*</td>
+                <td>Intermitente</td>
+                <td><span class="txt-custom">Falha de paragem na 1ª planta ou na última paragem (fins de curso extremos).</span> <br><small>⚠️ Requer Reset manual após solucionar.</small></td>
+            </tr>
+            <tr>
+                <td class="erro-code">H</td>
+                <td>Permanente</td>
+                <td><span class="txt-custom">Última manobra da cabine: subida.</span></td>
+            </tr>
+            <tr>
+                <td class="erro-code">H*</td>
+                <td>Intermitente</td>
+                <td><span class="txt-custom">Falta de tensão de manobra 24V CC (Fusível F5 fundido).</span> <br><small>⚠️ Requer Reset manual após solucionar.</small></td>
+            </tr>
+            <tr>
+                <td class="erro-code">P</td>
+                <td>Permanente</td>
+                <td><span class="txt-custom">Série de portas: aberta.</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- NOTAS COMPLEMENTARES EXTRAÍDAS DO TEXTO INFERIOR DA IMAGEM -->
+    <h3>Notas Importantes de Operação Móvel</h3>
+    <div class="bloco-shunts">
+        <p>ℹ️ <strong>Reset de Segurança:</strong> As avarias marcadas com um asterisco (<strong>*</strong>) necessitam obrigatoriamente da realização de um reset (depois de eliminada a causa física) para que a manobra volte ao seu funcionamento normal.</p>
+        <p>ℹ️ <strong>Comportamento do LED 'F':</strong> Este LED encontra-se <strong>apagado</strong> quando a cabine está nivelada em piso e a manobra pode abrir portas. Se a cabine estiver em piso e este LED estiver <strong>aceso</strong>, a manobra não está a ler corretamente as pantalhas de paragem.</p>
+        <p>ℹ️ <strong>Módulo de Fases:</strong> O LED no módulo detetor de falha e inversão de fases permanece <strong>aceso</strong> quando a sequência e presença de fases da rede de força estão corretas.</p>
     </div>
 
     <!-- ALERTA DE TENSÃO POSICIONADO NO TOPO DA TABELA -->
@@ -61,17 +164,3 @@
             <tr><td>Stop de Poço, Roda Tensora, Páraquedas e Alongamento de Cabos</td><td><span class="borne">B15</span> a <span class="borne">B17</span></td></tr>
             <tr><td>Fecho das Portas de Piso (Contactos de Encosto)</td><td><span class="borne">B17</span> a <span class="borne">B40</span></td></tr>
             <tr><td>Stop de Cabine e Stop de Revisão</td><td><span class="borne">B40</span> a <span class="borne">B18</span></td></tr>
-            <tr><td>Encravamento das Portas de Piso (Trincos Exteriores)</td><td><span class="borne">B18</span> a <span class="borne">B20</span></td></tr>
-            <tr><td>Encravamento das Portas de Cabine (Operador)</td><td><span class="borne">B20</span> a <span class="borne">B22</span></td></tr>
-        </tbody>
-    </table>
-
-    <a href="index.html" class="btn-voltar">⬅️ Voltar ao Menu</a>
-
-    <div class="footer">
-        © Nelson 15035248 • Guia de Campo Exclusivo
-    </div>
-</div>
-
-</body>
-</html>
