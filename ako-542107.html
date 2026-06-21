@@ -11,7 +11,7 @@
             color: #333; 
             margin: 0; 
             padding: 15px; 
-            /* MARCA DE ÁGUA DEFENSIVA REGISTADA */
+            /* MARCA DE ÁGUA COMPATÍVEL MÓVEL RECONSTRUIDA */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='160' height='100'%3E%3Ctext x='20' y='50' fill='rgba(0,0,0,0.03)' font-size='11' font-family='Arial' font-weight='bold' transform='rotate(-25 80 50)'%3ENelson 15035248%3C/text%3E%3C/svg%3E");
             background-repeat: repeat;
         }
@@ -26,7 +26,6 @@
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
         
-        /* Estilo para as Tabelas de Diagnóstico */
         .tabela-diag { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; background: #fffdf3; margin-bottom: 15px; }
         .tabela-diag th { background-color: #fff3cd; color: #856404; padding: 10px; }
         .tabela-diag td { border: 1px solid #ffeeba; padding: 8px; }
@@ -34,7 +33,6 @@
         
         .txt-custom { font-weight: bold; text-decoration: underline; }
         
-        /* Bloco de Notas Técnicas */
         .bloco-shunts { background: #eef2f7; border-left: 4px solid #0d47a1; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
         .bloco-shunts p { margin: 6px 0; }
 
@@ -42,7 +40,8 @@
         .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
         .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; }
 
-        .btn-voltar { display: inline-block; margin-top: 20px; padding: 10px 15px; background: #666; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; }
+        /* FIX DO BOTÃO DE VOLTAR */
+        .btn-voltar { display: inline-block; margin-top: 20px; padding: 10px 15px; background: #666; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; text-align: center; }
         .btn-voltar:active { background: #333; }
         .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; font-weight: bold; }
     </style>
@@ -52,13 +51,13 @@
 <div class="container">
     <h1>AKO — 542107</h1>
     
-    <!-- Imagem física do quadro -->
+    <!-- Caixa da imagem física -->
     <div class="caixa-imagem">
-        <img src="ako-placa.jpg" alt="Placa AKO 542107" onerror="this.style.display='none'; document.getElementById('lbl-ako').innerText='Fotografia do painel físico ativa no servidor.';">
+        <img src="ako-placa.jpg" alt="Placa AKO 542107" onerror="this.style.display='none'; document.getElementById('lbl-ako').innerText='Fotografia de referência física carregada no GitHub.';">
         <div id="lbl-ako" class="legenda-imagem">Painel Físico: Referência para medições e diagnóstico no quadro AKO</div>
     </div>
 
-    <!-- TABELA DE DIAGNÓSTICO DE AVARIAS TOTALMENTE TRADUZIDA -->
+    <!-- TABELA DE AVARIAS DO ESQUEMA -->
     <h3>Sinalização de Avarias (Letras no Display)</h3>
     <table class="tabela-diag">
         <thead>
@@ -82,7 +81,7 @@
             <tr>
                 <td class="erro-code">B*</td>
                 <td>Intermitente</td>
-                <td><span class="txt-custom">Tempo excessivo de viagem da cabine (Proteção de marcha).</span> <br><small>⚠️ Requer Reset manual após solucionar.</small></td>
+                <td><span class="txt-custom">Tempo excessivo de viagem da cabine (Proteção de marchar).</span> <br><small>⚠️ Requer Reset manual.</small></td>
             </tr>
             <tr>
                 <td class="erro-code">C</td>
@@ -92,7 +91,7 @@
             <tr>
                 <td class="erro-code">C*</td>
                 <td>Intermitente</td>
-                <td><span class="txt-custom">Série de seguranças aberta: fundo (poço), teto (revisão), cunha (paraquedas) e cabos.</span> <br><small>⚠️ Requer Reset manual após solucionar.</small></td>
+                <td><span class="txt-custom">Série de seguranças aberta: fundo (poço), teto (revisão), cunha (paraquedas) e cabos.</span> <br><small>⚠️ Requer Reset manual.</small></td>
             </tr>
             <tr>
                 <td class="erro-code">D</td>
@@ -107,7 +106,7 @@
             <tr>
                 <td class="erro-code">E*</td>
                 <td>Intermitente</td>
-                <td><span class="txt-custom">Falha no interruptor magnético de paragem.</span> <br><small>⚠️ Requer Reset manual após solucionar.</small></td>
+                <td><span class="txt-custom">Falha no interruptor magnético de paragem.</span> <br><small>⚠️ Requer Reset manual.</small></td>
             </tr>
             <tr>
                 <td class="erro-code">F</td>
@@ -122,7 +121,7 @@
             <tr>
                 <td class="erro-code">G*</td>
                 <td>Intermitente</td>
-                <td><span class="txt-custom">Falha de paragem na 1ª planta ou na última paragem (fins de curso extremos).</span> <br><small>⚠️ Requer Reset manual após solucionar.</small></td>
+                <td><span class="txt-custom">Falha de paragem na 1ª planta ou na última paragem (fins curso).</span> <br><small>⚠️ Requer Reset manual.</small></td>
             </tr>
             <tr>
                 <td class="erro-code">H</td>
@@ -132,7 +131,7 @@
             <tr>
                 <td class="erro-code">H*</td>
                 <td>Intermitente</td>
-                <td><span class="txt-custom">Falta de tensão de manobra 24V CC (Fusível F5 fundido).</span> <br><small>⚠️ Requer Reset manual após solucionar.</small></td>
+                <td><span class="txt-custom">Falta de tensão de manobra 24V CC (Fusível F5 fundido).</span> <br><small>⚠️ Requer Reset manual.</small></td>
             </tr>
             <tr>
                 <td class="erro-code">P</td>
@@ -142,15 +141,14 @@
         </tbody>
     </table>
 
-    <!-- NOTAS COMPLEMENTARES EXTRAÍDAS DO TEXTO INFERIOR DA IMAGEM -->
-    <h3>Notas Importantes de Operação Móvel</h3>
+    <h3>Notas Importantes de Operação</h3>
     <div class="bloco-shunts">
-        <p>ℹ️ <strong>Reset de Segurança:</strong> As avarias marcadas com um asterisco (<strong>*</strong>) necessitam obrigatoriamente da realização de um reset (depois de eliminada a causa física) para que a manobra volte ao seu funcionamento normal.</p>
-        <p>ℹ️ <strong>Comportamento do LED 'F':</strong> Este LED encontra-se <strong>apagado</strong> quando a cabine está nivelada em piso e a manobra pode abrir portas. Se a cabine estiver em piso e este LED estiver <strong>aceso</strong>, a manobra não está a ler corretamente as pantalhas de paragem.</p>
-        <p>ℹ️ <strong>Módulo de Fases:</strong> O LED no módulo detetor de falha e inversão de fases permanece <strong>aceso</strong> quando a sequência e presença de fases da rede de força estão corretas.</p>
+        <p>ℹ️ <strong>Reset de Segurança:</strong> As avarias marcadas com um asterisco (<strong>*</strong>) necessitam de reset manual após solucionar a causa física.</p>
+        <p>ℹ️ <strong>Comportamento do LED 'F':</strong> Apagado se a cabine estiver em piso (autoriza abertura de portas). Aceso fixo em piso indica falha na leitura das pantalhas de paragem.</p>
+        <p>ℹ️ <strong>Módulo de Fases:</strong> O LED aceso indica que a sequência e presença de fases da rede estão corretas.</p>
     </div>
 
-    <!-- ALERTA DE TENSÃO POSICIONADO NO TOPO DA TABELA -->
+    <!-- ALERTA DE TENSÃO COLOADO NO SÍTIO CERTO -->
     <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
     <h3>Cadeia de Bornes de Segurança</h3>
     <table>
@@ -164,3 +162,18 @@
             <tr><td>Stop de Poço, Roda Tensora, Páraquedas e Alongamento de Cabos</td><td><span class="borne">B15</span> a <span class="borne">B17</span></td></tr>
             <tr><td>Fecho das Portas de Piso (Contactos de Encosto)</td><td><span class="borne">B17</span> a <span class="borne">B40</span></td></tr>
             <tr><td>Stop de Cabine e Stop de Revisão</td><td><span class="borne">B40</span> a <span class="borne">B18</span></td></tr>
+            <tr><td>Encravamento das Portas de Piso (Trincos Exteriores)</td><td><span class="borne">B18</span> a <span class="borne">B20</span></td></tr>
+            <tr><td>Encravamento das Portas de Cabine (Operador)</td><td><span class="borne">B20</span> a <span class="borne">B22</span></td></tr>
+        </tbody>
+    </table>
+
+    <!-- BOTÃO DE VOLTAR COMPLETAMENTE ATIVO E CORRIGIDO -->
+    <a href="index.html" class="btn-voltar">⬅️ Voltar ao Menu</a>
+
+    <div class="footer">
+        © Nelson 15035248 • Guia de Campo Exclusivo
+    </div>
+</div>
+
+</body>
+</html>
