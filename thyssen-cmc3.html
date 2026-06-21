@@ -27,14 +27,11 @@
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
         
         /* ESTILO PARA A TABELA DE LEDS CMC-3 */
-        .tabela-leds-cmc { width: 100%; border-collapse: collapse; background: #fafbfc; margin-top: 10px; font-size: 13px; }
+        .tabela-leds-cmc { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
         .tabela-leds-cmc th { background-color: #0d47a1; color: white; padding: 10px; }
         .status-led { display: inline-flex; align-items: center; font-weight: bold; font-family: monospace; font-size: 13px; background: #eef2f7; padding: 4px 8px; border-radius: 4px; border: 1px solid #dcdfe6; }
         .bulb-on { font-size: 14px; margin-right: 6px; filter: drop-shadow(0 0 3px #ffc107); }
         .txt-alerta { color: #c0392b; font-weight: bold; }
-
-        .bloco-shunts { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
-        .bloco-shunts p { margin: 4px 0; font-weight: bold; }
 
         .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
         .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
@@ -55,7 +52,7 @@
         <div id="lbl-cmc3" class="legenda-imagem">Placa da manobra CMC-3</div>
     </div>
 
-    <!-- TABELA DE SINALIZAÇÃO DE LEDS INTUITIVA ADAPTADA À NOVA SEQUÊNCIA -->
+    <!-- TABELA DE SINALIZAÇÃO DE LEDS RECORRIGIDA COM S41, S40 e S29 -->
     <h3>Sinalização de LEDs Diagnóstico (Painel de Testes)</h3>
     <table class="tabela-leds-cmc">
         <thead>
@@ -66,25 +63,19 @@
         </thead>
         <tbody>
             <tr>
-                <td><span class="status-led"><span class="bulb-on">🟢</span> DL1 (ENCL)</span> <br><span class="txt-alerta">Desligado</span></td>
+                <td><span class="status-led"><span class="bulb-on">🟢</span> S41 (ENCL)</span> <br><span class="txt-alerta">Desligado</span></td>
                 <td><strong>Falha de Encravamento ou Portas</strong>. Bloqueio nos trincos exteriores de piso (C6 - C7) ou no operador da porta de cabina (B5 - B6).</td>
             </tr>
             <tr>
-                <td><span class="status-led"><span class="bulb-on">🟢</span> DL2 (PRES)</span> <br><span class="txt-alerta">Desligado</span></td>
+                <td><span class="status-led"><span class="bulb-on">🟢</span> S40 (PRES)</span> <br><span class="txt-alerta">Desligado</span></td>
                 <td><strong>Série de Portas de Piso Aberta</strong>. Falha nos contactos de fecho/encosto das portas de piso. Verificar circuito entre os bornes C1 e C2.</td>
             </tr>
             <tr>
-                <td><span class="status-led"><span class="bulb-on">🟢</span> DL3 (SEG)</span> <br><span class="txt-alerta">Desligado</span></td>
+                <td><span class="status-led"><span class="bulb-on">🟢</span> S29 (SEG)</span> <br><span class="txt-alerta">Desligado</span></td>
                 <td><strong>Seguranças Gerais Abertas</strong>. Corte na cadeia inicial. Verificar Disjuntor IM (4-A1), réguas de poço/máquina (A1-A3) ou componentes da cabina/revisão (B1-B4).</td>
             </tr>
         </tbody>
     </table>
-
-    <h3>Notas Técnicas de Campo (Shunts / Pontes)</h3>
-    <div class="bloco-shunts">
-        <p>• NOTA 1: SIN BOTONERA EMERGENCIA REALIZAR PUENTE EN C-CX.</p>
-        <p>• NOTA 2: EN MANIOBRAS CMC-1V Y CMC-2V INTEGRADA REALIZAR PUENTE ENTRE SD-DT.</p>
-    </div>
 
     <!-- TENSÃO NO LOCAL DE PRIORIDADE DE DIAGNÓSTICO -->
     <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
