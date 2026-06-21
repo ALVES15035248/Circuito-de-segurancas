@@ -26,6 +26,14 @@
         th { background-color: #f2f2f2; font-weight: bold; }
         .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
         
+        /* Estilo para as Tabelas de Diagnóstico */
+        .tabela-diag { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; background: #fffdf3; margin-bottom: 15px; }
+        .tabela-diag th { background-color: #fff3cd; color: #856404; padding: 10px; }
+        .tabela-diag td { border: 1px solid #ffeeba; padding: 8px; }
+        .erro-code { font-weight: bold; color: #d32f2f; font-family: monospace; font-size: 14px; }
+        
+        .txt-custom { font-weight: bold; text-decoration: underline; }
+
         .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
         .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
         .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; }
@@ -40,11 +48,60 @@
 <div class="container">
     <h1>ThyssenKrupp — CMC4</h1>
     
-    <!-- Caixa da imagem do esquema técnico -->
     <div class="caixa-imagem">
-        <img src="cmc4-esquema.jpg" alt="Esquema UBA-CMC4" onerror="this.style.display='none'; document.getElementById('lbl-cmc4').innerText='Fotografia do esquema técnico pendente de upload...';">
+        <img src="cmc4-esquema.jpg" alt="Esquema UBA-CMC4" onerror="this.style.display='none'; document.getElementById('lbl-cmc4').innerText='Fotografia do esquema técnico pendente...';">
         <div id="lbl-cmc4" class="legenda-imagem">Referência Técnica: Placa da manobra UBA-CMC4</div>
     </div>
+
+    <!-- NOVA TABELA DE CÓDIGOS DE AVARIA EXTRAÍDA DA IMAGEM -->
+    <h3>Códigos de Avaria no Display</h3>
+    <table class="tabela-diag">
+        <thead>
+            <tr><th style="width: 18%;">Código</th><th>Significado / Descrição da Avaria Técnico</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="erro-code">Avaria 0:</td>
+                <td><span class="txt-custom">Falha de sensores de porta e bloqueios temporários (não bloqueante).</span></td>
+            </tr>
+            <tr>
+                <td class="erro-code">Avaria 1:</td>
+                <td><span class="txt-custom">Falha de contactores (bloqueante).</span></td>
+            </tr>
+            <tr>
+                <td class="erro-code">Avaria 2:</td>
+                <td><span class="txt-custom">Inversão de fases, ambos os limites accionados (bloqueante).</span></td>
+            </tr>
+            <tr>
+                <td class="erro-code">Avaria 3:</td>
+                <td><span class="txt-custom">Revisão, recuperação e módulo SR.</span></td>
+            </tr>
+            <tr>
+                <td class="erro-code">Avaria 4:</td>
+                <td><span class="txt-custom">Abertura de série de portas em movimento (não bloqueante).</span></td>
+            </tr>
+            <tr>
+                <td class="erro-code">Avaria 5:</td>
+                <td><span class="txt-custom">Falha de abertura da série de portas (não bloqueante).</span></td>
+            </tr>
+            <tr>
+                <td class="erro-code">Avaria 6:</td>
+                <td><span class="txt-custom">Erro de contagem de pantalhas (não bloqueante).</span></td>
+            </tr>
+            <tr>
+                <td class="erro-code">Avaria 7:</td>
+                <td><span class="txt-custom">Falha no fecho de portas (não bloqueante).</span></td>
+            </tr>
+            <tr>
+                <td class="erro-code">Avaria 8:</td>
+                <td><span class="txt-custom">Não detecta as pantalhas, falha de comunicação com a cabina, não sai da pantalha, falha do indutor em nivelação (bloqueante).</span></td>
+            </tr>
+            <tr>
+                <td class="erro-code">Avaria 9:</td>
+                <td><span class="txt-custom">Erro de programa, abertura da série de seguranças, falha da alimentação.</span></td>
+            </tr>
+        </tbody>
+    </table>
 
     <!-- TENSÃO COLOCADA ACIMA DA TABELA DE BORNES -->
     <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
@@ -68,7 +125,6 @@
         </tbody>
     </table>
 
-    <!-- BOTÃO DE ATALHO ATIVO -->
     <a href="index.html" class="btn-voltar">⬅️ Voltar ao Menu</a>
 
     <div class="footer">
