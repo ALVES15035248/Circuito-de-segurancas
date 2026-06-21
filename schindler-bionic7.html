@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schindler Bionic 7 — Bornes de Segurança</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #f4f6f9; 
+            color: #333; 
+            margin: 0; 
+            padding: 15px;
+            /* MARCA DE ÁGUA IMPEDIMENTO DE CÓPIA */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='160' height='100'%3E%3Ctext x='20' y='50' fill='rgba(0,0,0,0.03)' font-size='11' font-family='Arial' font-weight='bold' transform='rotate(-25 80 50)'%3ENelson 15035248%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+        .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; }
+        
+        .header-block { text-align: center; margin-bottom: 20px; }
+        h1 { color: #d32f2f; font-size: 22px; margin-bottom: 5px; }
+        .subtitle { font-size: 13px; color: #666; margin-top: 0; margin-bottom: 15px; font-weight: bold; }
+        
+        /* Botão Voltar */
+        .btn-back { display: inline-block; padding: 8px 16px; background: #0d47a1; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; margin-bottom: 20px; }
+        .btn-back:hover { background: #1565c0; }
+
+        /* Tabela Técnica Especializada */
+        .tech-table { width: 100%; border-collapse: collapse; margin-top: 10px; background: white; font-size: 14px; text-align: left; }
+        .tech-table th { background: #eef2f7; color: #0d47a1; padding: 12px 10px; font-weight: bold; border-bottom: 2px solid #ccc; }
+        .tech-table td { padding: 12px 10px; border-bottom: 1px solid #eee; vertical-align: top; }
+        .tech-table tr:nth-child(even) { background: #fafafa; }
+        
+        /* Destaques nos Bornes */
+        .borne-badge { background: #222; color: #fff; padding: 3px 6px; border-radius: 3px; font-family: monospace; font-weight: bold; font-size: 13px; }
+
+        /* Notas de Campo */
+        .notes-section { background: #fff8e1; border-left: 4px solid #ffb300; padding: 12px; margin-top: 20px; border-radius: 0 4px 4px 0; font-size: 13px; color: #555; }
+        .notes-section h3 { margin: 0 0 5px 0; font-size: 14px; color: #b78103; }
+
+        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-block">
+        <a href="index.html" class="btn-back">⬅ Voltar ao Menu</a>
+        <h1>Schindler — Bionic 7</h1>
+        <div class="subtitle">Mapeamento Técnico da Cadeia de Segurança</div>
+    </div>
+
+    <!-- Tabela de Bornes para o Bionic 7 -->
+    <table class="tech-table">
+        <thead>
+            <tr>
+                <th style="width: 25%;">Ficha / Pino</th>
+                <th style="width: 35%;">Circuito Associado</th>
+                <th style="width: 40%;">Observações de Diagnóstico</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="borne-badge">SST.1</span></td>
+                <td>Alimentação da Cadeia</td>
+                <td>Ponto de origem da tensão de segurança na manobra.</td>
+            </tr>
+            <tr>
+                <td><span class="borne-badge">SST.2</span></td>
+                <td>Contactos do Poço</td>
+                <td>Série de interruptores instalados na fossa/poço.</td>
+            </tr>
+            <tr>
+                <td><span class="borne-badge">SST.3</span></td>
+                <td>Série da Cabina / Amortecedor</td>
+                <td>Garante a integridade dos contactos móveis da cabina.</td>
+            </tr>
+            <tr>
+                <td><span class="borne-badge">SST.4</span></td>
+                <td>Trincos de Patamar</td>
+                <td>Monitorização do fecho mecânico das portas exteriores.</td>
+            </tr>
+            <tr>
+                <td><span class="borne-badge">SST.5</span></td>
+                <td>Porta da Cabina</td>
+                <td>Verificação elétrica do fecho da porta da cabina.</td>
+            </tr>
+            <tr>
+                <td><span class="borne-badge">SST.6</span></td>
+                <td>Retorno / Atuação</td>
+                <td>Sinal de fecho total enviado para os relés de marcha.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Bloco de Notas Práticas -->
+    <div class="notes-section">
+        <h3>💡 Notas de Diagnóstico Rápido (Bionic 7):</h3>
+        • Cuidado com as diferenças de pinagem dependendo da revisão da placa.<br>
+        • Utilize o multímetro em relação à massa de referência para evitar falsas leituras.<br>
+        • Mantenha o isolamento dos circuitos de segurança conforme as normas locais.
+    </div>
+
+    <div class="footer">
+        © Nelson 15035248 • Base de dados móvel privada
+    </div>
+</div>
+
+</body>
+</html>
