@@ -34,8 +34,8 @@
         /* ESTILO PARA A TABELA DIDÁTICA DE LEDS */
         .tabela-leds { width: 100%; border-collapse: collapse; background: #fdfdfd; margin-top: 10px; }
         .tabela-leds th { background-color: #eef2f7; color: #0d47a1; }
-        .led-indicator { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #4caf50; box-shadow: 0 0 6px #4caf50; margin-right: 8px; vertical-align: middle; }
-        .led-name { font-weight: bold; font-family: monospace; font-size: 13px; }
+        .led-indicator { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #ff9800; box-shadow: 0 0 6px #ff9800; margin-right: 8px; vertical-align: middle; }
+        .led-name { font-weight: bold; font-family: monospace; font-size: 14px; color: #333; }
         .nota-rodape { font-size: 11px; color: #777; font-style: italic; margin-top: 5px; display: block; }
 
         /* Bloco de Notas Técnicas de Shunts */
@@ -52,47 +52,47 @@
 <div class="container">
     <h1>Aliseu — Ítala</h1>
     
-    <!-- Caixa da Foto Física -->
+    <!-- Caixa da Foto Física do Quadro de Comando Aliseu -->
     <div class="caixa-imagem">
-        <img src="aliseu-placa.jpg" alt="Placa Aliseu Ítala">
-        <div class="legenda-imagem">Painel Físico: Referência de diagnóstico Aliseu Ítala</div>
+        <img src="aliseu-placa.jpg" alt="Quadro de Comando Aliseu Ítala">
+        <div class="legenda-imagem">Painel Físico: Quadro de comando e referências de diagnóstico Aliseu Ítala</div>
     </div>
 
-    <!-- TABELA DIDÁTICA DE LEDS ATUALIZADA CONFORME ESQUEMA TÉCNICO -->
+    <!-- TABELA DE LEDS ATUALIZADA COM HARDWARE EXATO -->
     <h3>Sinalização de LEDs Diagnóstico (Placa Ítala)</h3>
     <table class="tabela-leds">
         <thead>
             <tr>
-                <th style="width: 30%;">Canal / LED</th>
+                <th style="width: 25%;">LED</th>
                 <th>Circuito Correspondente / Estado de Monitorização</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><span class="led-indicator"></span><span class="led-name">PONTO 1</span></td>
-                <td><strong>Controlo da Linha de Segurança — Ponto 1</strong>. Monitorização do estágio inicial da cadeia de emergências.</td>
+                <td><span class="led-indicator"></span><span class="led-name">IN28</span></td>
+                <td><strong>Controlo da Linha de Segurança — Ponto 1</strong>. Monitorização do estágio inicial (Fins de curso, paraquedas, cabos).</td>
             </tr>
             <tr>
-                <td><span class="led-indicator"></span><span class="led-name">PONTO 2</span></td>
-                <td><strong>Controlo da Linha de Segurança — Ponto 2</strong>. Estado dos circuitos intermédios de proteção mecânica.</td>
+                <td><span class="led-indicator"></span><span class="led-name">IN27</span></td>
+                <td><strong>Controlo da Linha de Segurança — Ponto 2</strong>. Estado após o Limitador de Velocidade (LV).</td>
             </tr>
             <tr>
-                <td><span class="led-indicator"></span><span class="led-name">PONTO 3</span></td>
-                <td><strong>Controlo da Linha de Segurança — Ponto 3</strong>. Validação da continuidade após as paragens do poço.</td>
+                <td><span class="led-indicator"></span><span class="led-name">IN26</span></td>
+                <td><strong>Controlo da Linha de Segurança — Ponto 3</strong>. Validação da continuidade após a Roda Tensora.</td>
             </tr>
             <tr>
-                <td><span class="led-indicator"></span><span class="led-name">PONTO 4</span></td>
-                <td><strong>Controlo da Linha de Segurança — Ponto 4</strong>. Monitorização pós-circuito de revisão e emergências manuais.</td>
+                <td><span class="led-indicator"></span><span class="led-name">IN25</span></td>
+                <td><strong>Controlo da Linha de Segurança — Ponto 4</strong>. Monitorização após o Stop de Poço.</td>
             </tr>
             <tr>
-                <td><span class="led-indicator"></span><span class="led-name">PONTO 5</span></td>
-                <td><strong>Controlo da Linha de Segurança — Ponto 5</strong>. Ponto final da série geral; validação total antes da autorização de manobra.</td>
+                <td><span class="led-indicator"></span><span class="led-name">IN24</span></td>
+                <td><strong>Controlo da Linha de Segurança — Ponto 5</strong>. Validação da linha pós-revisão/emergência manual antes das portas.</td>
             </tr>
         </tbody>
     </table>
-    <span class="nota-rodape">* Nota: O painel possui ainda monitorização para os estados dos Interrutores 1, 2 e 3 e sensores térmicos.</span>
+    <span class="nota-rodape">* Nota: O alinhamento dos LEDs laranja IN28 a IN24 permite diagnosticar o ponto exato de corte na série.</span>
 
-    <!-- NOTAS DE SHUNT CORRIGIDAS -->
+    <!-- NOTAS DE SHUNT -->
     <h3>Notas Técnicas de Campo (Shunts / Pontes)</h3>
     <div class="bloco-shunts">
         <p>• Fazer SHUNT temporário apenas para diagnóstico entre os bornes de teste respetivos.</p>
@@ -100,7 +100,7 @@
         <p>• No caso de ausência de botoneira de emergência externa, validar a continuidade direta entre os bornes 5A e 6.</p>
     </div>
 
-    <!-- Alerta de Tensão Colado Acima dos Bornes -->
+    <!-- Alerta de Tensão -->
     <div class="tensao-destaque">TENSÃO DO CIRCUITO: 120V AC</div>
     <h3>Cadeia de Bornes de Segurança</h3>
     <table>
