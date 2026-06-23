@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTA MR08 — Circuitos de Segurança</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #f4f6f9; 
+            color: #333; 
+            margin: 0; 
+            padding: 15px; 
+            /* MARCA DE ÁGUA DEFENSIVA REGISTADA */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='160' height='100'%3E%3Ctext x='20' y='50' fill='rgba(0,0,0,0.03)' font-size='11' font-family='Arial' font-weight='bold' transform='rotate(-25 80 50)'%3ENelson 15035248%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+        .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; }
+        h1 { color: #0d47a1; font-size: 18px; margin-bottom: 5px; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
+        h3 { font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
+        
+        .tensao-destaque { font-size: 14px; margin: 15px 0 5px 0; color: #d32f2f; font-weight: bold; text-align: left; }
+        
+        /* TABELA ULTRA INTUITIVA */
+        table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; }
+        th, td { border: 1px solid #ddd; padding: 10px 8px; text-align: left; vertical-align: middle; }
+        th { background-color: #f2f2f2; font-weight: bold; }
+        
+        /* BADGES EXCLUSIVAS DE SÉRIE */
+        .borne-container { display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 13px; font-weight: bold; background: #222; color: #fff; padding: 4px 8px; border-radius: 4px; white-space: nowrap; }
+        .seta-teste { margin: 0 6px; color: #ffeb3b; font-size: 12px; }
+        
+        .bloco-tag { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; }
+        .tag-alv { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .tag-sgc { background: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
+        .tag-prt { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+
+        /* CAIXA DE IMAGEM */
+        .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
+        .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
+        .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; line-height: 1.4; }
+
+        /* Bloco de Notas Técnicas de Shunts */
+        .bloco-shunts { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
+        .bloco-shunts p { margin: 4px 0; font-weight: bold; }
+
+        .btn-voltar { display: inline-block; margin-top: 20px; padding: 10px 15px; background: #666; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; }
+        .btn-voltar:active { background: #333; }
+        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>CTA — MR08</h1>
+    
+    <!-- Caixa da Foto Física -->
+    <div class="caixa-imagem">
+        <img src="cta-placa.jpg" alt="Placa CTA MR08">
+        <div class="legenda-imagem"><strong>Painel Físico:</strong> Quadro de comando CTA MR08 com barramento modular de conectores rápidos da série CNC2.</div>
+    </div>
+
+    <!-- NOTAS TÉCNICAS DE CAMPO -->
+    <h3>Notas Técnicas de Campo (Verificações)</h3>
+    <div class="bloco-shunts">
+        <p>• <strong>Fusível de Linha:</strong> O circuito depende inteiramente da integridade do fusível B116 (1A). Valide a tensão após o bloco térmico TG.</p>
+        <p>• <strong>Conector CNC2:</strong> Toda a série de caixa, cabine e portas está concentrada nos pinos 1 a 6 desta ficha modular superior.</p>
+        <p>• ATENÇÃO: Shunts temporários para testes nos pinos de portas (CNC2.3 a CNC2.6) devem ser removidos imediatamente antes de restabelecer o modo normal.</p>
+    </div>
+
+    <!-- Alerta de Tensão -->
+    <div class="tensao-destaque">TENSÃO DO CIRCUITO: 120V AC</div>
+    <h3>Cadeia de Bornes de Segurança</h3>
+    <table id="tabelaBornes">
+        <thead>
+            <tr>
+                <th style="width: 60%;">Componente Técnico / Circuito</th>
+                <th style="width: 40%; text-align: center;">Pontas do Multímetro</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-alv">Alimentação</span><br>
+                    <strong>Bloco Térmico TG ➔ Fusível B116 (1A)</strong><br>
+                    <small style="color:#666;">Origem do circuito e proteção contra curto-circuitos</small>
+                </td>
+                <td>
+                    <div class="borne-container">TG (95-96) <span class="seta-teste">➔</span> B116</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-alv">Alimentação</span><br>
+                    <strong>Limitador de Velocidade (LV)</strong>
+                </td>
+                <td>
+                    <div class="borne-container">B116 <span class="seta-teste">➔</span> B117</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
+                    <strong>RT, Poço e Fins de Curso</strong><br>
+                    <small style="color:#666;">Roda tensora, Stop poço, FC inferior e FC superior</small>
+                </td>
+                <td>
+                    <div class="borne-container">CNC2.1 <span class="seta-teste">➔</span> CNC2.2</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
+                    <strong>Fecho de Portas de Piso</strong><br>
+                    <small style="color:#666;">Contacto mecânico de presença das portas exteriores</small>
+                </td>
+                <td>
+                    <div class="borne-container">CNC2.3 <span class="seta-teste">➔</span> CNC2.4</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Cabine</span><br>
+                    <strong>Cabine, Revisão e Cabo</strong><br>
+                    <small style="color:#666;">Stop cabine, Alongamento cabos, Stop revisão, Encravamento cabine</small>
+                </td>
+                <td>
+                    <div class="borne-container">CNC2.4 <span class="seta-teste">➔</span> CNC2.5</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
+                    <strong>Encravamento de Portas de Piso</strong><br>
+                    <small style="color:#666;">Série de trincos mecânicos (Autorização final de marcha)</small>
+                </td>
+                <td>
+                    <div class="borne-container">CNC2.5 <span class="seta-teste">➔</span> CNC2.6</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="index.html" class="btn-voltar">⬅️ Voltar ao Menu</a>
+
+    <div class="footer">
+        © Nelson 15035248 • Guia de Campo Exclusivo
+    </div>
+</div>
+
+</body>
+</html>
