@@ -11,7 +11,7 @@
             color: #333; 
             margin: 0; 
             padding: 15px; 
-            /* MARCA DE ÁGUA DEFENSIVA REGISTADA (Namespace SVG corrigido para validação) */
+            /* MARCA DE ÁGUA DEFENSIVA REGISTADA */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='160' height='100'%3E%3Ctext x='20' y='50' fill='rgba(0,0,0,0.03)' font-size='11' font-family='Arial' font-weight='bold' transform='rotate(-25 80 50)'%3ENelson 15035248%3C/text%3E%3C/svg%3E");
             background-repeat: repeat;
         }
@@ -43,10 +43,6 @@
         /* Bloco de Notas Técnicas de Shunts */
         .bloco-shunts { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
         .bloco-shunts p { margin: 4px 0; font-weight: bold; }
-
-        /* ESTILO DISCRETO PARA O CONTADOR DE VISUALIZAÇÕES */
-        .caixa-contador { font-size: 12px; color: #555; font-weight: bold; mt: 25px; margin-top: 25px; margin-bottom: -15px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 5px; }
-        .caixa-contador img { vertical-align: middle; height: 18px; }
 
         .btn-voltar { display: inline-block; margin-top: 20px; padding: 10px 15px; background: #666; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; }
         .btn-voltar:active { background: #333; }
@@ -149,32 +145,6 @@
             </tr>
         </tbody>
     </table>
-
-    <!-- CONTADOR DE VISUALIZAÇÕES AUTOMÁTICO INJETADO DISCRETAMENTE -->
-    <div class="caixa-contador" style="font-size: 12px; color: #555; font-weight: bold; margin-top: 25px; margin-bottom: -15px; text-align: center;">
-        👁️ Visualizações desta página: <span id="contador-texto" style="color: #0d47a1;">A carregar...</span>
-    </div>
-
-    <script>
-        // Função que aciona um contador em texto simples sem bloqueio de imagem do GitHub
-        function carregarContador() {
-            var namespace = "nelson-15035248";
-            var chave = "thyssen-seriek";
-            var url = "https://countapi.xyz" + namespace + "/" + chave;
-            
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('contador-texto').innerText = data.value;
-                })
-                .catch(error => {
-                    // Caso a API falhe ou mude temporariamente, mostra um valor seguro de campo
-                    document.getElementById('contador-texto').innerText = "Disponível em Insights -> Traffic";
-                });
-        }
-        // Executa ao abrir a página no telemóvel/computador
-        window.onload = carregarContador;
-    </script>
 
     <div class="nav-section" style="text-align: center;">
         <a href="index.html" class="btn-voltar">⬅️ Voltar ao Menu</a>
