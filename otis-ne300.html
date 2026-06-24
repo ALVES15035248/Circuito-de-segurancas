@@ -19,18 +19,30 @@
         h1 { color: #0d47a1; font-size: 18px; margin-bottom: 5px; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
         h3 { font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
         
-        /* ESTILO DA LINHA DE TENSÃO REPOSICIONADA */
         .tensao-destaque { font-size: 14px; margin: 15px 0 5px 0; color: #d32f2f; font-weight: bold; text-align: left; }
         
+        /* TABELA ULTRA INTUITIVA - PADRÃO SÉRIE K */
         table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: middle; }
+        th, td { border: 1px solid #ddd; padding: 10px 8px; text-align: left; vertical-align: middle; }
         th { background-color: #f2f2f2; font-weight: bold; }
-        .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
         
+        /* BADGES EXCLUSIVAS DE SÉRIE */
+        .borne-container { display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 13px; font-weight: bold; background: #222; color: #fff; padding: 4px 8px; border-radius: 4px; white-space: nowrap; }
+        .seta-teste { margin: 0 6px; color: #ffeb3b; font-size: 12px; }
+        
+        .bloco-tag { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; }
+        .tag-alv { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .tag-sgc { background: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
+        .tag-prt { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+
         /* CAIXA DE IMAGEM DA NE300 */
         .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
         .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
-        .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; }
+        .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; line-height: 1.4; }
+
+        /* Bloco de Notas Técnicas de Shunts */
+        .bloco-shunts { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
+        .bloco-shunts p { margin: 4px 0; font-weight: bold; }
 
         .btn-voltar { display: inline-block; margin-top: 20px; padding: 10px 15px; background: #666; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; }
         .btn-voltar:active { background: #333; }
@@ -45,27 +57,89 @@
     <!-- FOTO REAL DA MANOBRA NE300 NO TOPO -->
     <div class="caixa-imagem">
         <img src="ne300-placa.jpg" alt="Placa Otis NE300" onerror="this.style.display='none'; document.getElementById('lbl-ne300').innerText='Fotografia física pendente...';">
-        <div id="lbl-ne300" class="legenda-imagem">Painel Físico: Referência para medições e diagnóstico no quadro NE300</div>
+        <div id="lbl-ne300" class="legenda-imagem"><strong>Painel Físico:</strong> Referência para medições, relés e diagnóstico de avarias no quadro NE300.</div>
+    </div>
+
+    <!-- NOTAS TÉCNICAS DE CAMPO -->
+    <h3>Notas Técnicas de Campo (Verificações)</h3>
+    <div class="bloco-shunts">
+        <p>• <strong>Monitorização Lógica:</strong> Certifique a integridade mecânica de todos os limites de caixa antes de testar os encostos de portas.</p>
+        <p>• Caso o bloco térmico atue, a cadeia principal de teste é interrompida logo na origem (Bornes 95-96).</p>
+        <p>• ATENÇÃO: Remova por completo qualquer ponte temporária de diagnóstico antes de dar o trabalho de reparação por concluído.</p>
     </div>
 
     <!-- TENSÃO REPOSICIONADA LOGO ACIMA DA TABELA -->
     <div class="tensao-destaque">TENSÃO DO CIRCUITO: 110V AC - 120V AC</div>
     <h3>Cadeia de Bornes de Segurança</h3>
-    <table>
+    <table id="tabelaBornes">
         <thead>
-            <tr><th>Circuito / Componente</th><th>Bornes de Medição</th></tr>
+            <tr>
+                <th style="width: 60%;">Componente Técnico / Circuito</th>
+                <th style="width: 40%; text-align: center;">Pontas do Multímetro</th>
+            </tr>
         </thead>
         <tbody>
-            <tr><td>Bloco Térmico (BT)</td><td><span class="borne">95</span> a <span class="borne">96</span></td></tr>
-            <tr><td>Stop Inspeção, Paraquedas e Alongamento de Cabos</td><td><span class="borne">H7</span> a <span class="borne">I5/B1</span></td></tr>
-            <tr><td>Limitador de Velocidade</td><td><span class="borne">I5/B1</span> a <span class="borne">C3/B2</span></td></tr>
-            <tr><td>Fim de Curso (Sup/Inf), Roda Tensora e Stop de Poço</td><td><span class="borne">C3/B2</span> a <span class="borne">B5</span></td></tr>
-            <tr><td>Encosto de Portas de Piso (Pré-fecho)</td><td><span class="borne">B5</span> a <span class="borne">B6</span></td></tr>
-            <tr><td>Encravamento das Portas de Piso (Trincos)</td><td><span class="borne">B6</span> a <span class="borne">B7</span></td></tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-alv">Alimentação</span><br>
+                    <strong>Bloco Térmico (BT)</strong>
+                </td>
+                <td>
+                    <div class="borne-container">95 <span class="seta-teste">➔</span> 96</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Cabine</span><br>
+                    <strong>Stop Inspeção, Paraquedas e Alongamento</strong>
+                </td>
+                <td>
+                    <div class="borne-container">H7 <span class="seta-teste">➔</span> I5/B1</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
+                    <strong>Limitador de Velocidade</strong>
+                </td>
+                <td>
+                    <div class="borne-container">I5/B1 <span class="seta-teste">➔</span> C3/B2</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
+                    <strong>Fins de Curso (Sup/Inf), Roda Tensora e Poço</strong>
+                </td>
+                <td>
+                    <div class="borne-container">C3/B2 <span class="seta-teste">➔</span> B5</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
+                    <strong>Encosto de Portas de Piso (Pré-fecho)</strong>
+                </td>
+                <td>
+                    <div class="borne-container">B5 <span class="seta-teste">➔</span> B6</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
+                    <strong>Encravamento das Portas de Piso (Trincos)</strong><br>
+                    <small style="color:#666;">Ponto de validação final da série externa</small>
+                </td>
+                <td>
+                    <div class="borne-container">B6 <span class="seta-teste">➔</span> B7</div>
+                </td>
+            </tr>
         </tbody>
     </table>
 
-    <a href="index.html" class="btn-voltar">⬅️ Voltar ao Menu</a>
+    <div class="nav-section" style="text-align: center;">
+        <a href="index.html" class="btn-voltar">⬅️ Voltar ao Menu</a>
+    </div>
 
     <div class="footer">
         © Nelson 15035248 • Guia de Campo Exclusivo
