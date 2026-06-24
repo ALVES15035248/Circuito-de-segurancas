@@ -151,10 +151,30 @@
     </table>
 
     <!-- CONTADOR DE VISUALIZAÇÕES AUTOMÁTICO INJETADO DISCRETAMENTE -->
-    <div class="caixa-contador">
-        <span>👁️ Visualizações:</span>
-        <img src="https://komarev.com" alt="Contador">
+    <div class="caixa-contador" style="font-size: 12px; color: #555; font-weight: bold; margin-top: 25px; margin-bottom: -15px; text-align: center;">
+        👁️ Visualizações desta página: <span id="contador-texto" style="color: #0d47a1;">A carregar...</span>
     </div>
+
+    <script>
+        // Função que aciona um contador em texto simples sem bloqueio de imagem do GitHub
+        function carregarContador() {
+            var namespace = "nelson-15035248";
+            var chave = "thyssen-seriek";
+            var url = "https://countapi.xyz" + namespace + "/" + chave;
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('contador-texto').innerText = data.value;
+                })
+                .catch(error => {
+                    // Caso a API falhe ou mude temporariamente, mostra um valor seguro de campo
+                    document.getElementById('contador-texto').innerText = "Disponível em Insights -> Traffic";
+                });
+        }
+        // Executa ao abrir a página no telemóvel/computador
+        window.onload = carregarContador;
+    </script>
 
     <div class="nav-section" style="text-align: center;">
         <a href="index.html" class="btn-voltar">⬅️ Voltar ao Menu</a>
