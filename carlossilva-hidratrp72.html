@@ -15,27 +15,27 @@
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='160' height='100'%3E%3Ctext x='20' y='50' fill='rgba(0,0,0,0.03)' font-size='11' font-family='Arial' font-weight='bold' transform='rotate(-25 80 50)'%3ENelson 15035248%3C/text%3E%3C/svg%3E");
             background-repeat: repeat;
         }
-        .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; }
+        .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; box-sizing: border-box; }
         h1 { color: #0d47a1; font-size: 18px; margin-bottom: 5px; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
         h3 { font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
         
         .tensao-destaque { font-size: 14px; margin: 15px 0 5px 0; color: #d32f2f; font-weight: bold; text-align: left; }
         
-        /* TABELA ULTRA INTUITIVA */
-        table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; }
-        th, td { border: 1px solid #ddd; padding: 10px 8px; text-align: left; vertical-align: middle; }
+        /* TABELA AJUSTADA PARA TELEMÓVEL */
+        table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; table-layout: fixed; }
+        th, td { border: 1px solid #ddd; padding: 10px 8px; text-align: left; vertical-align: middle; word-wrap: break-word; }
         th { background-color: #f2f2f2; font-weight: bold; }
         
         /* BADGES EXCLUSIVAS DE SÉRIE */
-        .borne-container { display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 13px; font-weight: bold; background: #222; color: #fff; padding: 4px 8px; border-radius: 4px; white-space: nowrap; }
-        .seta-teste { margin: 0 6px; color: #ffeb3b; font-size: 12px; }
+        .borne-container { display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 12px; font-weight: bold; background: #222; color: #fff; padding: 6px 4px; border-radius: 4px; white-space: nowrap; width: 100%; box-sizing: border-box; }
+        .seta-teste { margin: 0 4px; color: #ffeb3b; font-size: 11px; }
         
         .bloco-tag { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; }
         .tag-alv { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
         .tag-sgc { background: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
         .tag-prt { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
 
-        /* ESTILO PARA A TABELA DIDÁTICA DE LEDS */
+        /* TABELA DE LEDS */
         .tabela-leds { width: 100%; border-collapse: collapse; background: #fdfdfd; margin-top: 10px; }
         .tabela-leds th { background-color: #eef2f7; color: #0d47a1; }
         .led-indicator { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #4caf50; box-shadow: 0 0 6px #4caf50; margin-right: 8px; vertical-align: middle; }
@@ -50,9 +50,12 @@
         .bloco-shunts { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
         .bloco-shunts p { margin: 4px 0; font-weight: bold; }
 
-        .btn-voltar { display: inline-block; margin-top: 20px; padding: 10px 15px; background: #666; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; }
-        .btn-voltar:active { background: #333; }
-        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; font-weight: bold; }
+        /* BLOCO DE NAVEGAÇÃO REFORÇADO */
+        .nav-block { text-align: center; margin: 30px 0 10px 0; padding-top: 10px; display: block; clear: both; }
+        .btn-voltar { display: inline-block; padding: 12px 24px; background: #333333; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: background 0.2s; }
+        .btn-voltar:hover, .btn-voltar:active { background: #555555; color: white; }
+        
+        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; font-weight: bold; border-top: 1px solid #eee; padding-top: 15px; }
     </style>
 </head>
 <body>
@@ -78,19 +81,19 @@
         <tbody>
             <tr>
                 <td><span class="led-indicator"></span><span class="led-name">SSG</span></td>
-                <td><strong>Série de Segurança Geral</strong> (Monitorizado após o borne <strong>B7.2</strong>). Valida o Relé Falta de Fase, Paraquedas, Revisão, Limite Superior e Stop de Cabine.</td>
+                <td><strong>Série de Segurança Geral</strong> (Após borne <strong>B7.2</strong>). Valida RFF, Paraquedas, Revisão, Limite Superior e Stop Cabine.</td>
             </tr>
             <tr>
                 <td><span class="led-indicator"></span><span class="led-name">PP</span></td>
-                <td><strong>Portas de Piso (Presença)</strong> (Monitorizado após o borne <strong>B7.4</strong>). Acende quando todas as portas exteriores estão fisicamente encostadas (PPC).</td>
+                <td><strong>Portas de Piso (Presença)</strong> (Após borne <strong>B8.3</strong>). Acende com todas as portas exteriores encostadas.</td>
             </tr>
             <tr>
                 <td><span class="led-indicator"></span><span class="led-name">EPE</span></td>
-                <td><strong>Encravamento de Portas Exteriores</strong> (Monitorizado após o borne <strong>B7.5</strong>). Confirma o trancamento mecânico completo (trincos) de todas as portas de piso.</td>
+                <td><strong>Encravamento Portas Exteriores</strong> (Após borne <strong>B7.5</strong>). Confirma o trancamento mecânico (trincos) de piso.</td>
             </tr>
             <tr>
                 <td><span class="led-indicator"></span><span class="led-name">EPC</span></td>
-                <td><strong>Encravamento de Portas de Cabine</strong> (Monitorizado após o borne <strong>B8.6</strong>). Ponto final da série completa; autorização total para arranque da manobra.</td>
+                <td><strong>Encravamento Portas Cabine</strong> (Após borne <strong>B8.6</strong>). Fim da série; autorização para arranque da manobra.</td>
             </tr>
         </tbody>
     </table>
@@ -98,27 +101,26 @@
     <!-- NOTAS TÉCNICAS DE CAMPO -->
     <h3>Notas Técnicas de Campo (Verificações)</h3>
     <div class="bloco-shunts">
-        <p>• <strong>Alimentação Inicial:</strong> Caso o relé RFF atue ou falte uma fase na rede local, a série geral de 48V AC fica cortada logo na origem (11-14).</p>
-        <p>• <strong>Ordem Lógica das Fichas:</strong> Note que o circuito cruza alternadamente entre os barramentos da ficha B7 e B8 conforme o esquema de cabine/caixa.</p>
-        <p>• ATENÇÃO: Nunca execute pontes permanentes nos pinos de trincos (B7.4 a B7.5 ou B8.5 a B8.6) fora de testes controlados.</p>
+        <p>• <strong>Alimentação Inicial:</strong> Caso o relé RFF atue ou falte uma fase na rede local, a série geral de 48V AC fica cortada na origem (11-14).</p>
+        <p>• <strong>Ordem Lógica das Fichas:</strong> O circuito cruza alternadamente entre os barramentos das fichas B7 e B8 conforme o esquema de cabine/caixa.</p>
+        <p>• ATENÇÃO: Remova qualquer shunt ou ponte provisória de testes antes de dar a intervenção de avaria por terminada.</p>
     </div>
 
     <!-- Alerta de Tensão -->
     <div class="tensao-destaque">TENSÃO DO CIRCUITO: 48V AC</div>
     <h3>Cadeia de Bornes de Segurança</h3>
-    <table id="tabelaBornes">
+    <table>
         <thead>
             <tr>
-                <th style="width: 60%;">Componente Técnico / Circuito</th>
-                <th style="width: 40%; text-align: center;">Pontas do Multímetro</th>
+                <th style="width: 58%;">Componente Técnico / Circuito</th>
+                <th style="width: 42%; text-align: center;">Pontas do Multímetro</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>
                     <span class="bloco-tag tag-alv">Alimentação</span><br>
-                    <strong>Relé Falta de Fase (RFF)</strong><br>
-                    <small style="color:#666;">Proteção e monitorização da rede trifásica</small>
+                    <strong>Relé Falta de Fase (RFF)</strong>
                 </td>
                 <td>
                     <div class="borne-container">11 <span class="seta-teste">➔</span> 14</div>
@@ -127,8 +129,7 @@
             <tr>
                 <td>
                     <span class="bloco-tag tag-sgc">Gerais Cabine</span><br>
-                    <strong>Páraquedas, Alongamento e Stop Revisão</strong><br>
-                    <small style="color:#666;">Série móvel de proteção mecânica da cabine</small>
+                    <strong>Páraquedas, Alongamento e Stop Revisão</strong>
                 </td>
                 <td>
                     <div class="borne-container">B8.1 <span class="seta-teste">➔</span> B8.2</div>
@@ -137,8 +138,7 @@
             <tr>
                 <td>
                     <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
-                    <strong>Fim de Curso Superior e Stop de Cabine</strong><br>
-                    <small style="color:#666;">Corte de fim de curso (FC-1) e paragens manuais</small>
+                    <strong>Fim de Curso Superior e Stop de Cabine</strong>
                 </td>
                 <td>
                     <div class="borne-container">B7.1 <span class="seta-teste">➔</span> B7.2</div>
@@ -147,8 +147,7 @@
             <tr>
                 <td>
                     <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
-                    <strong>Fecho de Portas de Piso (PPE)</strong><br>
-                    <small style="color:#666;">Contacto de encosto e presença exterior</small>
+                    <strong>Fecho de Portas de Piso (PPE)</strong>
                 </td>
                 <td>
                     <div class="borne-container">B7.3 <span class="seta-teste">➔</span> B8.3</div>
@@ -157,8 +156,7 @@
             <tr>
                 <td>
                     <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
-                    <strong>Fecho das Portas de Cabine (PPC)</strong><br>
-                    <small style="color:#666;">Contacto do operador automático da cabine</small>
+                    <strong>Fecho das Portas de Cabine (PPC)</strong>
                 </td>
                 <td>
                     <div class="borne-container">B8.3 <span class="seta-teste">➔</span> B8.4</div>
@@ -167,4 +165,13 @@
             <tr>
                 <td>
                     <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
-                    <strong>Encravamento das Portas de Piso</strong><br>
+                    <strong>Encravamento de Portas de Piso (Trincos)</strong>
+                </td>
+                <td>
+                    <div class="borne-container">B7.4 <span class="seta-teste">➔</span> B7.5</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
+                    <strong>Encravamento de Portas de Cabine</strong>
