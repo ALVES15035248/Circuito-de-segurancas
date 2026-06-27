@@ -18,18 +18,18 @@
         .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; box-sizing: border-box; }
         h1 { color: #0d47a1; font-size: 18px; margin-bottom: 5px; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
         h3 { font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
-        
+
         .tensao-destaque { font-size: 14px; margin: 15px 0 5px 0; color: #d32f2f; font-weight: bold; text-align: left; }
-        
+
         /* TABELA AJUSTADA */
         table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; table-layout: fixed; }
         th, td { border: 1px solid #ddd; padding: 10px 8px; text-align: left; vertical-align: middle; word-wrap: break-word; }
         th { background-color: #f2f2f2; font-weight: bold; }
-        
+
         /* BADGES EXCLUSIVAS DE SÉRIE */
         .borne-container { display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 12px; font-weight: bold; background: #222; color: #fff; padding: 6px 4px; border-radius: 4px; white-space: nowrap; width: 100%; box-sizing: border-box; }
         .seta-teste { margin: 0 4px; color: #ffeb3b; font-size: 11px; }
-        
+
         .bloco-tag { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; }
         .tag-alv { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
         .tag-sgc { background: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
@@ -54,7 +54,7 @@
         .nav-block { text-align: center; margin: 30px 0 10px 0; display: block; clear: both; }
         .btn-voltar { display: inline-block; padding: 12px 24px; background: #333333; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .btn-voltar:hover, .btn-voltar:active { background: #555555; color: white; }
-        
+
         .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; font-weight: bold; border-top: 1px solid #eee; padding-top: 15px; }
     </style>
 </head>
@@ -62,7 +62,7 @@
 
 <div class="container">
     <h1>Carlos Silva — Hidra TRP72</h1>
-    
+
     <!-- Caixa da Foto Física Mapeada -->
     <div class="caixa-imagem">
         <img src="carlossilva-hidra.jpg" alt="Esquema Carlos Silva Hidra TRP72" onerror="this.style.display='none'; document.getElementById('lbl-hidra').innerText='Fotografia física pendente...';">
@@ -138,7 +138,7 @@
             <tr>
                 <td>
                     <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
-                    <strong>Fim de Curso Superior e Stop de Cabine</strong>
+                    <strong>Stop Fossa, Limitador e Fim de Curso</strong>
                 </td>
                 <td>
                     <div class="borne-container">B7.1 <span class="seta-teste">➔</span> B7.2</div>
@@ -146,26 +146,17 @@
             </tr>
             <tr>
                 <td>
-                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
-                    <strong>Fecho de Portas de Piso (PPE)</strong>
+                    <span class="bloco-tag tag-prt">Portas Caixa</span><br>
+                    <strong>Contactos de Presença de Piso (Série PP)</strong>
                 </td>
                 <td>
-                    <div class="borne-container">B7.3 <span class="seta-teste">➔</span> B8.3</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
-                    <strong>Fecho das Portas de Cabine (PPC)</strong>
-                </td>
-                <td>
-                    <div class="borne-container">B8.3 <span class="seta-teste">➔</span> B8.4</div>
+                    <div class="borne-container">B8.2 <span class="seta-teste">➔</span> B8.3</div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
-                    <strong>Encravamento de Portas de Piso (Trincos)</strong>
+                    <span class="bloco-tag tag-prt">Trincos Caixa</span><br>
+                    <strong>Trancamento Mecânico de Piso (Série EPE)</strong>
                 </td>
                 <td>
                     <div class="borne-container">B7.4 <span class="seta-teste">➔</span> B7.5</div>
@@ -173,21 +164,19 @@
             </tr>
             <tr>
                 <td>
-                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
-                    <strong>Encravamento de Portas de Cabine</strong>
-                 </td>
+                    <span class="bloco-tag tag-prt">Portas Cabine</span><br>
+                    <strong>Contacto de Linha de Cabine (Série EPC)</strong>
+                </td>
                 <td>
                     <div class="borne-container">B8.5 <span class="seta-teste">➔</span> B8.6</div>
+                </td>
             </tr>
         </tbody>
     </table>
 
-    <a href="index.html" class="btn-voltar">⬅️ Voltar ao Menu</a>
+    <!-- BLOCO DE NAVEGAÇÃO REFORÇADO -->
+    <div class="nav-block">
+        <a href="index.html" class="btn-voltar">← Voltar ao Menu</a>
+    </div>
 
     <div class="footer">
-        © Nelson 15035248 • Guia de Campo Exclusivo
-    </div>
-</div>
-
-</body>
-</html>
