@@ -66,7 +66,7 @@
     <!-- Caixa da Foto Física Mapeada -->
     <div class="caixa-imagem">
         <img src="efacec-cpu.jpg" alt="Esquema EFACEC CPU" onerror="this.style.display='none'; document.getElementById('lbl-efacec').innerText='Fotografia física da placa CPU pendente...';">
-        <div id="lbl-efacec" class="legenda-imagem"><strong>Esquema Técnico de Campo:</strong> Monitorização ótica da linha de relés auxiliares e circuito de encravamento mecânico.</div>
+        <div id="lbl-efacec" class="legenda-imagem"><strong>Esquema Técnico de Campo:</strong> Monitorização ótica da linha de relés auxiliares RL2/RL3 e conectores de manobra.</div>
     </div>
 
     <!-- TABELA DE SINALIZAÇÃO DE LEDS -->
@@ -80,16 +80,12 @@
         </thead>
         <tbody>
             <tr>
-                <td><span class="led-indicator"></span><span class="led-name">SG</span></td>
-                <td><strong>Segurança Geral</strong>. Acende quando os stops (fossa, cabine), limitador de velocidade e contactos mecânicos gerais estão fechados.</td>
+                <td><span class="led-indicator"></span><span class="led-name">RL2</span></td>
+                <td><strong>Monitorização de Portas de Piso</strong>. Acende quando a série de fecho e presença das portas exteriores está garantida.</td>
             </tr>
             <tr>
-                <td><span class="led-indicator"></span><span class="led-name">PP</span></td>
-                <td><strong>Portas de Patamar (Piso)</strong>. Indica o encosto elétrico das folhas exteriores de todos os pisos.</td>
-            </tr>
-            <tr>
-                <td><span class="led-indicator"></span><span class="led-name">EP</span></td>
-                <td><strong>Encravamento de Portas (Trincos)</strong>. Autorização final de fecho da linha; valida os trincos e o contacto de porta da cabine para arranque.</td>
+                <td><span class="led-indicator"></span><span class="led-name">RL3</span></td>
+                <td><strong>Autorização de Linha / Trincos e Cabine</strong>. Confirma o encravamento mecânico das portas de piso e o fecho da porta da cabine para arranque.</td>
             </tr>
         </tbody>
     </table>
@@ -97,9 +93,9 @@
     <!-- NOTAS TÉCNICAS DE CAMPO -->
     <h3>Notas Técnicas de Campo (Verificações)</h3>
     <div class="bloco-shunts">
-        <p>• <strong>Risco Elétrico:</strong> Atenção acrescida ao testar, a linha opera a 120V AC. Proteja os isolamentos.</p>
-        <p>• <strong>Retorno de Neutro:</strong> Certifique-se de que o ponto de referência do multímetro está bem ligado ao borne de neutro comum de segurança antes de validar as leituras.</p>
-        <p>• ATENÇÃO: Remova qualquer ponte de teste efetuada na régua de bornes antes de repor o elevador em serviço normal.</p>
+        <p>• <strong>Risco Elétrico:</strong> Atenção acrescida ao testar, a linha opera a perigosa tensão de 120V AC. Proteja os isolamentos.</p>
+        <p>• <strong>Salto de Cadeia:</strong> Repare que a numeração salta o borne B4 para o B5 na transição entre seguranças gerais e portas.</p>
+        <p>• ATENÇÃO: Remova qualquer ponte de teste efetuada na régua de bornes antes de dar o trabalho por concluído.</p>
     </div>
 
     <!-- Alerta de Tensão -->
@@ -115,38 +111,56 @@
         <tbody>
             <tr>
                 <td>
-                    <span class="bloco-tag tag-alv">Origem</span><br>
-                    <strong>Alimentação do Circuito (Fusível)</strong>
+                    <span class="bloco-tag tag-sgc">Gerais</span><br>
+                    <strong>Stop de Poço</strong>
                 </td>
                 <td>
-                    <div class="borne-container">F1 <span class="seta-teste">➔</span> Neutro</div>
+                    <div class="borne-container">B1 <span class="seta-teste">➔</span> B2</div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <span class="bloco-tag tag-sgc">Gerais</span><br>
-                    <strong>Série Geral (Stop, Fossa, Fim de Curso)</strong>
+                    <strong>Limitador de Velocidade (LV)</strong>
                 </td>
                 <td>
-                    <div class="borne-container">Borne 1 <span class="seta-teste">➔</span> Borne 2</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="bloco-tag tag-prt">Portas</span><br>
-                    <strong>Série de Contactos de Solo (Folhas de Patamar)</strong>
-                </td>
-                <td>
-                    <div class="borne-container">Borne 2 <span class="seta-teste">➔</span> Borne 3</div>
+                    <div class="borne-container">B2 <span class="seta-teste">➔</span> B3</div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <span class="bloco-tag tag-prt">Trincos / Cabine</span><br>
-                    <strong>Linha de Trincos Mecânicos e Contacto de Cabine</strong>
+                    <span class="bloco-tag tag-sgc">Gerais</span><br>
+                    <strong>Fins de Curso (Sup/Inf) e Roda Tensora (RT)</strong>
                 </td>
                 <td>
-                    <div class="borne-container">Borne 3 <span class="seta-teste">➔</span> Borne 4</div>
+                    <div class="borne-container">B3 <span class="seta-teste">➔</span> B4</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas Piso</span><br>
+                    <strong>Fecho das Portas de Piso (Presença)</strong>
+                </td>
+                <td>
+                    <div class="borne-container">B5 <span class="seta-teste">➔</span> B6</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Trincos</span><br>
+                    <strong>Encravamento das Portas de Piso (Trincos)</strong>
+                </td>
+                <td>
+                    <div class="borne-container">B6 <span class="seta-teste">➔</span> B7</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Porta Cabine</span><br>
+                    <strong>Encravamento da Porta de Cabine</strong>
+                </td>
+                <td>
+                    <div class="borne-container">B7 <span class="seta-teste">➔</span> B8</div>
                 </td>
             </tr>
         </tbody>
