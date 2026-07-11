@@ -21,22 +21,24 @@
         
         .tensao-destaque { font-size: 14px; margin: 15px 0 5px 0; color: #d32f2f; font-weight: bold; text-align: left; }
         
+        /* TABELA ULTRA INTUITIVA */
         table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: middle; }
+        th, td { border: 1px solid #ddd; padding: 10px 8px; text-align: left; vertical-align: middle; }
         th { background-color: #f2f2f2; font-weight: bold; }
-        .borne { font-family: monospace; background: #333; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; white-space: nowrap; }
         
-        /* ESTILO EXCLUSIVO E INTUITIVO PARA A TABELA DE LEDS */
-        .tabela-leds-cmc { width: 100%; border-collapse: collapse; background: #fafbfc; margin-top: 10px; }
-        .tabela-leds-cmc th { background-color: #0d47a1; color: white; padding: 10px; }
-        .status-led { display: inline-flex; align-items: center; font-weight: bold; font-family: monospace; font-size: 13px; background: #eef2f7; padding: 4px 8px; border-radius: 4px; border: 1px solid #dcdfe6; }
-        .bulb-on { font-size: 14px; margin-right: 6px; filter: drop-shadow(0 0 3px #ffc107); }
-        .txt-alerta { color: #c0392b; font-weight: bold; }
+        /* BADGES EXCLUSIVAS DE SÉRIE */
+        .borne-container { display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 13px; font-weight: bold; background: #222; color: #fff; padding: 4px 8px; border-radius: 4px; white-space: nowrap; }
+        .seta-teste { margin: 0 6px; color: #ffeb3b; font-size: 12px; }
+        
+        .bloco-tag { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; }
+        .tag-alv { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .tag-sgc { background: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
+        .tag-prt { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
 
-        /* Caixa de Imagem */
+        /* CAIXA DE IMAGEM */
         .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
         .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
-        .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; }
+        .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; line-height: 1.4; }
 
         /* Bloco de Notas Técnicas de Shunts */
         .bloco-shunts { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
@@ -50,89 +52,140 @@
 <body>
 
 <div class="container">
-    <h1>Schindler — Bionic 5 (Schindler 3300)</h1>
+    <h1>Schindler — Bionic 5 (3300)</h1>
     
-    <h3>Placa da manobra Bionic 5 / SMIC5</h3>
+    <!-- Caixa da Foto Física -->
     <div class="caixa-imagem">
-        <img src="schindler-3300.jpg" alt="Placa Schindler Bionic 5 / 3300">
-        <div class="legenda-imagem">Circuito integrado de monitorização de seguranças na placa principal (SMIC) com LEDs de cascata.</div>
+        <img src="schindler-3300.jpg" alt="Placa Schindler Bionic 5">
+        <div class="legenda-imagem"><strong>Esquema de Campo:</strong> Monitorização em cascata na placa SMIC. Distribuição de baixa tensão contínua usando conectores rápidos modulares para diagnóstico rápido.</div>
     </div>
 
     <!-- NOTAS TÉCNICAS DE CAMPO -->
-    <h3>Notas Técnicas de Campo (Bionic 5)</h3>
+    <h3>Notas Técnicas de Campo (Verificações)</h3>
     <div class="bloco-shunts">
-        <p>• <strong>Lógica de Cascata:</strong> O circuito elétrico funciona em série de cima para baixo. Se o LED superior (IUSK) apagar, todas as sinalizações seguintes (ISPT, RTS, ISK) desligam obrigatoriamente em simultâneo.</p>
-        <p>• AVISO DE SEGURANÇA: Nunca realize shunts nos pinos das fichas eletrónicas sob risco iminente de danificar permanentemente a placa principal ou anular seguranças críticas das cintas.</p>
+        <p>• <strong>Lógica do Circuito:</strong> Circuito elétrico ligado em série. Se houver uma falha num bloco superior, todos os pontos de teste seguintes perdem sinal.</p>
+        <p>• <strong>Cintas de Tração:</strong> A segurança arranca obrigatoriamente no conector KSS. Cortes aqui indicam desgaste ou alongamento crítico das cintas.</p>
+        <p>• ATENÇÃO: Nunca execute shunts permanentes nas fichas eletrónicas sob risco de danificar a placa SMIC e anular sistemas de proteção vitais.</p>
     </div>
 
-    <!-- SINALIZAÇÃO DE LEDS RECORRIGIDA NO ESTILO CMC4+ -->
-    <h3>Sinalização de LEDs Diagnóstico (Painel de Testes)</h3>
-    <table class="tabela-leds-cmc">
-        <thead>
-            <tr>
-                <th style="width: 35%;">Estado do LED</th>
-                <th>Despiste Rápido de Avarias / Componente Aberto</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><span class="status-led"><span class="bulb-on">🟢</span> IUSK (Cintas)</span> <br><span class="txt-alerta">Desligado</span></td>
-                <td><strong>Circuito de Monitorização de Cintas Interrompido</strong>. Verificar os contactos mecânicos de alongamento e desgaste físico das cintas de tração (DUEISK-A / LUEISK). Conector <span class="borne">KSS</span>.</td>
-            </tr>
-            <tr>
-                <td><span class="status-led"><span class="bulb-on">🟢</span> ISPT (Poço/Piso)</span> <br><span class="txt-alerta">Desligado</span></td>
-                <td><strong>Série de Poço ou Portas de Piso Aberta</strong>. Verificar corte na escada de acesso (JHSG), roda tensora (KSSBV), stop de poço (KLSG) ou na série de trincos/contactos das portas exteriores (KTS-1 a KTS-N). Conector <span class="borne">SKS</span>.</td>
-            </tr>
-            <tr>
-                <td><span class="status-led"><span class="bulb-on">🟢</span> RTS (Cabine)</span> <br><span class="txt-alerta">Desligado</span></td>
-                <td><strong>Circuito Geral de Cabine ou Limitador Aberto</strong>. Verificar a série de cabine gerenciada pela placa SDIC: contactos de portas de cabine, stop de revisão (JHC), paraquedas (KF), fins de curso (KNE) e contactos de velocidade (KBV/KFG). Conector <span class="borne">SKC</span>.</td>
-            </tr>
-            <tr>
-                <td><span class="status-led"><span class="bulb-on">🟢</span> ISK (Resgate)</span> <br><span class="txt-alerta">Desligado</span></td>
-                <td><strong>Circuito Final / Botoneira de Resgate Interrompido</strong>. Verificar o contacto de STOP no painel de resgate manual/técnico (ESE) ou relés de segurança finais na placa (SNGL). Conector <span class="borne">ESE</span>.</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- TENSÃO COLOCADA NO LOCAL DE PRIORIDADE DE DIAGNÓSTICO -->
-    <div class="tensao-destaque">TENSÃO DO CIRCUITO: 24Vdc a 55Vdc</div>
+    <!-- Alerta de Tensão -->
+    <div class="tensao-destaque">TENSÃO DO CIRCUITO: 24V DC a 55V DC</div>
+    
     <h3>Cadeia de Bornes de Segurança</h3>
-    <table>
+    <table id="tabelaBornes">
         <thead>
             <tr>
-                <th>Circuito / Componente</th>
-                <th>Conector e Bornes</th>
+                <th style="width: 60%;">Componente Técnico / Circuito</th>
+                <th style="width: 40%; text-align: center;">Pontas do Multímetro</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>1º Circuito: Monitorização de Cintas de Tração</td>
-                <td><span class="borne">KSS / 1</span> a <span class="borne">KSS / 2</span></td>
+                <td>
+                    <span class="bloco-tag tag-alv">Mecânica Tração</span><br>
+                    <strong>1º Circuito: Monitorização de Cintas</strong><br>
+                    <small style="color:#666;">Contacto de alongamento e desgaste (DUEISK-A / LUEISK)</small>
+                </td>
+                <td>
+                    <div class="borne-container">KSS P1 <span class="seta-teste">➔</span> KSS P2</div>
+                </td>
             </tr>
             <tr>
-                <td>2º Circuito: Seguranças de Poço (Escada, rodas, stops)</td>
-                <td><span class="borne">SKS / 1</span> a <span class="borne">SKS / 2</span></td>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
+                    <strong>2º Circuito: Dispositivos de Poço</strong><br>
+                    <small style="color:#666;">Escada de acesso (JHSG), roda tensora (KSSBV) e stop de poço (KLSG)</small>
+                </td>
+                <td>
+                    <div class="borne-container">SKS P1 <span class="seta-teste">➔</span> SKS P2</div>
+                </td>
             </tr>
             <tr>
-                <td>3º Circuito: Série de Portas de Piso (Exteriores)</td>
-                <td><span class="borne">SKS / 2</span> a <span class="borne">SKS / 3</span></td>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
+                    <strong>3º Circuito: Série de Portas de Piso</strong><br>
+                    <small style="color:#666;">Contactos de fecho/presença das portas exteriores (KTS-1 a KTS-N)</small>
+                </td>
+                <td>
+                    <div class="borne-container">SKS P2 <span class="seta-teste">➔</span> SKS P3</div>
+                </td>
             </tr>
             <tr>
-                <td>4º Circuito: Série de Cabine (Portas, bloqueio, revisão, paraquedas, limites)</td>
-                <td><span class="borne">SKC / 1</span> a <span class="borne">SKC / 4</span></td>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Cabine</span><br>
+                    <strong>4º Circuito: Série Geral de Cabine e Limites</strong><br>
+                    <small style="color:#666;">Portas de cabine, bloqueio, stop revisão (JHC), paraquedas (KF) e limites (KNE)</small>
+                </td>
+                <td>
+                    <div class="borne-container">SKC P1 <span class="seta-teste">➔</span> SKC P4</div>
+                </td>
             </tr>
             <tr>
-                <td>5º Circuito: Limitador de Velocidade (LV)</td>
-                <td><span class="borne">KBV / 1</span> a <span class="borne">KBV / 2</span></td>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
+                    <strong>5º Circuito: Limitador de Velocidade</strong><br>
+                    <small style="color:#666;">Contacto mecânico do limitador de velocidade (KBV / KFG)</small>
+                </td>
+                <td>
+                    <div class="borne-container">KBV P1 <span class="seta-teste">➔</span> KBV P2</div>
+                </td>
             </tr>
         </tbody>
     </table>
 
-    <a href="index.html" class="btn-voltar">⬅️ Voltar ao Menu</a>
+    <h3>Diagnóstico de Campo por LEDs</h3>
+    <table id="tabelaLeds">
+        <thead>
+            <tr>
+                <th style="width: 60%;">LED Indicador Apagado (Corte)</th>
+                <th style="width: 40%; text-align: center;">Componente a Verificar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <strong>LED IUSK Apagado</strong><br>
+                    <small style="color:#666;">Falha ou bloqueio elétrico na origem da série</small>
+                </td>
+                <td>
+                    <div class="borne-container" style="background:#c0392b;">Circuito de Cintas</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>LED ISPT Apagado</strong><br>
+                    <small style="color:#666;">Circuito de segurança da caixa ou trincos aberto</small>
+                </td>
+                <td>
+                    <div class="borne-container" style="background:#c0392b;">Poço / Portas Piso</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>LED RTS Apagado</strong><br>
+                    <small style="color:#666;">Interrupção na linha gerida pela placa SDIC</small>
+                </td>
+                <td>
+                    <div class="borne-container" style="background:#c0392b;">Cabine / Limites</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>LED ISK Apagado</strong><br>
+                    <small style="color:#666;">Linha final ou módulo de salvamento aberto</small>
+                </td>
+                <td>
+                    <div class="borne-container" style="background:#c0392b;">Botoneira Resgate</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-    <div class="footer">
-        © Nelson 15035248 • Guia de Campo Exclusivo
-    </div>
+    <a href="index.html" class="btn-voltar">◀ Voltar ao Menu</a>
+</div>
+
+<div class="footer">
+    Nelson 15035248 &copy; Todos os direitos reservados.
 </div>
 
 </body>
