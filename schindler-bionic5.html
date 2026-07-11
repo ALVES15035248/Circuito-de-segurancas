@@ -65,8 +65,57 @@
     <div class="bloco-shunts">
         <p>• <strong>Lógica do Circuito:</strong> Circuito elétrico ligado em série. Se houver uma falha num bloco superior, todos os pontos de teste seguintes perdem sinal.</p>
         <p>• <strong>Cintas de Tração:</strong> A segurança arranca obrigatoriamente no conector KSS. Cortes aqui indicam desgaste ou alongamento crítico das cintas.</p>
-        <p>• ATENÇÃO: Nunca execute shunts permanentes nas fichas eletrónicas sob risco de danificar a placa SMIC e anular sistemas de proteção vitais.</p>
+        <p>• ATENÇÃO: Nunca execute shunts permanentes nas fichas eletrónicas sob risco de danificar a placa SMIC e anular sitemas de proteção vitais.</p>
     </div>
+
+    <!-- TABELA DE LEDS AGORA ANTES DOS BORNES -->
+    <h3>Diagnóstico de Campo por LEDs</h3>
+    <table id="tabelaLeds">
+        <thead>
+            <tr>
+                <th style="width: 60%;">LED Indicador Apagado (Corte)</th>
+                <th style="width: 40%; text-align: center;">Componente a Verificar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <strong>LED IUSK Apagado</strong><br>
+                    <small style="color:#666;">Falha ou bloqueio elétrico na origem da série</small>
+                </td>
+                <td>
+                    <div class="borne-container" style="background:#c0392b;">Circuito de Cintas</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>LED ISPT Apagado</strong><br>
+                    <small style="color:#666;">Circuito de segurança da caixa ou trincos aberto</small>
+                </td>
+                <td>
+                    <div class="borne-container" style="background:#c0392b;">Poço / Portas Piso</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>LED RTS Apagado</strong><br>
+                    <small style="color:#666;">Interrupção na linha gerida pela placa SDIC</small>
+                </td>
+                <td>
+                    <div class="borne-container" style="background:#c0392b;">Cabine / Limites</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>LED ISK Apagado</strong><br>
+                    <small style="color:#666;">Linha final ou módulo de salvamento aberto</small>
+                </td>
+                <td>
+                    <div class="borne-container" style="background:#c0392b;">Botoneira Resgate</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
     <!-- Alerta de Tensão -->
     <div class="tensao-destaque">TENSÃO DO CIRCUITO: 24V DC a 55V DC</div>
@@ -128,54 +177,6 @@
                 </td>
                 <td>
                     <div class="borne-container">KBV P1 <span class="seta-teste">➔</span> KBV P2</div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h3>Diagnóstico de Campo por LEDs</h3>
-    <table id="tabelaLeds">
-        <thead>
-            <tr>
-                <th style="width: 60%;">LED Indicador Apagado (Corte)</th>
-                <th style="width: 40%; text-align: center;">Componente a Verificar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <strong>LED IUSK Apagado</strong><br>
-                    <small style="color:#666;">Falha ou bloqueio elétrico na origem da série</small>
-                </td>
-                <td>
-                    <div class="borne-container" style="background:#c0392b;">Circuito de Cintas</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <strong>LED ISPT Apagado</strong><br>
-                    <small style="color:#666;">Circuito de segurança da caixa ou trincos aberto</small>
-                </td>
-                <td>
-                    <div class="borne-container" style="background:#c0392b;">Poço / Portas Piso</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <strong>LED RTS Apagado</strong><br>
-                    <small style="color:#666;">Interrupção na linha gerida pela placa SDIC</small>
-                </td>
-                <td>
-                    <div class="borne-container" style="background:#c0392b;">Cabine / Limites</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <strong>LED ISK Apagado</strong><br>
-                    <small style="color:#666;">Linha final ou módulo de salvamento aberto</small>
-                </td>
-                <td>
-                    <div class="borne-container" style="background:#c0392b;">Botoneira Resgate</div>
                 </td>
             </tr>
         </tbody>
