@@ -60,7 +60,53 @@
         <img src="schindler-3300.jpg" alt="Placa Principal Schindler Bionic 5 / SMIC5">
         <div class="legenda-imagem"><strong>Esquema do Quadro:</strong> Distribuição da cadeia de segurança em baixa tensão contínua na placa de controlo através dos blocos de fichas rápidas codificadas.</div>
     </div>
+    <!-- TABELA DE DIAGNÓSTICO POR LEDS -->
+    <h3>Diagnóstico Rápido por LEDs (Estado da Cadeia)</h3>
+    <table id="tabelaLeds" style="margin-top: 10px; margin-bottom: 25px;">
+        <thead>
+            <tr>
+                <th style="width: 25%; text-align: center;">LED Indicador</th>
+                <th style="width: 25%; text-align: center;">Estado Normal</th>
+                <th style="width: 50%;">Se estiver APAGADO (Corte no Circuito)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align: center; font-weight: bold; color: #d32f2f;">IUSK</td>
+                <td style="text-align: center;"><span style="background: #e8f5e9; color: #2e7d32; padding: 2px 6px; border-radius: 3px; font-weight: bold;">ACESO</span></td>
+                <td>
+                    <strong>Circuito de Cintas (KSS) Interrompido:</strong><br>
+                    Verifique os contactos de monitorização ou o alongamento físico das cintas de tração (DUEISK-A / LUEISK).
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold; color: #d32f2f;">ISPT</td>
+                <td style="text-align: center;"><span style="background: #e8f5e9; color: #2e7d32; padding: 2px 6px; border-radius: 3px; font-weight: bold;">ACESO</span></td>
+                <td>
+                    <strong>Seguranças de Poço ou Portas de Piso (SKS):</strong><br>
+                    Corte na escada do poço (JHSG), roda tensora (KSSBV), stop de poço (KLSG) ou na série de contactos das portas de piso (KTS-1 a KTS-N).
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold; color: #d32f2f;">RTS</td>
+                <td style="text-align: center;"><span style="background: #e8f5e9; color: #2e7d32; padding: 2px 6px; border-radius: 3px; font-weight: bold;">ACESO</span></td>
+                <td>
+                    <strong>Circuito Geral da Cabine (SKC):</strong><br>
+                    Falha na série que passa pela placa SDIC na cabine. Inclui: contactos de portas de cabine, paragem de revisão (JHC), paraquedas (KF), fins de curso (KNE) e o limitador de velocidade (KBV/KFG).
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-weight: bold; color: #d32f2f;">ISK</td>
+                <td style="text-align: center;"><span style="background: #e8f5e9; color: #2e7d32; padding: 2px 6px; border-radius: 3px; font-weight: bold;">ACESO</span></td>
+                <td>
+                    <strong>Circuito Final / Resgate (ESE / SNGL):</strong><br>
+                    Verifique o circuito do botão de paragem da botoneira de resgate (ESE) ou os relés de monitorização e segurança finais na placa principal.
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
+    
     <!-- NOTAS TÉCNICAS DE CAMPO -->
     <h3>Notas Técnicas de Campo (Bionic 5)</h3>
     <div class="bloco-shunts">
