@@ -56,77 +56,87 @@
     
     <!-- Caixa da Foto Física -->
     <div class="caixa-imagem">
-        <img src="schindler-bionic1.jpg" alt="Placa Principal Schindler Bionic 1 / Smart">
-        <div class="legenda-imagem"><strong>Esquema do Quadro:</strong> Circuito de monitorização baseado no sistema modular Bionic. Pontos de medição principais focados nos conectores modulares de segurança (série rápida).</div>
+        <img src="https://nintec.es" alt="Placa Principal Schindler Bionic 1 / Smart SMIC">
+        <div class="legenda-imagem"><strong>Esquema do Quadro:</strong> Circuito de monitorização baseado na placa SMIC (Bionic 1 / Smart). Pontos de medição rápidos focados nos conectores modulares da cadeia de segurança.</div>
     </div>
 
     <!-- NOTAS TÉCNICAS DE CAMPO -->
     <h3>Notas Técnicas de Campo (Bionic 1)</h3>
     <div class="bloco-shunts">
-        <p>• <strong>Alimentação e Fusível:</strong> Circuito de segurança tipicamente protegido por fusível específico para a linha de 110V AC / 115V AC no circuito secundário do transformador.</p>
-        <p>• <strong>Interface de Status:</strong> Verifique a indicação dos asteriscos (*) no display de status; a ausência de asteriscos aponta imediatamente para uma interrupção na cadeia de segurança.</p>
-        <p>• AVISO CRÍTICO: As manobras Schindler utilizam barramentos de comunicação e fichas pré-cabladas. Não faça pontes diretamente nos pinos eletrónicos.</p>
+        <p>• <strong>Identificação das Fichas:</strong> As medições devem ser efetuadas diretamente nos pinos das fichas modulares (XISPT, XCSC, XKBV, XESE, XKHA) utilizando pontas finas de multímetro.</p>
+        <p>• <strong>Deteção Visual:</strong> Acompanhe as interrupções pelos LEDs de estado correspondentes a cada bloco de fichas na placa principal.</p>
+        <p>• AVISO CRÍTICO: Efetuar pontes permanentes nestas fichas anula as proteções mecânicas vitais e o controlo do resgate manual, gerando sérios riscos de segurança.</p>
     </div>
 
     <!-- Alerta de Tensão -->
     <div class="tensao-destaque">TENSÃO TÍPICA DA CADEIA: 110V - 115V AC</div>
-    <h3>Segmentos Técnicos da Linha de Segurança</h3>
+    <h3>Ordem de Circuitos e Fichas de Segurança</h3>
     <table id="tabelaBornes">
         <thead>
             <tr>
                 <th style="width: 60%;">Componente Técnico / Circuito</th>
-                <th style="width: 40%; text-align: center;">Pontas de Teste / Fichas</th>
+                <th style="width: 40%; text-align: center;">Ficha / Pinos de Teste</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>
-                    <span class="bloco-tag tag-alv">Alimentação</span><br>
-                    <strong>Entrada Geral / Proteção</strong><br>
-                    <small style="color:#666;">Saída do transformador de segurança</small>
+                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
+                    <strong>Dispositivos de Poço e Bloqueio</strong><br>
+                    <small style="color:#666;">Sistema de bloqueio de cabine, porta de visita do poço, roda tensora e stop de poço</small>
                 </td>
                 <td>
-                    <div class="borne-container">Ficha Seg. <span class="seta-teste">➔</span> Comum</div>
+                    <div class="borne-container">XISPT P1 <span class="seta-teste">➔</span> XISPT P2</div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
-                    <strong>Contactos de Poço e Limitador</strong><br>
-                    <small style="color:#666;">Stop do poço, roda tensora e corte do limitador de velocidade</small>
+                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
+                    <strong>Série de Portas de Piso</strong><br>
+                    <small style="color:#666;">Contactos de fecho/presença das portas exteriores</small>
                 </td>
                 <td>
-                    <div class="borne-container">Segmento 1 <span class="seta-teste">➔</span> Ponto Regresso</div>
+                    <div class="borne-container">XISPT P2 <span class="seta-teste">➔</span> XISPT P3</div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <span class="bloco-tag tag-sgc">Gerais Cabine</span><br>
-                    <strong>Contactos de Cabine (Série CC)</strong><br>
-                    <small style="color:#666;">Stop de revisão, contacto de páraquedas e alçapão/barreiras mecânicas</small>
+                    <strong>Série Geral de Cabine e Limites</strong><br>
+                    <small style="color:#666;">Porta de cabine, stop de revisão, contacto do páraquedas e fins de curso</small>
                 </td>
                 <td>
-                    <div class="borne-container">Ficha Cabine <span class="seta-teste">➔</span> Retorno</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
-                    <strong>Contactos de Trinco / Pré-fecho (Folhas)</strong><br>
-                    <small style="color:#666;">Verificação de portas exteriores de piso fechadas</small>
-                </td>
-                <td>
-                    <div class="borne-container">Série Portas <span class="seta-teste">➔</span> Monitorização</div>
+                    <div class="borne-container">XCSC P1 <span class="seta-teste">➔</span> XCSC P3</div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
-                    <strong>Encravamento Geral das Portas de Piso</strong><br>
-                    <small style="color:#666;">Linha final de trincos mecânicos autorizando a marcha</small>
+                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
+                    <strong>Limitador de Velocidade (LV)</strong><br>
+                    <small style="color:#666;">Contacto mecânico de disparo por sobrevelocidade</small>
                 </td>
                 <td>
-                    <div class="borne-container">Série Trincos <span class="seta-teste">➔</span> Relé Marcha</div>
+                    <div class="borne-container">XKBV P1 <span class="seta-teste">➔</span> XKBV P2</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Manobra resgate</span><br>
+                    <strong>Botoneira de Resgate</strong><br>
+                    <small style="color:#666;">Contacto do botão de STOP integrado no painel de resgate técnico</small>
+                </td>
+                <td>
+                    <div class="borne-container">XESE P2 <span class="seta-teste">➔</span> XESE P3</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-alv">Mecânica resgate</span><br>
+                    <strong>Alavanca de Resgate Manual</strong><br>
+                    <small style="color:#666;">Contacto de monitorização da ativação do manípulo mecânico de travão</small>
+                </td>
+                <td>
+                    <div class="borne-container">XKHA P1 <span class="seta-teste">➔</span> XKHA P2</div>
                 </td>
             </tr>
         </tbody>
