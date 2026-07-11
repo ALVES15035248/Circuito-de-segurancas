@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schindler Bionic 1 (Smart) — Cadeia de Seguranças</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #f4f6f9; 
+            color: #333; 
+            margin: 0; 
+            padding: 15px; 
+            /* MARCA DE ÁGUA DEFENSIVA REGISTADA */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='160' height='100'%3E%3Ctext x='20' y='50' fill='rgba(0,0,0,0.03)' font-size='11' font-family='Arial' font-weight='bold' transform='rotate(-25 80 50)'%3ENelson 15035248%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+        .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; }
+        h1 { color: #0d47a1; font-size: 18px; margin-bottom: 5px; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
+        h3 { font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
+        
+        .tensao-destaque { font-size: 14px; margin: 15px 0 5px 0; color: #d32f2f; font-weight: bold; text-align: left; }
+        
+        /* TABELA ULTRA INTUITIVA */
+        table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; }
+        th, td { border: 1px solid #ddd; padding: 10px 8px; text-align: left; vertical-align: middle; }
+        th { background-color: #f2f2f2; font-weight: bold; }
+        
+        /* BADGES EXCLUSIVAS DE SÉRIE */
+        .borne-container { display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 13px; font-weight: bold; background: #222; color: #fff; padding: 4px 8px; border-radius: 4px; white-space: nowrap; }
+        .seta-teste { margin: 0 6px; color: #ffeb3b; font-size: 12px; }
+        
+        .bloco-tag { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; }
+        .tag-alv { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .tag-sgc { background: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
+        .tag-prt { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+
+        /* CAIXA DE IMAGEM */
+        .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
+        .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
+        .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; line-height: 1.4; }
+
+        /* Bloco de Notas Técnicas de Shunts */
+        .bloco-shunts { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
+        .bloco-shunts p { margin: 4px 0; font-weight: bold; }
+
+        .btn-voltar { display: inline-block; margin-top: 20px; padding: 10px 15px; background: #666; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; }
+        .btn-voltar:active { background: #333; }
+        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Schindler — Bionic 1 (Smart)</h1>
+    
+    <!-- Caixa da Foto Física -->
+    <div class="caixa-imagem">
+        <img src="schindler-bionic1.jpg" alt="Placa Principal Schindler Bionic 1 / Smart">
+        <div class="legenda-imagem"><strong>Esquema do Quadro:</strong> Circuito de monitorização baseado no sistema modular Bionic. Pontos de medição principais focados nos conectores modulares de segurança (série rápida).</div>
+    </div>
+
+    <!-- NOTAS TÉCNICAS DE CAMPO -->
+    <h3>Notas Técnicas de Campo (Bionic 1)</h3>
+    <div class="bloco-shunts">
+        <p>• <strong>Alimentação e Fusível:</strong> Circuito de segurança tipicamente protegido por fusível específico para a linha de 110V AC / 115V AC no circuito secundário do transformador.</p>
+        <p>• <strong>Interface de Status:</strong> Verifique a indicação dos asteriscos (*) no display de status; a ausência de asteriscos aponta imediatamente para uma interrupção na cadeia de segurança.</p>
+        <p>• AVISO CRÍTICO: As manobras Schindler utilizam barramentos de comunicação e fichas pré-cabladas. Não faça pontes diretamente nos pinos eletrónicos.</p>
+    </div>
+
+    <!-- Alerta de Tensão -->
+    <div class="tensao-destaque">TENSÃO TÍPICA DA CADEIA: 110V - 115V AC</div>
+    <h3>Segmentos Técnicos da Linha de Segurança</h3>
+    <table id="tabelaBornes">
+        <thead>
+            <tr>
+                <th style="width: 60%;">Componente Técnico / Circuito</th>
+                <th style="width: 40%; text-align: center;">Pontas de Teste / Fichas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-alv">Alimentação</span><br>
+                    <strong>Entrada Geral / Proteção</strong><br>
+                    <small style="color:#666;">Saída do transformador de segurança</small>
+                </td>
+                <td>
+                    <div class="borne-container">Ficha Seg. <span class="seta-teste">➔</span> Comum</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
+                    <strong>Contactos de Poço e Limitador</strong><br>
+                    <small style="color:#666;">Stop do poço, roda tensora e corte do limitador de velocidade</small>
+                </td>
+                <td>
+                    <div class="borne-container">Segmento 1 <span class="seta-teste">➔</span> Ponto Regresso</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Cabine</span><br>
+                    <strong>Contactos de Cabine (Série CC)</strong><br>
+                    <small style="color:#666;">Stop de revisão, contacto de páraquedas e alçapão/barreiras mecânicas</small>
+                </td>
+                <td>
+                    <div class="borne-container">Ficha Cabine <span class="seta-teste">➔</span> Retorno</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
+                    <strong>Contactos de Trinco / Pré-fecho (Folhas)</strong><br>
+                    <small style="color:#666;">Verificação de portas exteriores de piso fechadas</small>
+                </td>
+                <td>
+                    <div class="borne-container">Série Portas <span class="seta-teste">➔</span> Monitorização</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
+                    <strong>Encravamento Geral das Portas de Piso</strong><br>
+                    <small style="color:#666;">Linha final de trincos mecânicos autorizando a marcha</small>
+                </td>
+                <td>
+                    <div class="borne-container">Série Trincos <span class="seta-teste">➔</span> Relé Marcha</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="index.html" class="btn-voltar">◀ Voltar ao Menu</a>
+</div>
+
+<div class="footer">
+    Nelson 15035248 &copy; Todos os direitos reservados.
+</div>
+
+</body>
+</html>
