@@ -49,16 +49,34 @@
         <img src="schindler-iberia.jpg" alt="Placa Schindler Miconic Iberia" onerror="this.style.display='none'; document.getElementById('lbl-iberia').innerText='Fotografia física schindler-iberia.jpg pendente...';">
         <div id="lbl-iberia" class="legenda-imagem"><strong>Esquema Técnico:</strong> Linha de alta tensão (120Vac) na placa NGB / EBR através das réguas "X".</div>
     </div>
-    <h3>Sinalização de LEDs Diagnóstico</h3>
+        <h3>Sinalização de LEDs Diagnóstico (Monitorização Ótica)</h3>
     <table class="tabela-leds">
         <thead>
-            <tr><th style="width: 25%;">LED</th><th>Ponto de Leitura / Condição</th></tr>
+            <tr>
+                <th style="width: 25%;">LED</th>
+                <th>Ponto de Leitura / Condição de Ativação</th>
+            </tr>
         </thead>
         <tbody>
-            <tr><td><span class="led-indicator"></span><span class="led-name">RSE</span></td><td><strong>Relé Segurança Geral</strong>. Caixa/cabina. Apaga se houver corte entre <strong>X20.3</strong> e <strong>X16.4</strong>.</td></tr>
-            <tr><td><span class="led-indicator"></span><span class="led-name">RPX</span></td><td><strong>Relé de Portas</strong>. Presença/encosto de folhas e trincos. Linha terminal em <strong>X15</strong> e <strong>X19</strong>.</td></tr>
+            <tr>
+                <td><span class="led-indicator"></span><span class="led-name">DL1</span></td>
+                <td><strong>Início da Cadeia / Seguranças de Cabine</strong>. Apaga se houver corte no volante da máquina/visita de poço (X20.3-X20.1) ou na série de cabine (X19.5-X19.1: stop revisão, porta cabine, paraquedas e limites).</td>
+            </tr>
+            <tr>
+                <td><span class="led-indicator"></span><span class="led-name">DL2</span></td>
+                <td><strong>Seguranças de Caixa e Poço</strong>. Controla a continuidade após o contrapeso (X18), limitadores de velocidade (X17), amortecedores, rodas tensoras (X16.7-X16.6) e os stops de emergência/poço (X16.5-X16.4).</td>
+            </tr>
+            <tr>
+                <td><span class="led-indicator"></span><span class="led-name">DL3</span></td>
+                <td><strong>Presença de Portas de Piso (Série de Folhas)</strong>. Confirma o encosto correto das portas exteriores frontais (X16.4-X16.3) e traseiras (X16.2-X16.1). Se apagar, a série de presença está aberta.</td>
+            </tr>
+            <tr>
+                <td><span class="led-indicator"></span><span class="led-name">DL4</span></td>
+                <td><strong>Encravamento Geral (Série de Trincos)</strong>. Fim da linha de segurança. Valida os trincos frontais (X15.5-X15.4), trincos traseiros (X15.3-X15.2) e o encravamento final da cabine/patim móvel (X19.2-X19.4). Autoriza a marcha.</td>
+            </tr>
         </tbody>
     </table>
+
     <h3>Notas Técnicas de Campo</h3>
     <div class="bloco-shunts">
         <p>• <strong>Risco Elétrico:</strong> A cadeia opera a 120V AC, perigo real de choque elétrico.</p>
