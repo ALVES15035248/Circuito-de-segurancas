@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schindler Miconic Iberia — Circuitos de Segurança</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #f4f6f9; 
+            color: #333; 
+            margin: 0; 
+            padding: 15px; 
+            /* MARCA DE ÁGUA DEFENSIVA REGISTADA */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='160' height='100'%3E%3Ctext x='20' y='50' fill='rgba(0,0,0,0.03)' font-size='11' font-family='Arial' font-weight='bold' transform='rotate(-25 80 50)'%3ENelson 15035248%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+        .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; box-sizing: border-box; }
+        h1 { color: #0d47a1; font-size: 18px; margin-bottom: 5px; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
+        h3 { font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
+
+        .tensao-destaque { font-size: 14px; margin: 15px 0 5px 0; color: #d32f2f; font-weight: bold; text-align: left; }
+
+        /* TABELA AJUSTADA */
+        table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; table-layout: fixed; }
+        th, td { border: 1px solid #ddd; padding: 10px 8px; text-align: left; vertical-align: middle; word-wrap: break-word; }
+        th { background-color: #f2f2f2; font-weight: bold; }
+
+        /* BADGES EXCLUSIVAS DE SÉRIE */
+        .borne-container { display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 12px; font-weight: bold; background: #222; color: #fff; padding: 6px 4px; border-radius: 4px; white-space: nowrap; width: 100%; box-sizing: border-box; }
+        .seta-teste { margin: 0 4px; color: #ffeb3b; font-size: 11px; }
+
+        .bloco-tag { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; }
+        .tag-alv { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .tag-sgc { background: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
+        .tag-prt { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+
+        /* TABELA DE LEDS */
+        .tabela-leds { width: 100%; border-collapse: collapse; background: #fdfdfd; margin-top: 10px; }
+        .tabela-leds th { background-color: #eef2f7; color: #0d47a1; }
+        .led-indicator { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #4caf50; box-shadow: 0 0 6px #4caf50; margin-right: 8px; vertical-align: middle; }
+        .led-name { font-weight: bold; font-family: monospace; font-size: 14px; }
+
+        /* CAIXA DE IMAGEM */
+        .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
+        .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
+        .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; line-height: 1.4; }
+
+        /* Bloco de Notas Técnicas de Shunts */
+        .bloco-shunts { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
+        .bloco-shunts p { margin: 4px 0; font-weight: bold; }
+
+        /* BLOCO DE NAVEGAÇÃO REFORÇADO */
+        .nav-block { text-align: center; margin: 30px 0 10px 0; display: block; clear: both; }
+        .btn-voltar { display: inline-block; padding: 12px 24px; background: #333333; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .btn-voltar:hover, .btn-voltar:active { background: #555555; color: white; }
+
+        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; font-weight: bold; border-top: 1px solid #eee; padding-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Schindler — Miconic Iberia</h1>
+
+    <!-- Caixa da Foto Física Mapeada -->
+    <div class="caixa-imagem">
+        <img src="schindler-iberia.jpg" alt="Placa Schindler Miconic Iberia" onerror="this.style.display='none'; document.getElementById('lbl-iberia').innerText='Fotografia física pendente...';">
+        <div id="lbl-iberia" class="legenda-imagem"><strong>Esquema Técnico de Campo:</strong> Monitorização da linha de alta tensão (120Vac) na placa NGB / EBR através das réguas modulares de interligação "X".</div>
+    </div>
+
+    <!-- TABELA DE SINALIZAÇÃO DE LEDS -->
+    <h3>Sinalização de LEDs Diagnóstico (Monitorização Ótica)</h3>
+    <table class="tabela-leds">
+        <thead>
+            <tr>
+                <th style="width: 25%;">LED</th>
+                <th>Ponto de Leitura / Condição de Ativação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="led-indicator"></span><span class="led-name">RSE</span></td>
+                <td><strong>Relé de Segurança Geral</strong>. Valida todo o circuito mecânico da caixa e cabina. Apaga se houver corte entre a origem <strong>X20.3</strong> e as seguranças de poço em <strong>X16.4</strong>.</td>
+            </tr>
+            <tr>
+                <td><span class="led-indicator"></span><span class="led-name">RPX</span></td>
+                <td><strong>Relé de Monitorização de Portas</strong>. Acende indicando sinal de presença e encosto correto de todas as folhas e trincos frontais/traseiros. Linha terminal controlada em <strong>X15</strong> e <strong>X19</strong>.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- NOTAS TÉCNICAS DE CAMPO -->
+    <h3>Notas Técnicas de Campo (Verificações)</h3>
+    <div class="bloco-shunts">
+        <p>• <strong>Risco Elétrico:</strong> Atenção acrescida ao efetuar medições. A cadeia opera a 120V AC, apresentando perigo real de choque elétrico ou curto-circuito grave.</p>
+        <p>• <strong>Lógica Serial Completa:</strong> A linha cruza sequencialmente do quadro para a caixa, teto de cabina e portas de patamar, descendo na numeração dos conectores X20 para X15.</p>
+        <p>• ATENÇÃO: Verifique sempre se as portas traseiras (se existirem) estão devidamente inseridas na malha em série nos bornes X16 e X15 antes de diagnosticar falha de trinco.</p>
+    </div>
+    <!-- Alerta de Tensão -->
+    <div class="tensao-destaque">TENSÃO DO CIRCUITO: 120V AC</div>
+    
+    <!-- CADEIA DE BORNES SEGUINDO A ORDEM EXATA DE CAMPO DADA -->
+    <h3>Cadeia de Bornes de Segurança</h3>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 58%;">Componente Técnico / Circuito</th>
+                <th style="width: 42%; text-align: center;">Pontas do Multímetro</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-alv">Alimentação / Máquina</span><br>
+                    <strong>Contacto do volante da máquina e porta de visita do poço</strong><br>
+                    Origem da Linha de Segurança
+                </td>
+                <td>
+                    <div class="borne-container">X20.3 <span class="seta-teste">➔</span> X20.1</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Cabine</span><br>
+                    <strong>Stop da revisão, contactos da porta de cabine, páraquedas e fins de curso</strong><br>
+                    Série Geral de Cabine
+                </td>
+                <td>
+                    <div class="borne-container">X19.5 <span class="seta-teste">➔</span> X19.1</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
+                    <strong>Páraquedas do contrapeso</strong><br>
+                    Segurança de Contrapeso
+                </td>
+                <td>
+                    <div class="borne-container">X18.2 <span class="seta-teste">➔</span> X18.1</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
+                    <strong>Limitador de Velocidade (LV)</strong><br>
+                    Corte do Limitador Superior
+                </td>
+                <td>
+                    <div class="borne-container">X17.4 <span class="seta-teste">➔</span> X17.3</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
+                    <strong>Limitador de Velocidade do contrapeso</strong><br>
+                    Corte do Limitador Inferior
+                </td>
+                <td>
+                    <div class="borne-container">X17.2 <span class="seta-teste">➔</span> X17.1</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
+                    <strong>Amortecedores de poço e Rodas Tensoras</strong><br>
+                    Dispositivos Físicos do Poço
+                </td>
+                <td>
+                    <div class="borne-container">X16.7 <span class="seta-teste">➔</span> X16.6</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
+                    <strong>Stop da Botoneira de emergência</strong><br>
+                    Botão de Emergência do Quadro
+                </td>
+                <td>
+                    <div class="borne-container">X16.6 <span class="seta-teste">➔</span> X16.5</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
+                    <strong>Stop de poço</strong><br>
+                    Botão de Emergência do Poço
+                </td>
+                <td>
+                    <div class="borne-container">X16.5 <span class="seta-teste">➔</span> X16.4</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
+                    <strong>Contactos das portas de piso frontais</strong><br>
+                    Série de Presença Frontal
+                </td>
+                <td>
+                    <div class="borne-container">X16.4 <span class="seta-teste">➔</span> X16.3</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
+                    <strong>Contactos das portas de piso traseiras</strong><br>
+                    Série de Presença Traseira
+                </td>
+                <td>
+                    <div class="borne-container">X16.2 <span class="seta-teste">➔</span> X16.1</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
+                    <strong>Encravamento das portas frontais</strong><br>
+                    Série de Trincos Frontais
+                </td>
+                <td>
+                    <div class="borne-container">X15.5 <span class="seta-teste">➔</span> X15.4</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
+                    <strong>Encravamento das portas traseiras</strong><br>
+                    Série de Trincos Traseiros
+                </td>
+                <td>
+                    <div class="borne-container">X15.3 <span class="seta-teste">➔</span> X15.2</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
+                    <strong>Encravamento das portas de cabine e patim móvel</strong><br>
+                    Série Final de Autorização de Marcha
+                </td>
+                <td>
+                    <div class="borne-container">X19.2 <span class="seta-teste">➔</span> X19.4</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="nav-block">
+        <a href="index.html" class="btn-voltar">◀ Voltar ao Menu</a>
+    </div>
+</div>
+
+<div class="footer">
+    Nelson 15035248 &copy; Guia de Campo Exclusivo
+</div>
+
+</body>
+</html>
