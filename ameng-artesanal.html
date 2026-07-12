@@ -11,8 +11,8 @@
             color: #333; 
             margin: 0; 
             padding: 15px; 
-            /* MARCA DE ÁGUA DEFENSIVA REFORÇADA NA DIAGONAL */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='180' height='120'%3E%3Ctext x='20' y='65' fill='rgba(0,0,0,0.07)' font-size='12' font-family='Arial' font-weight='bold' transform='rotate(-30 90 60)'%3ENelson 15035248%3C/text%3E%3C/svg%3E");
+            /* MARCA DE ÁGUA DEFENSIVA REFORÇADA NA DIAGONAL (CORRIGIDA) */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='180' height='120'%3E%3Ctext x='20' y='65' fill='rgba(0,0,0,0.07)' font-size='12' font-family='Arial' font-weight='bold' transform='rotate(-30 90 60)'%3ENelson%2015035248%3C/text%3E%3C/svg%3E");
             background-repeat: repeat;
         }
         .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; }
@@ -35,8 +35,8 @@
         .bloco-shunts { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
         .bloco-shunts p { margin: 4px 0; font-weight: bold; }
 
-        .btn-voltar { display: inline-block; margin-top: 20px; padding: 10px 15px; background: #666; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; }
-        .btn-voltar:active { background: #333; }
+        .btn-voltar { display: inline-block; margin-top: 20px; padding: 10px 15px; background: #333; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; }
+        .btn-voltar:active { background: #555; }
         .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; font-weight: bold; }
     </style>
 </head>
@@ -47,8 +47,8 @@
     
     <!-- Caixa da Foto Física -->
     <div class="caixa-imagem">
-        <img src="ameng-placa.jpg" alt="Painel AM ENG Artesanal">
-        <div class="legenda-imagem">Painel Físico: Referência de diagnóstico AM ENG</div>
+        <img src="ameng-placa.jpg" alt="Painel AM ENG Artesanal" onerror="this.style.display='none'; document.getElementById('lbl-ameng').innerText='Fotografia física ameng-placa.jpg pendente...';">
+        <div id="lbl-ameng" class="legenda-imagem">Painel Físico: Referência de diagnóstico AM ENG</div>
     </div>
 
     <!-- NOTAS TÉCNICAS RELEVANTES PARA CIRCUITO MISTO -->
@@ -84,7 +84,7 @@
         </tbody>
     </table>
 
-    <a href="index.html" class="btn-voltar">⬅️ Voltar ao Menu</a>
+    <a href="index.html" class="btn-voltar">◀ Voltar ao Menu</a>
 
     <div class="footer">
         © Nelson 15035248 • Guia de Campo Exclusivo
