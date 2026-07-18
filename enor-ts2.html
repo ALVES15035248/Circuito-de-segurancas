@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enor TS2 — Circuitos de Segurança</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #f4f6f9; 
+            color: #333; 
+            margin: 0; 
+            padding: 15px; 
+            /* MARCA DE ÁGUA PADRÃO CORRIGIDA */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='180' height='120' viewBox='0 0 180 120'%3E%3Ctext x='20' y='70' fill='rgba(0,0,0,0.03)' font-size='12' font-family='Arial' font-weight='bold' transform='rotate(-25 90 60)'%3ENelson 15035248%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-attachment: fixed;
+        }
+        .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; }
+        h1 { color: #0d47a1; font-size: 18px; margin-bottom: 5px; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
+        h3 { font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
+        
+        .tensao-destaque { font-size: 14px; margin: 15px 0 5px 0; color: #d32f2f; font-weight: bold; text-align: left; }
+        
+        /* TABELA ULTRA INTUITIVA */
+        table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; }
+        th, td { border: 1px solid #ddd; padding: 10px 8px; text-align: left; vertical-align: middle; }
+        th { background-color: #f2f2f2; font-weight: bold; }
+        
+        /* BADGES EXCLUSIVAS DE SÉRIE */
+        .borne-container { display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 13px; font-weight: bold; background: #222; color: #fff; padding: 4px 8px; border-radius: 4px; white-space: nowrap; }
+        .seta-teste { margin: 0 6px; color: #ffeb3b; font-size: 12px; }
+        
+        .bloco-tag { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; }
+        .tag-alv { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .tag-sgc { background: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
+        .tag-prt { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+
+        /* CAIXA DE IMAGEM */
+        .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
+        .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
+        .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; line-height: 1.4; }
+
+        /* Bloco de Notas Técnicas de Shunts */
+        .bloco-shunts { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
+        .bloco-shunts p { margin: 4px 0; font-weight: bold; }
+
+        .btn-voltar { display: inline-block; margin-top: 20px; padding: 10px 15px; background: #666; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; }
+        .btn-voltar:active { background: #333; }
+        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Enor — TS2</h1>
+    
+    <!-- Caixa da Foto Física -->
+    <div class="caixa-imagem">
+        <img src="enor-ts2.jpg" alt="Placa Enor TS2" onerror="this.style.display='none'; document.getElementById('placeholder-legenda').style.display='none';">
+        <div id="placeholder-legenda" class="legenda-imagem"><strong>Esquema de Campo:</strong> Alinhamento da régua de bornes da série de segurança geral e controlo de trincos no conector principal.</div>
+    </div>
+
+    <!-- NOTAS TÉCNICAS DE CAMPO -->
+    <h3>Notas Técnicas de Campo (Verificações)</h3>
+    <div class="bloco-shunts">
+        <p>• <strong>Ponto de Medição:</strong> Realize as leituras utilizando o borne comum de massa ou neutro do circuito de manobra como referência.</p>
+        <p>• <strong>Cadeia de Séries:</strong> Certifique-se de que os contactos mecânicos de fim de curso estão totalmente desimpedidos antes de testar os bornes.</p>
+        <p>• ATENÇÃO: Nunca execute shunts permanentes nos blocos de segurança sob risco de causar danos permanentes na placa eletrónica central.</p>
+    </div>
+
+    <!-- Alerta de Tensão -->
+    <div class="tensao-destaque">TENSÃO DO CIRCUITO: [?] V AC/DC</div>
+    
+    <h3>Cadeia de Bornes de Segurança</h3>
+    <table id="tabelaBornes">
+        <thead>
+            <tr>
+                <th style="width: 60%;">Componente Técnico / Circuito</th>
+                <th style="width: 40%; text-align: center;">Pontas do Multímetro</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-alv">Alimentação</span><br>
+                    <strong>Início da Linha de Segurança</strong><br>
+                    <small style="color:#666;">Origem do circuito de seguranças da manobra</small>
+                </td>
+                <td>
+                    <div class="borne-container">[Borne A] <span class="seta-teste">➔</span> [Borne B]</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
+                    <strong>Contactos do Poço / Fundo e Stop</strong><br>
+                    <small style="color:#666;">Série de segurança do fundo do poço e botões de paragem</small>
+                </td>
+                <td>
+                    <div class="borne-container">[Borne B] <span class="seta-teste">➔</span> [Borne C]</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
+                    <strong>Contactos de Portas Exteriores / Piso</strong><br>
+                    <small style="color:#666;">Série de presença das portas automáticas ou manuais de piso</small>
+                </td>
+                <td>
+                    <div class="borne-container">[Borne C] <span class="seta-teste">➔</span> [Borne D]</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
+                    <strong>Série de Trincos / Encravamento</strong><br>
+                    <small style="color:#666;">Contactos de encravamento mecânico das portas de piso</small>
+                </td>
+                <td>
+                    <div class="borne-container">[Borne D] <span class="seta-teste">➔</span> [Borne E]</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Cabine</span><br>
+                    <strong>Contacto de Porta de Cabina</strong><br>
+                    <small style="color:#666;">Série de segurança e fecho do operador de cabina</small>
+                </td>
+                <td>
+                    <div class="borne-container">[Borne E] <span class="seta-teste">➔</span> [Borne F]</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-alv">Retorno</span><br>
+                    <strong>Fim de Série (Entrada na Placa)</strong><br>
+                    <small style="color:#666;">Retorno total da cadeia para autorização de marcha</small>
+                </td>
+                <td>
+                    <div class="borne-container">[Borne F] <span class="seta-teste">➔</span> [Massa]</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="text-align: center;">
+        <a href="index.html" class="btn-voltar">⬅ Voltar ao Menu</a>
+    </div>
+
+    <div class="footer">
+        © Nelson 15035248 • Base de dados móvel privada
+    </div>
+</div>
+
+</body>
+</html>
