@@ -165,6 +165,7 @@
     </div>
 </div>
 
+<!-- SCRIPT ATUALIZADO E SEM CONFLITOS DE TIMEOUT -->
 <script>
 function irParaManobra() {
     var select = document.getElementById('manobraSelect');
@@ -174,7 +175,8 @@ function irParaManobra() {
     }
 }
 
-// CORREÇÃO CRÍTICA: Sempre que a página voltar a aparecer (retroceder), limpa o menu de forma limpa
+/* BLINDAGEM DA CACHE: Sempre que a página é exibida (inclusive ao retroceder), 
+   a caixa de seleção limpa o valor de forma limpa e imediata */
 window.addEventListener('pageshow', function() {
     var select = document.getElementById('manobraSelect');
     if (select) {
@@ -182,7 +184,6 @@ window.addEventListener('pageshow', function() {
     }
 });
 </script>
-
 
 </body>
 </html>
