@@ -11,7 +11,7 @@
             color: #333; 
             margin: 0; 
             padding: 15px; 
-            /* MARCA DE ÁGUA DEFENSIVA REGISTADA CORRIGIDA */
+            /* MARCA DE ÁGUA DEFENSIVA REGISTADA */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='160' height='100'%3E%3Ctext x='20' y='50' fill='rgba(0,0,0,0.03)' font-size='11' font-family='Arial' font-weight='bold' transform='rotate(-25 80 50)'%3ENelson 15035248%3C/text%3E%3C/svg%3E");
             background-repeat: repeat;
         }
@@ -56,16 +56,16 @@
     
     <!-- Caixa da Foto Física -->
     <div class="caixa-imagem">
-        <img src="enor-ts2.jpg" alt="Quadro de Comando Enor TS2">
-        <div class="legenda-imagem"><strong>Painel Físico:</strong> Quadro de comando Enor TS2 com barramento modular de conectores rápidos e blocos de segurança em linha.</div>
+        <img src="enor-ts2.jpg" alt="Quadro de Comando Enor TS2" onerror="this.style.display='none'; document.getElementById('placeholder-legenda').style.display='none';">
+        <div id="placeholder-legenda" class="legenda-imagem"><strong>Esquema de Campo:</strong> Barramento e réguas de bornes principais para monitorização da série de segurança geral e trincos.</div>
     </div>
 
     <!-- NOTAS TÉCNICAS DE CAMPO -->
     <h3>Notas Técnicas de Campo (Verificações)</h3>
     <div class="bloco-shunts">
-        <p>• <strong>Fusível de Linha:</strong> O circuito depende inteiramente da integridade do fusível F2 (4A). Valide a tensão inicial logo após este componente.</p>
-        <p>• <strong>Análise de Avarias:</strong> Siga a sequência lógica da tabela. Se medir 120Vac no borne 11 mas encontrar 0V no borne 12, a interrupção está num dos limitadores.</p>
-        <p>• ATENÇÃO: Shunts temporários para testes em bornes de trincos ou portas devem ser removidos imediatamente antes de restabelecer o modo normal.</p>
+        <p>• <strong>Proteção Geral:</strong> O circuito é alimentado e protegido diretamente pelo fusível F2 de 4 Amperes.</p>
+        <p>• <strong>Análise de Avarias:</strong> Siga a sequência lógica dos bornes. Se medir 120Vac no borne 11 mas encontrar 0V no borne 12, a avaria estará num dos limitadores de velocidade.</p>
+        <p>• ATENÇÃO: 120Vac é uma tensão perigosa. Nunca deixe shunts permanentes sob o risco de anular seguranças mecânicas e de portas críticas.</p>
     </div>
 
     <!-- Alerta de Tensão -->
@@ -83,7 +83,7 @@
                 <td>
                     <span class="bloco-tag tag-alv">Alimentação</span><br>
                     <strong>Início da Linha de Segurança</strong><br>
-                    <small style="color:#666;">Origem do circuito e proteção no fusível F2 (4A)</small>
+                    <small style="color:#666;">Proteção do circuito no fusível F2 (4A) até à entrada comum</small>
                 </td>
                 <td>
                     <div class="borne-container">F2 <span class="seta-teste">➔</span> Borne 10</div>
@@ -91,8 +91,8 @@
             </tr>
             <tr>
                 <td>
-                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
-                    <strong>Série de Dispositivos do Poço e Limites</strong><br>
+                    <span class="bloco-tag tag-sgc">Gerais Caixa / Poço</span><br>
+                    <strong>Série de Dispositivos e Limites</strong><br>
                     <small style="color:#666;">Roda tensora contrapeso, roda tensora cabine, stop poço, FC inferior e FC superior</small>
                 </td>
                 <td>
@@ -101,8 +101,8 @@
             </tr>
             <tr>
                 <td>
-                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
-                    <strong>Mecânicos de Velocidade</strong><br>
+                    <span class="bloco-tag tag-sgc">Gerais Mecânicos</span><br>
+                    <strong>Limitadores de Velocidade</strong><br>
                     <small style="color:#666;">Limitador de velocidade do contrapeso e limitador de velocidade da cabine</small>
                 </td>
                 <td>
@@ -112,7 +112,7 @@
             <tr>
                 <td>
                     <span class="bloco-tag tag-sgc">Gerais Cabine</span><br>
-                    <strong>Dispositivos de Cabine</strong><br>
+                    <strong>Componentes de Cabine</strong><br>
                     <small style="color:#666;">Contacto de alongamento de cabos e contacto mecânico do páraquedas</small>
                 </td>
                 <td>
@@ -132,7 +132,7 @@
             <tr>
                 <td>
                     <span class="bloco-tag tag-sgc">Gerais Cabine</span><br>
-                    <strong>Revisão e Portas de Cabine</strong><br>
+                    <strong>Revisão e Cabine</strong><br>
                     <small style="color:#666;">Stop da botoneira de revisão e encravamento das portas de cabine</small>
                 </td>
                 <td>
@@ -142,8 +142,8 @@
             <tr>
                 <td>
                     <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
-                    <strong>Encravamento de Portas de Piso</strong><br>
-                    <small style="color:#666;">Série de trincos mecânicos de piso (Autorização final de marcha)</small>
+                    <strong>Encravamento das Portas de Piso</strong><br>
+                    <small style="color:#666;">Série total de trincos mecânicos de piso (Autorização final de marcha)</small>
                 </td>
                 <td>
                     <div class="borne-container">Borne 140 <span class="seta-teste">➔</span> Borne 160</div>
@@ -152,8 +152,9 @@
         </tbody>
     </table>
 
-    <!-- Botão atualizado de volta para o index.html padrão -->
-    <a href="index.html" class="btn-voltar">⬅️ Voltar ao Menu</a>
+    <div style="text-align: center;">
+        <a href="index.html" class="btn-voltar">⬅️ Voltar ao Menu</a>
+    </div>
 
     <div class="footer">
         © Nelson 15035248 • Guia de Campo Exclusivo
