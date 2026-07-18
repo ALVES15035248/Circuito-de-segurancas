@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bornes de Segurança de Elevadores</title>
-    <link rel="manifest" href="manifest.json">
     <style>
         body { 
             font-family: Arial, sans-serif; 
@@ -12,45 +11,11 @@
             color: #333; 
             margin: 0; 
             padding: 15px;
-            position: relative;
-            min-height: 100vh;
+            /* MARCA DE ÁGUA IMPEDIMENTO DE CÓPIA */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='160' height='100'%3E%3Ctext x='20' y='50' fill='rgba(0,0,0,0.03)' font-size='11' font-family='Arial' font-weight='bold' transform='rotate(-25 80 50)'%3ENelson 15035248%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
         }
-
-        /* MARCA DE ÁGUA COMPACTA NATIVA — IMPEDE A CÓPIA E REPETE POR TODA A PÁGINA */
-        body::before {
-            content: "Nelson 15035248 \A0\A0\A0\A0\A0\A0 Nelson 15035248 \A0\A0\A0\A0\A0\A0 Nelson 15035248";
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            right: -50%;
-            bottom: -50%;
-            z-index: -1;
-            transform: rotate(-25deg);
-            display: flex;
-            align-content: center;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            font-size: 14px;
-            font-weight: bold;
-            color: rgba(0, 0, 0, 0.03); /* Opacidade muito leve para não incomodar a leitura */
-            letter-spacing: 40px;
-            line-height: 120px;
-            pointer-events: none; /* Permite clicar nos botões por cima sem bloquear */
-            white-space: pre-wrap;
-        }
-
-        .container { 
-            max-width: 600px; 
-            background: rgba(255, 255, 255, 0.96); 
-            padding: 20px; 
-            border-radius: 8px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-            margin: auto; 
-            text-align: center; 
-            position: relative;
-            z-index: 1;
-        }
+        .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; text-align: center; }
         
         /* ÍCONE ILUSTRATIVO: ELEVADOR COM PASSAGEIROS */
         .elevator-passenger-icon { width: 70px; height: 70px; margin: 15px auto; display: flex; align-items: center; justify-content: center; background: #fff; border: 3px solid #d32f2f; border-radius: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.1); position: relative; }
@@ -61,7 +26,7 @@
         /* Filtro Único Limpo */
         .filter-section { background: #eef2f7; padding: 20px; border-radius: 6px; margin-bottom: 20px; box-sizing: border-box; }
         label { font-weight: bold; display: block; margin-bottom: 10px; font-size: 15px; color: #333; }
-        select { width: 100%; padding: 12px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc; max-width: 350px; background: white; color: black; font-weight: bold; cursor: pointer; }
+        select { width: 100%; padding: 12px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc; max-width: 350px; background: white; color: black; font-weight: bold; }
         optgroup { font-weight: bold; color: #0d47a1; background: #f0f4f8; }
         option { font-weight: normal; color: black; background: white; }
 
@@ -134,10 +99,10 @@
                 <option value="efalift-g16.html">G16</option>
             </optgroup>
 
-            <optgroup label="Enor">
+               <optgroup label="Enor">
                 <option value="enor-ts2.html">TS2</option>
             </optgroup>
-            
+
             <optgroup label="Otis">
                 <option value="otis-mcs220.html">MCS220</option>
                 <option value="otis-ne300.html">NE300</option>
@@ -146,7 +111,7 @@
             <optgroup label="Schindler">
                 <option value="schindler-bionic1.html">Smart</option>
                 <option value="schindler-bionic5.html">3300</option>
-                <option value="schindler-iberia.html">Miconic Ibéria</option>
+                <option value="schindler-iberia">Miconic Ibéria</option>
             </optgroup>
             
             <optgroup label="ThyssenKrupp (TKE)">
@@ -171,23 +136,10 @@
 
 <script>
 function irParaManobra() {
-    var select = document.getElementById('manobraSelect');
-    var urlDestino = select.value;
+    var urlDestino = document.getElementById('manobraSelect').value;
     if (urlDestino) {
         window.location.href = urlDestino;
-        setTimeout(function() { select.value = ""; }, 500);
     }
-}
-
-// REGISTO DA PWA (SISTEMA OFFLINE)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('sw.js').then(function(registration) {
-            console.log('PWA: Ativa com sucesso no escopo: ', registration.scope);
-        }, function(err) {
-            console.log('PWA: Falha ao registar: ', err);
-        });
-    });
 }
 </script>
 
