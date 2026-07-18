@@ -4,6 +4,9 @@ const urlsToCache = [
   'manifest.json',
   // Adicione abaixo os ficheiros das manobras à medida que os criar:
   'ako-542107.html',
+  'aliseu-itala.html',
+  'ameng-artesanal.html',
+  'carlossilva-crono.html',
   'otis-mcs220.html',
   'schindler-bionic1.html'
 ];
