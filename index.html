@@ -171,10 +171,18 @@ function irParaManobra() {
     var urlDestino = select.value;
     if (urlDestino) {
         window.location.href = urlDestino;
-        setTimeout(function() { select.value = ""; }, 500);
     }
 }
+
+// CORREÇÃO CRÍTICA: Sempre que a página voltar a aparecer (retroceder), limpa o menu de forma limpa
+window.addEventListener('pageshow', function() {
+    var select = document.getElementById('manobraSelect');
+    if (select) {
+        select.value = "";
+    }
+});
 </script>
+
 
 </body>
 </html>
