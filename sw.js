@@ -1,14 +1,25 @@
-const CACHE_NAME = 'ako-542107';'aliseu-itala';'ameng-artesanal';'carlossilva-crono'
-const CACHE_NAME = 'aliseu-itala';
-const CACHE_NAME = 'ameng-artesanal';
-const CACHE_NAME = 'carlossilva-crono';
+// Apenas UM nome para o baú de memória (sempre que atualizar o site, mude para v2, v3, etc.)
+const CACHE_NAME = 'elevadores-cache-v1';
+
+// Todos os ficheiros (HTML e Imagens) que a app vai guardar para funcionar offline
 const urlsToCache = [
   'index.html',
   'manifest.json',
-  // Adicione abaixo os ficheiros das manobras à medida que os criar:
+  
+  // Páginas HTML das Manobras
   'ako-542107.html',
+  'aliseu-itala.html',
+  'ameng-artesanal.html',
+  'carlossilva-crono.html',
   'otis-mcs220.html',
-  'schindler-bionic1.html'
+  'schindler-bionic1.html',
+  
+  // IMAGENS / FOTOS (Substitua pelos nomes exatos dos seus ficheiros de imagem)
+  // Exemplo se as fotos estiverem na mesma pasta:
+  'ako-542107.jpg',
+  'aliseu-itala.jpg',
+  'ameng-artesanal.jpg',
+  'carlossilva-crono.jpg'
 ];
 
 // Instalação: Grava os ficheiros na memória local
@@ -20,7 +31,7 @@ self.addEventListener('install', event => {
   );
 });
 
-// Ativação: Limpa caches antigas se atualizar a versão
+// Ativação: Limpa as versões antigas da cache automaticamente
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -35,11 +46,8 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Interceção de pedidos: Se estiver offline, carrega a cópia local
+// Interceção de pedidos: Serve os ficheiros locais instantaneamente
 self.addEventListener('fetch', event => {
-  event.waitUntil(
-    self.registration.showNotification
-  );
   event.respondWith(
     caches.match(event.request).then(response => {
       return response || fetch(event.request);
