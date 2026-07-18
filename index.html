@@ -6,20 +6,51 @@
     <title>Bornes de Segurança de Elevadores</title>
     <link rel="manifest" href="manifest.json">
     <style>
-       body { 
-    font-family: Arial, sans-serif; 
-    background: #f4f6f9; 
-    color: #333; 
-    margin: 0; 
-    padding: 15px;
-    
-    /* MARCA DE ÁGUA EM BASE64 — FUNCIONA EM QUALQUER NAVEGADOR MÓVEL */
-    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTgwIDEyMCI+PHRleHQgeD0iMjAiIHk9IjcwIiBmaWxsPSJyZ2JhKDAsMCwwLDAuMDQpIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtd2VpZ2h0PSJib2xkIiB0cmFuc2Zvcm09InJvdGF0ZSgtMjUgOTAgNjApIj5OZWxzb24gMTUwMzUyNDg8L3RleHQ+PC9zdmc+");
-    background-repeat: repeat;
-    background-attachment: fixed; 
-}
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #f4f6f9; 
+            color: #333; 
+            margin: 0; 
+            padding: 15px;
+            position: relative;
+            min-height: 100vh;
+        }
 
-        .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; text-align: center; }
+        /* MARCA DE ÁGUA COMPACTA NATIVA — IMPEDE A CÓPIA E REPETE POR TODA A PÁGINA */
+        body::before {
+            content: "Nelson 15035248 \A0\A0\A0\A0\A0\A0 Nelson 15035248 \A0\A0\A0\A0\A0\A0 Nelson 15035248";
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            z-index: -1;
+            transform: rotate(-25deg);
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 14px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.03); /* Opacidade muito leve para não incomodar a leitura */
+            letter-spacing: 40px;
+            line-height: 120px;
+            pointer-events: none; /* Permite clicar nos botões por cima sem bloquear */
+            white-space: pre-wrap;
+        }
+
+        .container { 
+            max-width: 600px; 
+            background: rgba(255, 255, 255, 0.96); 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+            margin: auto; 
+            text-align: center; 
+            position: relative;
+            z-index: 1;
+        }
         
         /* ÍCONE ILUSTRATIVO: ELEVADOR COM PASSAGEIROS */
         .elevator-passenger-icon { width: 70px; height: 70px; margin: 15px auto; display: flex; align-items: center; justify-content: center; background: #fff; border: 3px solid #d32f2f; border-radius: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.1); position: relative; }
@@ -42,7 +73,7 @@
 <div class="container">
     <!-- Ícone da Cabina com Passageiros -->
     <div class="elevator-passenger-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="55" height="55">
+        <svg xmlns="http://w3.org" viewBox="0 0 64 64" width="55" height="55">
             <line x1="32" y1="0" x2="32" y2="10" stroke="#666" stroke-width="2.5" />
             <line x1="12" y1="12" x2="52" y2="12" stroke="#d32f2f" stroke-width="2" />
             <line x1="12" y1="52" x2="52" y2="52" stroke="#d32f2f" stroke-width="2" />
