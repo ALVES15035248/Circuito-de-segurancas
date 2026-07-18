@@ -1,4 +1,7 @@
 const CACHE_NAME = 'ako-542107';'aliseu-itala';'ameng-artesanal';'carlossilva-crono'
+const CACHE_NAME = 'aliseu-itala';
+const CACHE_NAME = 'ameng-artesanal';
+const CACHE_NAME = 'carlossilva-crono';
 const urlsToCache = [
   'index.html',
   'manifest.json',
