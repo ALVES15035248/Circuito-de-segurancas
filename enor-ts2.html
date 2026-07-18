@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enor TS2 — Circuitos de Segurança</title>
-    <link rel="manifest" href="manifest.json">
     <style>
         body { 
             font-family: Arial, sans-serif; 
@@ -12,11 +11,34 @@
             color: #333; 
             margin: 0; 
             padding: 15px; 
-            /* MARCA DE ÁGUA PADRÃO CORRIGIDA */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='180' height='120' viewBox='0 0 180 120'%3E%3Ctext x='20' y='70' fill='rgba(0,0,0,0.03)' font-size='12' font-family='Arial' font-weight='bold' transform='rotate(-25 90 60)'%3ENelson 15035248%3C/text%3E%3C/svg%3E");
-            background-repeat: repeat;
-            background-attachment: fixed;
+            position: relative;
+            min-height: 100vh;
         }
+
+        /* MARCA DE ÁGUA NATIVA EM CSS — IMPEDE A CÓPIA */
+        body::before {
+            content: "Nelson 15035248 \A0\A0\A0\A0\A0\A0 Nelson 15035248 \A0\A0\A0\A0\A0\A0 Nelson 15035248";
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            z-index: -1;
+            transform: rotate(-25deg);
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 14px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.03); 
+            letter-spacing: 40px;
+            line-height: 120px;
+            pointer-events: none; 
+            white-space: pre-wrap;
+        }
+
         .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; }
         h1 { color: #0d47a1; font-size: 18px; margin-bottom: 5px; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
         h3 { font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
@@ -39,7 +61,7 @@
 
         /* CAIXA DE IMAGEM */
         .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
-        .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
+        .caixa-imagem img { width: 100%; max-width: 320px; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
         .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; line-height: 1.4; }
 
         /* Bloco de Notas Técnicas de Shunts */
@@ -58,20 +80,20 @@
     
     <!-- Caixa da Foto Física -->
     <div class="caixa-imagem">
-        <img src="enor-ts2.jpg" alt="Placa Enor TS2" onerror="this.style.display='none'; document.getElementById('placeholder-legenda').style.display='none';">
-        <div id="placeholder-legenda" class="legenda-imagem"><strong>Esquema de Campo:</strong> Alinhamento da régua de bornes da série de segurança geral e controlo de trincos no conector principal.</div>
+        <img src="enor-ts2.jpg" alt="Quadro de Comando Enor TS2" onerror="this.style.display='none'; document.getElementById('placeholder-legenda').style.display='none';">
+        <div id="placeholder-legenda" class="legenda-imagem"><strong>Vista do Quadro:</strong> Disposição dos módulos eletrónicos, transformador de manobra e calhas técnicas do modelo Enor TS2.</div>
     </div>
 
     <!-- NOTAS TÉCNICAS DE CAMPO -->
     <h3>Notas Técnicas de Campo (Verificações)</h3>
     <div class="bloco-shunts">
-        <p>• <strong>Ponto de Medição:</strong> Realize as leituras utilizando o borne comum de massa ou neutro do circuito de manobra como referência.</p>
-        <p>• <strong>Cadeia de Séries:</strong> Certifique-se de que os contactos mecânicos de fim de curso estão totalmente desimpedidos antes de testar os bornes.</p>
-        <p>• ATENÇÃO: Nunca execute shunts permanentes nos blocos de segurança sob risco de causar danos permanentes na placa eletrónica central.</p>
+        <p>• <strong>Proteção Geral:</strong> O circuito é alimentado e protegido diretamente pelo fusível F2 de 4 Amperes.</p>
+        <p>• <strong>Análise de Avarias:</strong> Siga a sequência lógica da tabela. Se medir 120Vac no borne 11 mas 0V no borne 12, a avaria está obrigatoriamente num dos limitadores de velocidade.</p>
+        <p>• ATENÇÃO: 120Vac é uma tensão perigosa. Nunca execute shunts permanentes sob risco de anular proteções críticas de portas, trincos ou encravamentos.</p>
     </div>
 
-    <!-- Alerta de Tensão -->
-    <div class="tensao-destaque">TENSÃO DO CIRCUITO: [?] V AC/DC</div>
+    <!-- Alerta de Tensão Redefinido -->
+    <div class="tensao-destaque">TENSÃO DO CIRCUITO: 120V AC</div>
     
     <h3>Cadeia de Bornes de Segurança</h3>
     <table id="tabelaBornes">
@@ -85,68 +107,89 @@
             <tr>
                 <td>
                     <span class="bloco-tag tag-alv">Alimentação</span><br>
+                    <strong>Fusível Geral de Proteção (F2)</strong><br>
+                    <small style="color:#666;">Proteção da linha a 120Vac por fusível de 4A</small>
+                </td>
+                <td>
+                    <div class="borne-container">Entrada F2 <span class="seta-teste">➔</span> Saída F2</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-alv">Alimentação</span><br>
                     <strong>Início da Linha de Segurança</strong><br>
-                    <small style="color:#666;">Origem do circuito de seguranças da manobra</small>
+                    <small style="color:#666;">Ponto de partida comum no quadro</small>
                 </td>
                 <td>
-                    <div class="borne-container">[Borne A] <span class="seta-teste">➔</span> [Borne B]</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="bloco-tag tag-sgc">Gerais Caixa</span><br>
-                    <strong>Contactos do Poço / Fundo e Stop</strong><br>
-                    <small style="color:#666;">Série de segurança do fundo do poço e botões de paragem</small>
-                </td>
-                <td>
-                    <div class="borne-container">[Borne B] <span class="seta-teste">➔</span> [Borne C]</div>
+                    <div class="borne-container">Saída F2 <span class="seta-teste">➔</span> Borne 10</div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
-                    <strong>Contactos de Portas Exteriores / Piso</strong><br>
-                    <small style="color:#666;">Série de presença das portas automáticas ou manuais de piso</small>
+                    <span class="bloco-tag tag-sgc">Gerais Caixa / Poço</span><br>
+                    <strong>Série de Dispositivos mecânicos</strong><br>
+                    <small style="color:#666;">Roda tensora contrapeso, roda tensora cabine, stop do poço, fins de curso inferior e superior</small>
                 </td>
                 <td>
-                    <div class="borne-container">[Borne C] <span class="seta-teste">➔</span> [Borne D]</div>
+                    <div class="borne-container">Borne 10 <span class="seta-teste">➔</span> Borne 11</div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <span class="bloco-tag tag-prt">Portas / Trincos</span><br>
-                    <strong>Série de Trincos / Encravamento</strong><br>
-                    <small style="color:#666;">Contactos de encravamento mecânico das portas de piso</small>
+                    <span class="bloco-tag tag-sgc">Gerais Mecânicos</span><br>
+                    <strong>Dispositivos de Velocidade</strong><br>
+                    <small style="color:#666;">Limitador de velocidade do contrapeso e limitador de velocidade da cabine</small>
                 </td>
                 <td>
-                    <div class="borne-container">[Borne D] <span class="seta-teste">➔</span> [Borne E]</div>
+                    <div class="borne-container">Borne 11 <span class="seta-teste">➔</span> Borne 12</div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <span class="bloco-tag tag-sgc">Gerais Cabine</span><br>
-                    <strong>Contacto de Porta de Cabina</strong><br>
-                    <small style="color:#666;">Série de segurança e fecho do operador de cabina</small>
+                    <strong>Mecânicos da Cabine</strong><br>
+                    <small style="color:#666;">Contacto de alongamento de cabos e contacto mecânico do páraquedas</small>
                 </td>
                 <td>
-                    <div class="borne-container">[Borne E] <span class="seta-teste">➔</span> [Borne F]</div>
+                    <div class="borne-container">Borne 120 <span class="seta-teste">➔</span> Borne 130</div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <span class="bloco-tag tag-alv">Retorno</span><br>
-                    <strong>Fim de Série (Entrada na Placa)</strong><br>
-                    <small style="color:#666;">Retorno total da cadeia para autorização de marcha</small>
+                    <span class="bloco-tag tag-prt">Portas / Piso</span><br>
+                    <strong>Fecho de Portas de Piso</strong><br>
+                    <small style="color:#666;">Contactos de fecho das portas semi-automáticas de piso</small>
                 </td>
                 <td>
-                    <div class="borne-container">[Borne F] <span class="seta-teste">➔</span> [Massa]</div>
+                    <div class="borne-container">Borne 130 <span class="seta-teste">➔</span> Borne 140A</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Gerais Cabine</span><br>
+                    <strong>Revisão e Cabine</strong><br>
+                    <small style="color:#666;">Stop da botoneira de revisão e encravamento das portas da cabine</small>
+                </td>
+                <td>
+                    <div class="borne-container">Borne 140A <span class="seta-teste">➔</span> Borne 140</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas / Piso</span><br>
+                    <strong>Encravamento Geral de Piso</strong><br>
+                    <small style="color:#666;">Série total de contactos de trincos / encravamento mecânico das portas de piso</small>
+                </td>
+                <td>
+                    <div class="borne-container">Borne 140 <span class="seta-teste">➔</span> Borne 160</div>
                 </td>
             </tr>
         </tbody>
     </table>
 
     <div style="text-align: center;">
-        <a href="index.html" class="btn-voltar">⬅ Voltar ao Menu</a>
+        <!-- Atualizado para direcionar para o seu novo ficheiro de menu -->
+        <a href="menu.html" class="btn-voltar">⬅ Voltar ao Menu</a>
     </div>
 
     <div class="footer">
