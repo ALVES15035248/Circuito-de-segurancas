@@ -11,7 +11,7 @@
             color: #333; 
             margin: 0; 
             padding: 15px; 
-            /* MARCA DE ÁGUA CORRIGIDA E ADAPTADA PARA NAVEGADORES MÓVEIS */
+            /* MARCA DE ÁGUA ADAPTADA PARA NAVEGADORES MÓVEIS */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='180' height='120'%3E%3Ctext x='20' y='65' fill='rgba(0,0,0,0.08)' font-size='12' font-family='Arial' font-weight='bold' transform='rotate(-30 90 60)'%3ENelson%2015035248%3C/text%3E%3C/svg%3E");
             background-repeat: repeat;
         }
@@ -28,13 +28,6 @@
         .tag-alv { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
         .tag-sgc { background: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
         .tag-prt { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
-        .tabela-leds { width: 100%; border-collapse: collapse; background: #fdfdfd; margin-top: 10px; }
-        .tabela-leds th { background-color: #eef2f7; color: #0d47a1; }
-        .led-indicator { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #4caf50; box-shadow: 0 0 6px #4caf50; margin-right: 8px; vertical-align: middle; }
-        .led-name { font-weight: bold; font-family: monospace; font-size: 14px; }
-        .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
-        .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
-        .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; line-height: 1.4; }
         .bloco-shunts { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
         .bloco-shunts p { margin: 4px 0; font-weight: bold; }
         .nav-block { text-align: center; margin: 30px 0 10px 0; display: block; clear: both; }
@@ -46,34 +39,17 @@
 <body>
 <div class="container">
     <h1>Enor — EC-3G eBUS</h1>
-    <div class="caixa-imagem">
-        <img src="enor-ec3g.jpg" alt="Placa Enor EC-3G" onerror="this.style.display='none'; document.getElementById('lbl-enor').innerText='Fotografia física enor-ec3g.jpg pendente...';">
-        <div id="lbl-enor" class="legenda-imagem"><strong>Esquema Técnico:</strong> Placa de Manobra Principal EC-3G.</div>
-    </div>
     
-    <h3>Sinalização de LEDs Diagnóstico (Monitorização Ótica)</h3>
-    <table class="tabela-leds">
-        <thead>
-            <tr><th style="width: 25%;">LED</th><th>Ponto de Leitura / Condição de Ativação</th></tr>
-        </thead>
-        <tbody>
-            <tr><td><span class="led-indicator"></span><span class="led-name">PES</span></td><td><strong>Princípio de Segurança / Stop Poço</strong>. Indica se a série inicial (contactos de poço, stop e tensores) está fechada.</td></tr>
-            <tr><td><span class="led-indicator"></span><span class="led-name">SGC</span></td><td><strong>Série Geral de Cabine</strong>. Monitoriza os contactos de segurança associados ao teto e cabine (stop revisão, páraquedas).</td></tr>
-            <tr><td><span class="led-indicator"></span><span class="led-name">SPO</span></td><td><strong>Série de Portas de Piso</strong>. Confirma o fecho dos contactos de presença das folhas exteriores do poço.</td></tr>
-            <tr><td><span class="led-indicator"></span><span class="led-name">SFE</span></td><td><strong>Série de Fechaduras (Trincos)</strong>. Fim da linha de segurança. Autoriza o acionamento dos contactores de marcha.</td></tr>
-        </tbody>
-    </table>
+    <!-- Alerta de Tensão e Proteção Técnica -->
+    <div class="tensao-destaque">TENSÃO DO CIRCUITO: 120V AC</div>
 
     <h3>Notas Técnicas de Campo</h3>
     <div class="bloco-shunts">
-        <p>• <strong>Comunicação eBUS:</strong> Esta manobra efetua a monitorização distribuída através de nós de barramento de campo.</p>
-        <p>• <strong>Pontos de Teste:</strong> Utilize os bornes dedicados do conetor de segurança para despiste rápido com o multímetro.</p>
+        <p>• <strong>Proteção Principal:</strong> Circuito protegido a montante pelo <strong>Fusível F2 (4A)</strong>.</p>
+        <p>• <strong>Diagnóstico Rápido:</strong> Meça com o multímetro em escala de AC nos bornes indicados para isolar a avaria na cadeia.</p>
     </div>
-
-    <!-- Alerta de Tensão -->
-    <div class="tensao-destaque">TENSÃO DO CIRCUITO: 48V DC</div>
     
-    <!-- CADEIA DE BORNES -->
+    <!-- CADEIA DE BORNES RESTRUTURADA COM OS TEUS DADOS -->
     <h3>Cadeia de Bornes de Segurança</h3>
     <table>
         <thead>
@@ -85,42 +61,62 @@
         <tbody>
             <tr>
                 <td>
-                    <span class="bloco-tag tag-alv">Alimentação / Início</span><br>
-                    <strong>Contacto de Stop e Fundo do Poço</strong><br>
-                    Início da Cadeia Geral
+                    <span class="bloco-tag tag-alv">Casa das Máquinas</span><br>
+                    <strong>Stop da máquina</strong><br>
+                    Origem pós-Fusível F2
                 </td>
                 <td>
-                    <div class="borne-container">XC1.1 <span class="seta-teste">➔</span> XC1.2</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="bloco-tag tag-sgc">Cabine</span><br>
-                    <strong>Série Geral de Cabine (Páraquedas e Limitador)</strong><br>
-                    Dispositivos Móveis
-                </td>
-                <td>
-                    <div class="borne-container">XC1.2 <span class="seta-teste">➔</span> XC1.3</div>
+                    <div class="borne-container">A2 <span class="seta-teste">➔</span> A3</div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <span class="bloco-tag tag-prt">Portas Piso</span><br>
-                    <strong>Contactos de Presença das Portas</strong><br>
-                    Série de Folhas
+                    <span class="bloco-tag tag-alv">Resgate</span><br>
+                    <strong>Comutador da botoneira de resgate</strong><br>
+                    Série de comando manual
                 </td>
                 <td>
-                    <div class="borne-container">XC1.3 <span class="seta-teste">➔</span> XC1.4</div>
+                    <div class="borne-container">A3 <span class="seta-teste">➔</span> 10</div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <span class="bloco-tag tag-prt">Trincos</span><br>
-                    <strong>Trincos Mecânicos de Encravamento</strong><br>
-                    Fim da Cadeia de Segurança
+                    <span class="bloco-tag tag-sgc">Poço</span><br>
+                    <strong>Roda tensora e Stop de poço</strong><br>
+                    Seguranças inferiores de caixa
                 </td>
                 <td>
-                    <div class="borne-container">XC1.4 <span class="seta-teste">➔</span> XC1.5</div>
+                    <div class="borne-container">10 <span class="seta-teste">➔</span> 11</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Cabine & Caixa</span><br>
+                    <strong>Stop de revisão, contacto anti-deriva, fins de curso e porta de visita</strong><br>
+                    Série geral de segurança móvel
+                </td>
+                <td>
+                    <div class="borne-container">120 <span class="seta-teste">➔</span> 130</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas Exterior</span><br>
+                    <strong>Encravamento das portas de piso</strong><br>
+                    Série de trincos / contactos exteriores
+                </td>
+                <td>
+                    <div class="borne-container">IEP <span class="seta-teste">➔</span> FEP</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas Cabine</span><br>
+                    <strong>Encravamento das portas de cabine</strong><br>
+                    Fim da linha de segurança / autoriza marcha
+                </td>
+                <td>
+                    <div class="borne-container">IEC <span class="seta-teste">➔</span> FEC</div>
                 </td>
             </tr>
         </tbody>
