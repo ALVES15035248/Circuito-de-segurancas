@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Padrão — Circuitos de Segurança</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #f4f6f9; 
+            color: #333; 
+            margin: 0; 
+            padding: 15px; 
+            /* MARCA DE ÁGUA ADAPTADA PARA NAVEGADORES MÓVEIS */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='180' height='120'%3E%3Ctext x='20' y='65' fill='rgba(0,0,0,0.08)' font-size='12' font-family='Arial' font-weight='bold' transform='rotate(-30 90 60)'%3ENelson%2015035248%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+        .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; box-sizing: border-box; }
+        h1 { color: #0d47a1; font-size: 18px; margin-bottom: 5px; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
+        h3 { font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
+        .tensao-destaque { font-size: 14px; margin: 15px 0 5px 0; color: #d32f2f; font-weight: bold; text-align: left; }
+        table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; table-layout: fixed; }
+        th, td { border: 1px solid #ddd; padding: 10px 8px; text-align: left; vertical-align: middle; word-wrap: break-word; }
+        th { background-color: #f2f2f2; font-weight: bold; }
+        .borne-container { display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 12px; font-weight: bold; background: #222; color: #fff; padding: 6px 4px; border-radius: 4px; white-space: nowrap; width: 100%; box-sizing: border-box; }
+        .seta-teste { margin: 0 4px; color: #ffeb3b; font-size: 11px; }
+        .bloco-tag { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; }
+        .tag-alv { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .tag-sgc { background: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
+        .tag-prt { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+        .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
+        .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
+        .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; line-height: 1.4; }
+        .bloco-shunts { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
+        .bloco-shunts p { margin: 4px 0; font-weight: bold; }
+        .nav-block { text-align: center; margin: 30px 0 10px 0; display: block; clear: both; }
+        .btn-voltar { display: inline-block; padding: 12px 24px; background: #333333; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .btn-voltar:hover, .btn-voltar:active { background: #555555; color: white; }
+        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; font-weight: bold; border-top: 1px solid #eee; padding-top: 15px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Elevadores Padrão — Quadro de Comando</h1>
+    
+    <div class="caixa-imagem">
+        <img src="padrao-quadro.jpg" alt="Quadro Elevadores Padrão" onerror="this.style.display='none'; document.getElementById('lbl-padrao').innerText='Fotografia física padrao-quadro.jpg pendente...';">
+        <div id="lbl-padrao" class="legenda-imagem"><strong>Esquema Técnico:</strong> Painel Elétrico e Bornes de Ligação Padrão.</div>
+    </div>
+
+    <!-- Alerta de Tensão do Circuito -->
+    <div class="tensao-destaque">TENSÃO DO CIRCUITO: 50V AC</div>
+
+    <h3>Notas Técnicas de Campo</h3>
+    <div class="bloco-shunts">
+        <p>• <strong>Alimentação Inicial:</strong> Linha protegida pelo <strong>Fusível F3</strong>.</p>
+        <p>• <strong>Pontes Internas (Bypass):</strong> Ligações de fábrica executadas internamente no quadro de comando de <strong>LV2 ➔ A1</strong>, de <strong>A2 ➔ E1</strong> e de <strong>E3 ➔ A3</strong>.</p>
+    </div>
+    
+    <h3>Cadeia de Bornes de Segurança</h3>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 58%;">Componente Técnico / Circuito</th>
+                <th style="width: 42%; text-align: center;">Pontas do Multímetro</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-alv">Alimentação & Fases</span><br>
+                    <strong>Relé de Monitorização de Fases (DFF)</strong><br>
+                    Início do Circuito após Fusível F3
+                </td>
+                <td>
+                    <div class="borne-container">DFF: 11 <span class="seta-teste">➔</span> 14</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-alv">Caixa / Limitador</span><br>
+                    <strong>Contacto do Limitador de Velocidade</strong><br>
+                    Dispositivo de disparo mecânico
+                </td>
+                <td>
+                    <div class="borne-container">LV1 <span class="seta-teste">➔</span> LV2</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Cabine & Fim de Curso</span><br>
+                    <strong>Interruptor do páraquedas, Fins de curso e Stop de cabine</strong><br>
+                    Série móvel geral (Bypass em LV2➔A1)
+                </td>
+                <td>
+                    <div class="borne-container">A1 <span class="seta-teste">➔</span> A2</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Série de Folhas</span><br>
+                    <strong>Fecho das portas de piso, Roda tensora e Stop de poço</strong><br>
+                    Seguranças fixas / poço (Bypass em A2➔E1)
+                </td>
+                <td>
+                    <div class="borne-container">E1 <span class="seta-teste">➔</span> E2</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Trincos de Piso</span><br>
+                    <strong>Encravamentos das portas de piso</strong><br>
+                    Linha em cascata pelas fechaduras exteriores
+                </td>
+                <td>
+                    <div class="borne-container">E2 <span class="seta-teste">➔</span> E3</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Cabine & Operador</span><br>
+                    <strong>Encravamento das portas de cabine e Interruptor de conservação</strong><br>
+                    Etapa final de autorização (Bypass em E3➔A3)
+                </td>
+                <td>
+                    <div class="borne-container">A3 <span class="seta-teste">➔</span> A4</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Botão de Navegação Voltar -->
+    <div class="nav-block">
+        <a href="index.html" class="btn-voltar">⬅ Voltar ao Menu Principal</a>
+    </div>
+
+    <div class="footer">
+        © Nelson 15035248 • Base de dados móvel privada
+    </div>
+</div>
+</body>
+</html>
