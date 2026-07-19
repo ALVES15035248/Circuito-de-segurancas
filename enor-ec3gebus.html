@@ -28,6 +28,9 @@
         .tag-alv { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
         .tag-sgc { background: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
         .tag-prt { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+        .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
+        .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
+        .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; line-height: 1.4; }
         .bloco-shunts { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
         .bloco-shunts p { margin: 4px 0; font-weight: bold; }
         .nav-block { text-align: center; margin: 30px 0 10px 0; display: block; clear: both; }
@@ -40,6 +43,12 @@
 <div class="container">
     <h1>Enor — EC-3G eBUS</h1>
     
+    <!-- RECUPERADO: Bloco de imagem estruturado -->
+    <div class="caixa-imagem">
+        <img src="enor-ec3g.jpg" alt="Placa Enor EC-3G" onerror="this.style.display='none'; document.getElementById('lbl-enor').innerText='Fotografia física enor-ec3g.jpg pendente...';">
+        <div id="lbl-enor" class="legenda-imagem"><strong>Esquema Técnico:</strong> Placa de Manobra Principal EC-3G.</div>
+    </div>
+
     <!-- Alerta de Tensão e Proteção Técnica -->
     <div class="tensao-destaque">TENSÃO DO CIRCUITO: 120V AC</div>
 
@@ -49,7 +58,7 @@
         <p>• <strong>Diagnóstico Rápido:</strong> Meça com o multímetro em escala de AC nos bornes indicados para isolar a avaria na cadeia.</p>
     </div>
     
-    <!-- CADEIA DE BORNES RESTRUTURADA COM OS TEUS DADOS -->
+    <!-- CADEIA DE BORNES RESTRUTURADA -->
     <h3>Cadeia de Bornes de Segurança</h3>
     <table>
         <thead>
