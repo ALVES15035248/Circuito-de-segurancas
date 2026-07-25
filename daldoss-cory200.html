@@ -61,6 +61,154 @@
         <p>• <strong>Diagnóstico Visual:</strong> Se a linha de segurança falhar, o <strong>LED 11 (VA Open)</strong> apaga imediatamente na CPU.</p>
         <p>• <strong>Bloqueio de Curso (Overtravel):</strong> Erros de fim de curso ou desalinhamento exigem pressionar o botão <strong>RESTORE</strong> por 2 segundos após resolver a avaria.</p>
     </div>
+
+        <!-- TABELA DE DIAGNÓSTICOS RECUPERADA E TRADUZIDA -->
+    <h3>Tabela de Diagnóstico — Códigos do Display</h3>
+    <p class="subtitle" style="text-align: left; margin-bottom: 10px;">Consulte o código ativo no display de 2 dígitos da placa CPU.</p>
+    
+    <table style="margin-bottom: 25px;">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 15%; text-align: center;">Cód.</th>
+                <th scope="col" style="width: 45%;">Descrição do Estado</th>
+                <th scope="col" style="width: 40%;">Entradas / Sinais Associados</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- GRUPO: MARCHA E FUNCIONAMENTO NORMAL -->
+            <tr style="background-color: #f9fbf9;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #2e7d32;">01</td>
+                <td><strong>Abrandamento</strong></td>
+                <td>Contactos de zona (E10 / E11)</td>
+            </tr>
+            <tr style="background-color: #f9fbf9;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #2e7d32;">02</td>
+                <td><strong>Abrandamento por Extremo</strong><br>Piso superior ou inferior</td>
+                <td>Contactos de zona (E10 / E11) e contactos de piso extremo (E12 / E13)</td>
+            </tr>
+            <tr style="background-color: #f9fbf9;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #2e7d32;">08</td>
+                <td><strong>Extremo superior e inferior simultâneos</strong></td>
+                <td>Contactos de piso extremo (E12 / E13)</td>
+            </tr>
+            <tr style="background-color: #f9fbf9;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #2e7d32;">12</td>
+                <td><strong>Em movimento / Marcha ativa</strong></td>
+                <td>Contactos de movimento (E02 / E03)</td>
+            </tr>
+            <tr style="background-color: #f9fbf9;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #2e7d32;">2b</td>
+                <td><strong>Estacionado com portas abertas</strong></td>
+                <td>Contacto de porta/caixa (17 / 18)</td>
+            </tr>
+            <tr style="background-color: #f9fbf9;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #2e7d32;">4E</td>
+                <td><strong>Estacionado em zona com portas fechadas</strong></td>
+                <td>Contactos de porta (17) e contactos de zona (E10 / E11)</td>
+            </tr>
+            <tr style="background-color: #f9fbf9;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #2e7d32;">4F</td>
+                <td><strong>Fora da zona de estacionamento</strong></td>
+                <td>Contactos de zona (E10 / E11)</td>
+            </tr>
+
+            <!-- GRUPO: ALERTAS DE PORTAS E FOTOCÉLULAS -->
+            <tr style="background-color: #fffdf7;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #ef6c00;">03</td>
+                <td><strong>Contacto de porta/caixa fora de zona</strong></td>
+                <td>Contacto de porta/caixa (17 / 18) — Escoras do poço</td>
+            </tr>
+            <tr style="background-color: #fffdf7;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #ef6c00;">15</td>
+                <td><strong>Temporizador de arranque expirou</strong></td>
+                <td>Contactos 17/18 parado ou E02/E03 em marcha</td>
+            </tr>
+            <tr style="background-color: #fffdf7;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #ef6c00;">21</td>
+                <td><strong>Portas abertas</strong></td>
+                <td>Chamada de cabine, contactos de porta/caixa (17 / 18)</td>
+            </tr>
+            <tr style="background-color: #fffdf7;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #ef6c00;">23</td>
+                <td><strong>Contacto de porta/caixa acionado</strong></td>
+                <td>Contacto de porta/caixa (17 / 18) — Escoras do poço</td>
+            </tr>
+            <tr style="background-color: #fffdf7;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #ef6c00;">24</td>
+                <td><strong>Barreira fotocélula interrompida</strong></td>
+                <td>Fotocélulas (E14) — Entrada E23 ativa</td>
+            </tr>
+            <tr style="background-color: #fffdf7;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #ef6c00;">27</td>
+                <td><strong>Bordo de segurança / Sobrecarga / Chamada</strong></td>
+                <td>Bordo (E07) — Sobrecarga (E09) — Chamada piso — Chassi cabine (16) — Entrada E23 ativa</td>
+            </tr>
+
+            <!-- GRUPO: FALHAS E BLOQUEIOS CRÍTICOS -->
+            <tr style="background-color: #fff5f5;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #d32f2f;">49</td>
+                <td><strong>Falha ao arrancar</strong></td>
+                <td>Contacto de porta/caixa (17 / 18)</td>
+            </tr>
+            <tr style="background-color: #fff5f5;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #d32f2f;">A1</td>
+                <td><strong>Emergência ativa</strong></td>
+                <td>24VDC/48VDC PFR (24VDC/48VDC no borne 12)</td>
+            </tr>
+            <tr style="background-color: #fff5f5;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #d32f2f;">A3</td>
+                <td><strong>Cabine fora da zona de desengate</strong><br>com portas abertas (AM, A3)</td>
+                <td>Entrada E23, contactos renivelamento (261, 262), fim de curso 11 (cadeia seg.) <br><span style="color:#d32f2f; font-size:11px;">* Requer botão RESTORE</span></td>
+            </tr>
+            <tr style="background-color: #fff5f5;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #d32f2f;">A4</td>
+                <td><strong>Manobra de Bombeiros ativa</strong></td>
+                <td>Entrada de serviço de bombeiros (E08)</td>
+            </tr>
+            <tr style="background-color: #fff5f5;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #d32f2f;">A6</td>
+                <td><strong>Retorno ao piso de bombeiros</strong></td>
+                <td>Entrada de serviço de bombeiros (E08)</td>
+            </tr>
+            <tr style="background-color: #fff5f5;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #d32f2f;">A7</td>
+                <td><strong>Termistores acionados (Sonda RTT/E04)</strong></td>
+                <td>Alarme temp. óleo (E04), alarme temp. motor RTT (TM-tm) <br><span style="color:#d32f2f; font-size:11px;">* Requer botão RESTORE</span></td>
+            </tr>
+            <tr style="background-color: #fff5f5;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #d32f2f;">AA</td>
+                <td><strong>RESET: Inicialização ou fora de zona</strong></td>
+                <td>Reset inicial — Contactos de zona (E10/E11) — Extremos (E12/E13)</td>
+            </tr>
+            <tr style="background-color: #fff5f5;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #d32f2f;">F1</td>
+                <td><strong>Circuitos de segurança abertos</strong></td>
+                <td>Interruptor VA — Manutenção (14)</td>
+            </tr>
+            <tr style="background-color: #fff5f5;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #d32f2f;">F2</td>
+                <td><strong>Fim de curso (Overtravel) ou Erro Renivelamento</strong></td>
+                <td>Falha de renivelamento (264), fim de curso 11 (cadeia seg.) <br><span style="color:#d32f2f; font-size:11px;">* Requer botão RESTORE</span></td>
+            </tr>
+            <tr style="background-color: #fff5f5;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #d32f2f;">F5</td>
+                <td><strong>Tempo máximo de viagem expirou</strong></td>
+                <td>Zonas (E10/E11) — Pisos extremos (E12/E13) (SW1 bit 3) <br><span style="color:#d32f2f; font-size:11px;">* Requer botão RESTORE</span></td>
+            </tr>
+            <tr style="background-color: #fff5f5;">
+                <td style="text-align: center; font-family: monospace; font-weight: bold; color: #d32f2f;">F9</td>
+                <td><strong>Nº máximo de tentativas de arranque atingido</strong></td>
+                <td>Contactos de movimento (E02 / E03) <br><span style="color:#d32f2f; font-size:11px;">** Requer botão RESET</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- BLOCO DE INSTRUÇÕES DE CAMPO -->
+    <div class="bloco-shunts" style="background-color: #f8d7da; border-left: 4px solid #dc3545; color: #721c24;">
+        <p>🔄 <strong>Procedimento de RESTORE (*) :</strong> Pressione o botão RESTORE na placa durante 2 segundos.</p>
+        <p>♺ <strong>Procedimento de RESET (**) :</strong> Pressione o botão RESET na placa.</p>
+    </div>
+
     
     <h3>Cadeia de Bornes de Segurança</h3>
     <table>
