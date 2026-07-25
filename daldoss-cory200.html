@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daldoss Elevonic Cory 200 — Circuitos de Segurança</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #f4f6f9; 
+            color: #333; 
+            margin: 0; 
+            padding: 15px; 
+            /* MARCA DE ÁGUA ADAPTADA E CORRIGIDA */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='180' height='120'%3E%3Ctext x='20' y='65' fill='rgba(0,0,0,0.08)' font-size='12' font-family='Arial' font-weight='bold' transform='rotate(-30 90 60)'%3ENelson%2015035248%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+        .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; box-sizing: border-box; }
+        h1 { color: #0d47a1; font-size: 18px; margin-bottom: 5px; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
+        h3 { font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
+        .tensao-destaque { font-size: 14px; margin: 15px 0 5px 0; color: #d32f2f; font-weight: bold; text-align: left; }
+        table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; table-layout: fixed; }
+        th, td { border: 1px solid #ddd; padding: 10px 8px; text-align: left; vertical-align: middle; word-wrap: break-word; }
+        th { background-color: #f2f2f2; font-weight: bold; }
+        .borne-container { display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 12px; font-weight: bold; background: #222; color: #fff; padding: 6px 4px; border-radius: 4px; white-space: nowrap; width: 100%; box-sizing: border-box; }
+        .seta-teste { margin: 0 4px; color: #ffeb3b; font-size: 11px; }
+        .bloco-tag { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; }
+        .tag-alv { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .tag-sgc { background: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
+        .tag-prt { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+        .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
+        .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
+        .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; line-height: 1.4; }
+        .bloco-shunts { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
+        .bloco-shunts p { margin: 4px 0; font-weight: bold; }
+        .nav-block { text-align: center; margin: 30px 0 10px 0; display: block; clear: both; }
+        .btn-voltar { display: inline-block; padding: 12px 24px; background: #333333; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .btn-voltar:hover, .btn-voltar:active { background: #555555; color: white; }
+        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; font-weight: bold; border-top: 1px solid #eee; padding-top: 15px; }
+
+        @media print {
+            .nav-block { display: none; }
+            body { background: white; color: black; }
+            .container { box-shadow: none; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Daldoss — Elevonic Cory 200</h1>
+    
+    <div class="caixa-imagem">
+        <img src="daldoss-cory200.jpg" alt="Placa Daldoss Cory 200" onerror="this.style.display='none'; document.getElementById('lbl-daldoss').innerText='Fotografia física daldoss-cory200.jpg pendente...';">
+        <div id="lbl-daldoss" class="legenda-imagem"><strong>Exemplar de CPU Cory 200 acoplada à placa de potência 204PWR.</strong></div>
+    </div>
+
+    <div class="tensao-destaque">TENSÃO DO CIRCUITO: 24V DC</div>
+
+    <h3>Notas Técnicas de Campo</h3>
+    <div class="bloco-shunts">
+        <p>• <strong>Diagnóstico Visual:</strong> Se a linha de segurança falhar, o <strong>LED 11 (VA Open)</strong> apaga imediatamente na CPU.</p>
+        <p>• <strong>Bloqueio de Curso (Overtravel):</strong> Erros de fim de curso ou desalinhamento exigem pressionar o botão <strong>RESTORE</strong> por 2 segundos após resolver a avaria.</p>
+    </div>
+    
+    <h3>Cadeia de Bornes de Segurança</h3>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col" style="width: 58%;">Componente Técnico / Circuito</th>
+                <th scope="col" style="width: 42%; text-align: center;">Pontas do Multímetro</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-alv">Quadro / Poço</span><br>
+                    <strong>Stop Geral de Segurança</strong><br>
+                    Trifásicos e proteção térmica inicial
+                </td>
+                <td>
+                    <div class="borne-container">+24V <span class="seta-teste">➔</span> ALT</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Fins de Curso</span><br>
+                    <strong>Contacto de Limite de Curso (Overtravel)</strong><br>
+                    Segurança máxima de fim de linha na caixa
+                </td>
+                <td>
+                    <div class="borne-container">ALT <span class="seta-teste">➔</span> FC</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-sgc">Caixa / Amortecedores</span><br>
+                    <strong>Contactos auxiliares de poço e cabine</strong><br>
+                    Série geral de trincos mecânicos e paragem
+                </td>
+                <td>
+                    <div class="borne-container">FC <span class="seta-teste">➔</span> SC</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas Exterior</span><br>
+                    <strong>Série de contactos das portas de piso</strong><br>
+                    Monitorizado diretamente pelo LED 14 / LED 16
+                </td>
+                <td>
+                    <div class="borne-container">PT <span class="seta-teste">➔</span> JPT</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="bloco-tag tag-prt">Portas Cabine</span><br>
+                    <strong>Contacto de fecho da porta da cabine</strong><br>
+                    Validação final de segurança para arranque (LED 17)
+                </td>
+                <td>
+                    <div class="borne-container">PC <span class="seta-teste">➔</span> JPC</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="nav-block">
+        <a href="index.html" class="btn-voltar">⬅ Voltar ao Menu Principal</a>
+    </div>
+
+    <div class="footer">
+        © Nelson 15035248 • Base de dados móvel privada
+    </div>
+</div>
+</body>
+</html>
