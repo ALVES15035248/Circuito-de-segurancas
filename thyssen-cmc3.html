@@ -1,137 +1,130 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThyssenKrupp CMC3 — Circuitos de Segurança</title>
-    <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            background: #f4f6f9; 
-            color: #333; 
-            margin: 0; 
-            padding: 15px; 
-            /* MARCA DE ÁGUA CORRIGIDA E ADAPTADA PARA NAVEGADORES MÓVEIS (Namespace W3C corrigido) */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='180' height='120'%3E%3Ctext x='20' y='65' fill='rgba(0,0,0,0.08)' font-size='12' font-family='Arial' font-weight='bold' transform='rotate(-30 90 60)'%3ENelson%2015035248%3C/text%3E%3C/svg%3E");
-            background-repeat: repeat;
-        }
-        .container { max-width: 600px; background: rgba(255, 255, 255, 0.96); padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; box-sizing: border-box; }
-        h1 { color: #0d47a1; font-size: 18px; margin-bottom: 5px; border-bottom: 2px solid #0d47a1; padding-bottom: 5px; }
-        h3 { font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
-        .tensao-destaque { font-size: 14px; margin: 15px 0 5px 0; color: #d32f2f; font-weight: bold; text-align: left; }
-        table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 13px; margin-bottom: 15px; table-layout: fixed; }
-        th, td { border: 1px solid #ddd; padding: 10px 8px; text-align: left; vertical-align: middle; word-wrap: break-word; }
-        th { background-color: #f2f2f2; font-weight: bold; }
-        .borne-container { display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 12px; font-weight: bold; background: #222; color: #fff; padding: 6px 4px; border-radius: 4px; white-space: nowrap; width: 100%; box-sizing: border-box; }
-        .seta-teste { margin: 0 4px; color: #ffeb3b; font-size: 11px; }
-        .bloco-tag { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; }
-        
-        /* PALETE DE CORES DE ETIQUETAS */
-        .tag-alv { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
-        .tag-sgc { background: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
-        .tag-prt { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
-        .tag-err { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
-
-        /* PADRONIZAÇÃO DOS LEDS COM O ESTILO MICONIC */
-        .tabela-leds { width: 100%; border-collapse: collapse; background: #fdfdfd; margin-top: 10px; }
-        .tabela-leds th { background-color: #eef2f7; color: #0d47a1; }
-        .led-indicator { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: #4caf50; box-shadow: 0 0 6px #4caf50; margin-right: 8px; vertical-align: middle; }
-        .led-off { background-color: #757575; box-shadow: none; }
-        .led-name { font-weight: bold; font-family: monospace; font-size: 14px; }
-
-        /* PADRONIZAÇÃO DA TABELA DE DIAGNÓSTICO DE ERROS */
-        .tabela-diag { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; background: #fffdf3; margin-bottom: 15px; }
-        .tabela-diag th { background-color: #fff3cd; color: #856404; }
-        .tabela-diag td { border: 1px solid #ffeeba; }
-        .erro-code { font-weight: bold; color: #d32f2f; font-family: monospace; font-size: 14px; text-align: center; }
-        
-        .caixa-imagem { text-align: center; margin: 15px 0 25px 0; background: #fafafa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
-        .caixa-imagem img { width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
-        .legenda-imagem { font-size: 11px; color: #666; margin-top: 6px; font-style: italic; line-height: 1.4; }
-        
-        .bloco-shunts { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 12.5px; line-height: 1.5; text-align: left; }
-        .bloco-shunts p { margin: 4px 0; font-weight: bold; }
-        
-        .nav-block { text-align: center; margin: 30px 0 10px 0; display: block; clear: both; }
-        .btn-voltar { display: inline-block; padding: 12px 24px; background: #333333; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        .btn-voltar:hover, .btn-voltar:active { background: #555555; color: white; }
-        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #777; font-weight: bold; border-top: 1px solid #eee; padding-top: 15px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ThyssenKrupp CMC3 — Circuitos de Segurança</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f6f9;color:#333;margin:0;padding:15px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='180' height='120'%3E%3Ctext x='20' y='65' fill='rgba(0,0,0,0.08)' font-size='12' font-family='Arial' font-weight='bold' transform='rotate(-30 90 60)'%3ENelson%2015035248%3C/text%3E%3C/svg%3E");background-repeat:repeat;}
+.container{max-width:600px;background:rgba(255,255,255,0.96);padding:20px;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,0.1);margin:auto;box-sizing:border-box;}
+h1{color:#0d47a1;font-size:18px;margin-bottom:5px;border-bottom:2px solid #0d47a1;padding-bottom:5px;}
+h3{font-size:14px;color:#333;margin-top:20px;margin-bottom:5px;border-bottom:1px solid #eee;padding-bottom:3px;}
+.tensao-destaque{font-size:14px;margin:15px 0 5px 0;color:#d32f2f;font-weight:bold;text-align:left;}
+table{width:100%;border-collapse:collapse;margin-top:5px;font-size:13px;margin-bottom:15px;table-layout:fixed;}
+th,td{border:1px solid #ddd;padding:10px 8px;text-align:left;vertical-align:middle;word-wrap:break-word;}
+th{background-color:#f2f2f2;font-weight:bold;}
+.borne-container{display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:12px;font-weight:bold;background:#222;color:#fff;padding:6px 4px;border-radius:4px;white-space:nowrap;width:100%;box-sizing:border-box;}
+.seta-teste{margin:0 4px;color:#ffeb3b;font-size:11px;}
+.bloco-tag{display:inline-block;padding:2px 6px;border-radius:3px;font-size:10px;font-weight:bold;text-transform:uppercase;margin-bottom:4px;}
+.tag-alv{background:#e8f5e9;color:#2e7d32;border:1px solid #c8e6c9;}
+.tag-sgc{background:#fff3e0;color:#ef6c00;border:1px solid #ffe0b2;}
+.tag-prt{background:#e3f2fd;color:#1565c0;border:1px solid #bbdefb;}
+.tag-err{background:#ffebee;color:#c62828;border:1px solid #ffcdd2;}
+.tabela-leds{width:100%;border-collapse:collapse;background:#fdfdfd;margin-top:10px;}
+.tabela-leds th{background-color:#eef2f7;color:#0d47a1;}
+.led-indicator{display:inline-block;width:12px;height:12px;border-radius:50%;background-color:#4caf50;box-shadow:0 0 6px #4caf50;margin-right:8px;vertical-align:middle;}
+.led-off{background-color:#757575;box-shadow:none;}
+.led-name{font-weight:bold;font-family:monospace;font-size:14px;}
+.tabela-diag{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px;background:#fffdf3;margin-bottom:15px;}
+.tabela-diag th{background-color:#fff3cd;color:#856404;}
+.tabela-diag td{border:1px solid #ffeeba;}
+.erro-code{font-weight:bold;color:#d32f2f;font-family:monospace;font-size:14px;text-align:center;}
+.caixa-imagem{text-align:center;margin:15px 0 25px 0;background:#fafafa;padding:10px;border-radius:6px;border:1px solid #ddd;}
+.caixa-imagem img{width:100%;max-width:100%;height:auto;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.1);display:block;margin:0 auto;}
+.legenda-imagem{font-size:11px;color:#666;margin-top:6px;font-style:italic;line-height:1.4;}
+.bloco-shunts{background:#fff3cd;border-left:4px solid #ffc107;padding:12px;margin-top:15px;border-radius:4px;font-size:12.5px;line-height:1.5;text-align:left;}
+.bloco-shunts p{margin:4px 0;font-weight:bold;}
+.nav-block{text-align:center;margin:30px 0 10px 0;display:block;clear:both;}
+.btn-voltar{display:inline-block;padding:12px 24px;background:#333333;color:white;text-decoration:none;border-radius:4px;font-size:14px;font-weight:bold;box-shadow:0 2px 5px rgba(0,0,0,0.2);}
+.btn-voltar:hover,.btn-voltar:active{background:#555555;color:white;}
+.footer{text-align:center;margin-top:30px;font-size:11px;color:#777;font-weight:bold;border-top:1px solid #eee;padding-top:15px;}
+</style>
 </head>
 <body>
-
 <div class="container">
-    <h1>ThyssenKrupp — CMC3</h1>
-    
-    <div class="caixa-imagem">
-        <img src="cmc3-esquema.jpg" alt="Placa da manobra CMC3" onerror="this.style.display='none'; document.getElementById('lbl-cmc3').innerText='Fotografia do esquema técnico cmc3-esquema.jpg pendente...';">
-        <div id="lbl-cmc3" class="legenda-imagem"><strong>Exemplar Técnico:</strong> Esquema e Placa de Manobra.</div>
-    </div>
-
-    <!-- TABELA DE LEDS TOTALMENTE PADRONIZADA COM O DESIGN ANTERIOR -->
-    <h3>Sinalização de LEDs Diagnóstico (Painel de Testes)</h3>
-    <table class="tabela-leds">
-        <thead>
-            <tr><th style="width: 28%;">LED</th><th>Ponto de Leitura / Condição de Ativação</th></tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><span class="led-indicator led-off"></span><span class="led-name">S29</span></td>
-                <td><strong>Seguranças Gerais Abertas (SEG)</strong>. Corte na cadeia inicial. Apaga se houver falha no Disjuntor IM (4-A1), nas réguas do poço/máquina (A1-A3) ou na cabina/revisão (B1-B4).</td>
-            </tr>
-            <tr>
-                <td><span class="led-indicator led-off"></span><span class="led-name">S40</span></td>
-                <td><strong>Série de Portas de Piso Aberta (PRES)</strong>. Falha nos contactos de fecho e encosto mecânico das portas exteriores. Confirmar circuito entre os bornes C1 e C2.</td>
-            </tr>
-            <tr>
-                <td><span class="led-indicator led-off"></span><span class="led-name">S41</span></td>
-                <td><strong>Falha de Encravamento Geral (ENCL)</strong>. Fim da linha. Bloqueio ou corte na série de trincos exteriores de piso (C6-C7) ou no operador da porta de cabina (B5-B6).</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- TABELA DE ERROS COERENTE COM A NOVA IDENTIDADE VISUAL -->
-    <h3>Códigos de Avaria no Display</h3>
-    <table class="tabela-diag">
-        <thead>
-            <tr>
-                <th style="width: 20%; text-align: center;">Código</th>
-                <th>Significado / Descrição da Avaria</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td class="erro-code">*0</td><td><span class="bloco-tag tag-err">Portas</span><br>Falha ou anomalia nos sensores de posicionamento das portas.</td></tr>
-            <tr><td class="erro-code">*1</td><td><span class="bloco-tag tag-err">Contratores</span><br>Falha no disparo ou encosto dos contactores principais de potência.</td></tr>
-            <tr><td class="erro-code">*2</td><td><span class="bloco-tag tag-err">Fases / Fins de Curso</span><br>Inversão de fases na alimentação de rede ou ambos os limites extremos atuados em simultâneo.</td></tr>
-            <tr><td class="erro-code">*3</td><td><span class="bloco-tag tag-err">Inspeção / Módulo SR</span><br>Manobra em situação de revisão ou falha interna do módulo eletrónico SR.</td></tr>
-            <tr><td class="erro-code">*4</td><td><span class="bloco-tag tag-err">Corte em Marcha</span><br>Abertura repentina da série de portas de piso com o elevador em movimento.</td></tr>
-            <tr><td class="erro-code">*5</td><td><span class="bloco-tag tag-err">Mecânica Portas</span><br>Após a chegada ao piso de destino, a série de portas falha em abrir.</td></tr>
-            <tr><td class="erro-code">*6</td><td><span class="bloco-tag tag-err">Sinalização Caixa</span><br>Erro crítico na leitura e contagem de pantalhas de piso.</td></tr>
-            <tr><td class="erro-code">*7</td><td><span class="bloco-tag tag-err">Encravamento</span><br>Falha mecânica ou elétrica no encravamento (trincos) das portas.</td></tr>
-            <tr><td class="erro-code">*8</td><td><span class="bloco-tag tag-err">Fotorruptor</span><br>Falha na leitura/deteção de pantalhas pelo fotorruptor ou avaria do sensor em renivelação.</td></tr>
-            <tr><td class="erro-code">*9</td><td><span class="bloco-tag tag-err">Cadeia Geral</span><br>Abertura total da série e cadeia de seguranças elétricas principais.</td></tr>
-        </tbody>
-    </table>
-
-    <h3>Notas Técnicas de Campo</h3>
-    <div class="bloco-shunts">
-        <p>• <strong>Risco Elétrico:</strong> A cadeia opera a 230V AC, perigo crítico de choque elétrico em campo.</p>
-        <p>• <strong>Ordem Lógica:</strong> O circuito progride em cascata estruturada seguindo as séries A, B e C.</p>
-    </div>
-
-    <!-- Alerta de Tensão Redesenhado -->
-    <div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
-    
-    <!-- CADEIA DE BORNES CONCLUÍDA E REESTRUTURADA COM O PADRÃO VISUAL EXATO -->
-    <h3>Cadeia de Bornes de Segurança</h3>
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 58%;">Componente Técnico / Circuito</th>
-                <th style="width: 42%; text-align: center;">Pontas do Multímetro</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <span class="bloco-tag tag-alv">Alimentação Inicial</span><br>
+<h1>ThyssenKrupp — CMC3</h1>
+<div class="caixa-imagem">
+<img src="cmc3-esquema.jpg" alt="Placa da manobra CMC3" onerror="this.style.display='none'; document.getElementById('lbl-cmc3').innerText='Fotografia do esquema técnico cmc3-esquema.jpg pendente...';">
+<div id="lbl-cmc3" class="legenda-imagem"><strong>Exemplar Técnico:</strong> Esquema e Placa de Manobra.</div>
+</div>
+<h3>Sinalização de LEDs Diagnóstico (Painel de Testes)</h3>
+<table class="tabela-leds">
+<thead>
+<tr><th style="width:28%;">LED</th><th>Ponto de Leitura / Condição de Ativação</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="led-indicator led-off"></span><span class="led-name">S29</span></td>
+<td><strong>Seguranças Gerais Abertas (SEG)</strong>. Corte na cadeia inicial. Apaga se houver falha no Disjuntor IM (4-A1), nas réguas do poço/máquina (A1-A3) ou na cabina/revisão (B1-B4).</td>
+</tr>
+<tr>
+<td><span class="led-indicator led-off"></span><span class="led-name">S40</span></td>
+<td><strong>Série de Portas de Piso Aberta (PRES)</strong>. Falha nos contactos de fecho e encosto mecânico das portas exteriores. Confirmar circuito entre os bornes C1 e C2.</td>
+</tr>
+<tr>
+<td><span class="led-indicator led-off"></span><span class="led-name">S41</span></td>
+<td><strong>Falha de Encravamento Geral (ENCL)</strong>. Fim da linha. Bloqueio ou corte na série de trincos exteriores de piso (C6-C7) ou no operador da porta de cabina (B5-B6).</td>
+</tr>
+</tbody>
+</table>
+<h3>Códigos de Avaria no Display</h3>
+<table class="tabela-diag">
+<thead>
+<tr><th style="width:20%; text-align: center;">Código</th><th>Significado / Descrição da Avaria</th></tr>
+</thead>
+<tbody>
+<tr><td class="erro-code">*0</td><td><span class="bloco-tag tag-err">Portas</span><br>Falha ou anomalia nos sensores de posicionamento das portas.</td></tr>
+<tr><td class="erro-code">*1</td><td><span class="bloco-tag tag-err">Contactores</span><br>Falha no disparo ou encosto dos contactores principais de potência.</td></tr>
+<tr><td class="erro-code">*2</td><td><span class="bloco-tag tag-err">Fases / Fins</span><br>Inversão de fases na rede ou ambos os limites extremos atuados em simultâneo.</td></tr>
+<tr><td class="erro-code">*3</td><td><span class="bloco-tag tag-err">Inspeção</span><br>Manobra em situação de revisão ou falha interna do módulo eletrónico SR.</td></tr>
+<tr><td class="erro-code">*4</td><td><span class="bloco-tag tag-err">Corte Marcha</span><br>Abertura repentina da série de portas de piso com o elevador em movimento.</td></tr>
+<tr><td class="erro-code">*5</td><td><span class="bloco-tag tag-err">Mecânica</span><br>Após a chegada ao piso de destino, a série de portas falha em abrir.</td></tr>
+<tr><td class="erro-code">*6</td><td><span class="bloco-tag tag-err">Sinalização</span><br>Erro crítico na leitura e contagem de pantalhas de piso.</td></tr>
+<tr><td class="erro-code">*7</td><td><span class="bloco-tag tag-err">Encravamento</span><br>Falha mecânica ou elétrica no encravamento (trincos) das portas.</td></tr>
+<tr><td class="erro-code">*8</td><td><span class="bloco-tag tag-err">Fotorruptor</span><br>Falha na leitura pelo fotorruptor ou avaria do sensor em renivelação.</td></tr>
+<tr><td class="erro-code">*9</td><td><span class="bloco-tag tag-err">Cadeia Geral</span><br>Abertura total da série e cadeia de seguranças elétricas principais.</td></tr>
+</tbody>
+</table>
+<h3>Notas Técnicas de Campo</h3>
+<div class="bloco-shunts">
+<p>• <strong>Risco Elétrico:</strong> A cadeia opera a 230V AC, perigo crítico de choque elétrico em campo.</p>
+<p>• <strong>Ordem Lógica:</strong> O circuito progride em cascata estruturada seguindo as séries A, B e C.</p>
+</div>
+<div class="tensao-destaque">TENSÃO DO CIRCUITO: 230V AC</div>
+<h3>Cadeia de Bornes de Segurança</h3>
+<table>
+<thead>
+<tr><th style="width:58%;">Componente Técnico / Circuito</th><th style="width:42%; text-align: center;">Pontas do Multímetro</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="bloco-tag tag-alv">Alimentação Inicial</span><br><strong>Disjuntor de proteção IM</strong><br>Origem e proteção da Linha de Segurança</td>
+<td><div class="borne-container">4 <span class="seta-teste">➔</span> A1</div></td>
+</tr>
+<tr>
+<td><span class="bloco-tag tag-sgc">Gerais Poço</span><br><strong>Série primária externa</strong><br>Contactos de stop do poço e casa da máquina</td>
+<td><div class="borne-container">A1 <span class="seta-teste">➔</span> A3</div></td>
+</tr>
+<tr>
+<td><span class="bloco-tag tag-sgc">Cabina / Revisão</span><br><strong>Série secundária de cabina</strong><br>Botão de stop da cabina e comando de revisão</td>
+<td><div class="borne-container">B1 <span class="seta-teste">➔</span> B4</div></td>
+</tr>
+<tr>
+<td><span class="bloco-tag tag-prt">Presença Piso</span><br><strong>Série de contactos de portas (S40)</strong><br>Fecho e encosto das portas exteriores</td>
+<td><div class="borne-container">C1 <span class="seta-teste">➔</span> C2</div></td>
+</tr>
+<tr>
+<td><span class="bloco-tag tag-prt">Operador</span><br><strong>Contacto do operador da porta</strong><br>Verificação e controle da porta da cabina</td>
+<td><div class="borne-container">B5 <span class="seta-teste">➔</span> B6</div></td>
+</tr>
+<tr>
+<td><span class="bloco-tag tag-prt">Trincos</span><br><strong>Série de trincos exteriores (S41)</strong><br>Trincos de piso e encravamento final de marcha</td>
+<td><div class="borne-container">C6 <span class="seta-teste">➔</span> C7</div></td>
+</tr>
+</tbody>
+</table>
+<div class="nav-block"><a href="index.html" class="btn-voltar">◀ Voltar ao Índice</a></div>
+<div class="footer">© Nelson 15035248 • Base de dados móvel privada</div>
+</div>
+</body>
+</html>
